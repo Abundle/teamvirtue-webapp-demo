@@ -1,0 +1,666 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+html {
+    overflow: hidden;
+    height: 100%;
+	position: fixed;
+}
+
+body {
+    height: 100%;
+    overflow: hidden;
+	overscroll-behavior-y: none;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+    margin: 0;
+    background-color:#f9f9f9 !important;
+}
+
+#app{  
+	width: 100vw;
+	height: 100vh;
+	overflow-y: auto;
+	text-align: center;
+}
+
+#app.fullscreen{
+	overflow-y:hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #A0A0A0; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #808080; }
+
+/* Make selected text gold on a red background */
+::-moz-selection {
+    color: white;
+    background: #f15b27; }
+
+::selection {
+    color: white;
+    background: #f15b27; }
+
+.pageContainer {
+    width: 100%; }
+
+.tabIndicator {
+    top: 0;
+    bottom: auto; }
+
+@media only screen and (min-width: 991px) {
+    .wrapper {
+        margin-left: 200px; }
+}
+
+.statusBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align:center;
+    align-items: end;
+    width: 100%;
+    margin: 0;
+}
+.statusBar h1 {
+    margin: 0;
+    line-height: 50px;
+}
+.statusBar h3 {
+    margin: 0;
+}
+.statusBar .statusItem {
+    width: 50%;
+}
+
+.rc-slider-handle{
+	width:20px;
+	height:20px;
+	margin-top:-8px;
+	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+}
+
+@media only screen and (min-width: 1200px) {
+    .statusBar .statusItem {
+        width: 40%;
+    }
+}
+
+.infoBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    max-width: 820px;
+    margin: 75px auto;
+}
+.infoBar h1 {
+    margin: 0;
+    line-height: 35px;
+}
+.infoBar p {
+    margin: 10px 0;
+}
+.infoBar [class*='infoItem'] {
+    position: relative;
+    width: calc(100% / 3);
+}
+@media only screen and (min-width: 1200px) {
+    .infoBar [class*='infoItem'] {
+        width: 30%;
+    }
+}
+.infoBar .infoItem2:before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 30px;
+    left: 0;
+    border-left: 1px solid lightgray;
+}
+.infoBar .infoItem2:after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 30px;
+    right: 0;
+    border-left: 1px solid lightgray;
+}
+
+.settingsContainer {
+    text-align: left;
+}
+
+.pageTitle {
+    line-height: 48px;
+}
+
+.settingsTitle {
+    padding-top: 16px;
+    padding-left: 16px;
+}
+
+.datePicker {
+    padding-left: 16px;
+}
+
+.textalign-right {
+    text-align: right;
+}
+
+.listitem-secondaryflex{
+	flex: 1;
+	padding:0 16px;
+}
+
+.sustainabilityStatusCircleContainer {
+    position: fixed;
+    display: block;
+    width: 40vh;
+    height: 40vh;
+	left: 32%;
+    top: 50%;
+    margin: -11vw 0 0 -11vw;
+    /*transition: all 300ms linear;*/
+	transition: all 500ms ease-out;
+	/*backface-visibility: hidden !important;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	-webkit-perspective: 1000;
+	transform: translateZ(0) scale(1,1)!important;*/
+	border-radius:50%;
+	overflow:hidden;
+	transform: scale(1.0);
+	box-sizing:border-box;
+}
+
+.sustainabilityStatusCircleContainer:hover {
+	cursor: pointer;
+}
+
+.sustainabilityStatusCircle{
+	position: absolute;
+	border-radius: 50%;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	transition: all 500ms linear;
+	-webkit-font-smoothing: antialiased;
+}
+
+.sustainabilityStatusCircle:after,
+.sustainabilityStatusCircle:before{
+	content:"";
+	position:absolute;
+	border-radius:50%;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	top:0; 
+	left:0;
+	transition: all 400ms linear, opacity 200ms linear 400ms;
+}
+
+.fullscreen .sustainabilityStatusCircle:after,
+.fullscreen .sustainabilityStatusCircle:before{
+	transition: all 500ms linear, opacity 1000ms linear 500ms;
+}
+
+.sustainabilityStatusCircleContainer.positive .sustainabilityStatusCircle:before,
+.sustainabilityStatusCircleContainer.positive .sustainabilityStatusCircle:after{
+	box-shadow: inset 0 3.5vw 0 rgba(3, 206, 164, 0.6),
+				inset 3.5vw 0 0 rgba(95, 173, 86, 0.6),
+				inset 0 -3.5vw 0 rgba(78, 166, 153, 0.6),
+				inset -3.5vw 0 0 rgba(68, 175, 105, 0.6);
+}
+
+.sustainabilityStatusCircleContainer.neutral .sustainabilityStatusCircle:before,
+.sustainabilityStatusCircleContainer.neutral .sustainabilityStatusCircle:after{
+	box-shadow: inset 0 3.5vw 0 rgba(255, 174, 3, 0.6),
+				inset 3.5vw 0 0 rgba(255, 242, 117, 0.6),
+				inset 0 -3.5vw 0 rgba(255, 140, 66, 0.6),
+				inset -3.5vw 0 0 rgba(247, 240, 82, 0.6);
+}
+
+.sustainabilityStatusCircleContainer.negative .sustainabilityStatusCircle:before,
+.sustainabilityStatusCircleContainer.negative .sustainabilityStatusCircle:after{
+	box-shadow: inset 0 3.5vw 0 rgba(233, 25, 15, 0.6),
+				inset 3.5vw 0 0 rgba(116, 18, 29, 0.6),
+				inset 0 -3.5vw 0 rgba(254, 95, 85, 0.6),
+				inset -3.5vw 0 0 rgba(163, 22, 33, 0.6);
+}
+
+.sustainabilityStatusCircle:before{
+	animation: rotateCircleBorderIz 25s ease-in-out infinite;
+}
+
+.sustainabilityStatusCircle:after{
+	animation: rotateCircleBorder 10s -0.5s linear infinite;
+}
+
+.sustainabilityStatusCircleFullscreen{
+	opacity: 0;
+	transition: all 200ms ease-in 800ms;
+}
+
+.fullscreen .sustainabilityStatusCircleFullscreen{
+	opacity: 1;
+}
+
+.ProgressContainer{
+	border-top: 2px solid lightgrey;
+	position:absolute;
+	bottom:0;
+	width:92%;
+	text-align:center;
+	padding:5px 10px;
+	margin-bottom:10px;
+}
+
+.ProgressContainer .ProgressLine {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	position:relative;
+	margin-top:10px;
+}
+
+.ProgressContainer .ProgressLine .dot {
+	border: 50%;
+	flex-grow: 1;
+	flex-basis: 0;
+}
+
+.ProgressContainer .ProgressLine .dot span{
+	display:block;
+	color:#999999;
+}
+
+.ProgressContainer .ProgressLine .dot::after{
+	content: "";
+	width:14px;
+	height:14px;
+	border-radius:50%;
+	margin-top:5px;
+	margin-left:-7px;
+	background-color:#ffffff;
+	border:2px solid #999999;
+	position:absolute;
+	z-index:2;
+}
+
+.ProgressContainer .line {
+	width: 100%;
+	border: 2px solid #999999;
+	border-radius:4px;
+	margin-top:10px;
+	margin-bottom:20px;
+	position:relative;
+}
+
+.ProgressContainer .lineFill {
+	position:absolute;
+	left:-2px;
+	top:-2px;
+	border-radius:4px;
+	border:2px solid #f15b27;
+}
+
+.ProgressContainer h3{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+/* Tooltips */
+.tooltiptext {
+    width: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+	top:20px;
+    position: absolute;
+    z-index: 1;
+	animation: tooltipCatchAttention 3s infinite;
+}
+
+.tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+
+/* Sustainability Cards */
+.sustainabilityCardContainer{
+	position:relative;
+	min-height:190px;
+}
+
+.sustainabilityCard{
+	transition:all 200ms;
+	opacity:1;
+	display: flex;
+	flex-direction: row;
+	margin-bottom:0 !important;
+	position:absolute;
+}
+
+.sustainabilityCard > [class^="col-"],
+.sustainabilityCard > [class*=" col-"] {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sustainabilityCard:not(:first-child) {
+	width:100%;
+	transform: scale(0.95);
+	margin-top:15px;
+}
+
+.sustainabilityCard:nth-child(n+3){
+	opacity:1;
+}
+
+.sustainabilityCardContent{
+	text-align:left;
+}
+
+.sustainabilityCardGraphic{
+	background-color:#f15b27;
+}
+
+.sustainabilityCardIcon{
+	padding: 0 30px;
+	text-align: center;
+	color: white;
+	width:auto !important;
+	height:auto !important;
+}
+
+.sustainabilityCardEverythingFine{
+	background-color:rgba(255,255,255,0.8) !important;
+	display:block;
+	z-index:-2 !important;
+	width:100%;
+	background-color: #f6fff6;
+}
+
+.sustainabilityCardEverythingFine .sustainabilityCardContent{
+	text-align:center;
+}
+
+
+/*** FULLSCREEN MODEL ***/
+.fullscreen .wrapper .headerBg{
+	overflow:hidden;
+	padding:0;
+	height:100vh;
+}
+
+.fullscreen .wrapper .sustainabilityStatusCircleContainer{
+	width:100%;
+	height:100vh;
+	margin-top:0;
+	overflow: hidden;
+	left:0;
+	top:0;
+	border-radius: 0;
+	transform: scale(1.0);
+}
+
+.fullscreen .wrapper .sustainabilityStatusCircleContainer .sustainabilityStatusCircle{
+	border-radius: 0;
+	border:0;
+}
+
+.fullscreen .wrapper .sustainabilityStatusCircleContainer .sustainabilityStatusCircle:after,
+.fullscreen .wrapper .sustainabilityStatusCircleContainer .sustainabilityStatusCircle:before{
+	opacity: 0;
+	border-radius: 0;
+	animation: none;
+	pointer-events: none;
+}
+/*** END FULLSCREEN MODEL ***/
+
+.dubaiBg {
+    position: absolute;
+    display: none;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100vw;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content{
+    padding-bottom: 95px;
+	background-color: #f9f9f9;
+	transition: margin 200ms linear;
+}
+
+.notificationsIcon {
+    position: fixed;
+    top: 15px;
+    left: 125px;
+    z-index: 2;
+}
+
+.h3-bold h3{
+    font-weight: 600;
+}
+
+.notificationMargin{
+	margin: 10px auto 30px auto;
+}
+
+.notificationWarning, .notificationNegative{
+	outline: 2px dashed #f15b27;
+	background-color: #fce1d7;
+	padding: 10px;
+	width: 100%;
+	margin-top: 3px;
+}
+
+.notificationPositive{
+	outline: 2px dashed #53a264;
+	background-color: #d0e5d4;
+	padding: 10px;
+	width: 100%;
+	margin-top: 3px;
+}
+
+.notificationPositive + .notificationPositive,
+.notificationWarning + .notificationWarning,
+.notificationPositive + .notificationWarning,
+.notificationWarning + .notificationPositive{
+	margin-top:15px;
+}
+
+.row.no-margin {
+	margin-left:0;
+	margin-right:0;
+}
+
+
+@media only screen and (max-width: 991px) {
+    .headerBg {
+        background: linear-gradient(175deg, 
+			rgba(249, 130, 63, 0.9) 20%, 
+			rgba(241, 91, 39, 0.9) 60%, 
+			#f9f9f9 25%);
+		height: 20vh;
+		transition: all 400ms ease-out;
+    }
+	
+    .home .headerBg {
+        height: 100vh;
+		transition: all 0s ease;
+    }
+	
+    .sustainabilityStatusCircleContainer {
+        position: relative;
+		left: auto;
+        top: 0;
+        margin: 40px auto 0 auto;
+		transform: scale(0.4);
+		transform-origin: top center;
+    }
+    /*.sustainabilityStatusScene {
+        margin-top: 25vh;
+    }*/
+
+    /* Home Screen */
+    .home {
+        height: 100vh;
+    }
+
+    .home .sustainabilityStatusCircleContainer{
+        margin-top: 15vh;
+		margin-bottom:15px;
+		transform: scale(1.0);
+    }
+    .home .headerBg { /*TODO: implement cubic-bezier*/
+		background-color: rgb(249, 130, 63);
+        background: linear-gradient(175deg, 
+			rgba(245, 154, 80, 0.9) 0%, 
+			rgba(249, 130, 63, 0.9) 30%, 
+			rgba(241, 91, 39, 0.9) 70%);
+    }
+    .home .dubaiBg {
+        display: block;
+    }
+
+    .home .content {
+        position: absolute;
+        bottom: 0;
+		margin-bottom:25px;
+        pointer-events: none;
+		background-color: rgba(0, 0, 0, 0.15);
+		border-top: 1px solid rgba(0,0,0,0.1);
+		height:22vh;
+    }
+
+    .subNavBarContainer {
+        position: absolute;
+        pointer-events: auto;
+        margin-top: -50px;
+		margin-left: -15px;
+		margin-right: -15px;
+        width: 100vw;
+    }
+
+
+	.subNavBarContainerTabSelected span:not(.badge){
+		font-size: 3.5vw;
+	}
+
+    .subNavBarContainerFullscreen {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        pointer-events: auto;
+		margin-bottom:20px;
+		transition: all 300ms;
+		background-color: rgba(255,255,255,1.0);
+		padding: 10px;
+		border-top-left-radius:5px;
+		border-top-right-radius:5px;
+    }
+	
+	.homeInfoBox{
+		margin-top:5vh;
+		color:#fff;
+		position:relative;
+	}
+	
+	.homeInfoBox h1{
+		font-size:8vw;
+		display:inline;
+	}
+	
+	.homeInfoBox p{
+		text-transform:uppercase;
+		margin-top:-10px;
+	}
+
+    .notificationsIcon {
+        position: absolute;
+        top: 12px;
+        right: 0;
+        left: auto;
+        bottom: auto;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .reduceDialogMarginMobile{
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+    }
+
+    [class*="col-"].mobileReducePadding {
+        padding-left:5px;
+        padding-right:5px;
+        margin-top:5px;
+        margin-bottom:5px;
+    }
+    .row.mobileReducePadding {
+        margin-left:-5px;
+        margin-right:-5px;
+    }
+}
+
+/* Animations */
+@keyframes rotateCircleBorder{
+	0%{
+		transform:rotateZ(0deg) scaleX(1) scaleY(1);
+	}
+	50%{
+		transform:rotateZ(180deg);
+	}
+	100%{
+		transform:rotateZ(360deg) scaleX(1) scaleY(1);
+	}
+}
+
+@keyframes rotateCircleBorderIz{
+	0%{
+		transform:rotateZ(0deg);
+	}
+	8%{
+		transform:rotateZ(-360deg);
+	}
+	100%{
+		transform:rotateZ(-360deg);
+	}
+}
+
+@keyframes tooltipCatchAttention {
+	0%   { top:0px; }
+	6%  { top:25px; }
+	10%  { top:20px; }
+	90%  { top:20px; }
+	100% { top:0px; }
+}
