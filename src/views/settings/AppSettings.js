@@ -24,7 +24,7 @@ import { UserDialogContainer } from '../../containers/UserDialogContainer';
 
 // const options = [];
 
-const optionsFood = [
+/*const optionsFood = [
     'Not applicable',
     'Flexitarian',
     'Pescatarian',
@@ -36,7 +36,7 @@ const optionsNightmode = [
     'Disabled',
     'Automatically enable from sunset to sunrise',
     'Custom time range',
-];
+];*/
 
 const styles = theme => ({
     root: {
@@ -169,7 +169,7 @@ class Settings extends Component {
     render() {
 		const { classes, theme, settings } = this.props;
 		
-        const currentUserId = settings.accounts.byId[settings.accounts.currentUser].id;
+        // const currentUserId = settings.accounts.byId[settings.accounts.currentUser].id;
         const currentUserName = settings.accounts.byId[settings.accounts.currentUser].name;
 
         return (

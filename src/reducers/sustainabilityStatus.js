@@ -16,9 +16,9 @@ const sustainabilityStatus = (state = {
             {
                 id: 'linq_washing_machines',
 				title: 'Inefficient washing machines',
-				content: 'There are two washing machines runnning while the electricity grid is not fully charged yet.',
+				content: 'There are two washing machines running while the electricity grid is not fully charged yet.',
 				icon: 'local_laundry_service',
-				active: true,
+				active: false,
 			},
             {
                 id: 'linq_complex',

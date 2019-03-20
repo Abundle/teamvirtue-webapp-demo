@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import List from '@material-ui/core/List';
 
 // Local import
-import Light from '../controlComponents/Light';
+// import Light from '../controlComponents/Light';
 import RealtimeEnergyMeter from '../controlComponents/RealtimeEnergyMeter';
 import NetEnergy from '../controlComponents/NetEnergy';
 

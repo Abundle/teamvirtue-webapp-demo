@@ -1,5 +1,5 @@
 {
-  "name": "virtue-webapp-react",
+  "name": "teamvirtue-webapp-demo",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://teamvirtue.nl/webapp",
@@ -7,7 +7,6 @@
     "@fortawesome/fontawesome-free": "^5.4.2",
     "@material-ui/core": "^1.5.1",
     "@tweenjs/tween.js": "^17.2.0",
-    "axios": "^0.18.0",
     "chart.js": "^2.7.3",
     "chartjs-plugin-datalabels": "^0.3.0",
     "es6-tween": "^5.3.1",

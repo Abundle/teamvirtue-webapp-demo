@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
-import materialIcons from 'material-design-icons/iconfont/material-icons.css';
-import "typeface-open-sans";
+import 'material-design-icons/iconfont/material-icons.css';
+// import materialIcons from 'material-design-icons/iconfont/material-icons.css';
+import 'typeface-open-sans';
 import { defaults } from 'react-chartjs-2';
 
 // Local import
 import { MainNavigationContainer } from './containers/MainNavigationContainer';
 import './assets/bootstrap-grid.min.css';
 import './index.css';
+// import { updateEnergyUsage, updateIndoorTemperature } from "./actions";
 
 const theme = createMuiTheme({
     palette: {
@@ -90,32 +92,22 @@ class App extends Component {
 	}
 	
 	loadApiData() {
-		//ok bad fix. Just wait 10 seconds with data loading (assuming that token is retrieved)
-		this.props.apiGetAtmoTemperature();
-        this.props.apiGetSocketData('All Rooms', false, 'all');
-		/* this.props.apiGetSocketData('All Rooms', 'realtime'); <<<------ kan je niet gewoon laatste value pakken van 'all'?? */
-        this.props.apiGetSocketData('Technical Room', false, 'all');
-			this.props.apiGetSocketData('Technical Room', 'F13', 'realtime');
-			this.props.apiGetSocketData('Technical Room', 'F17', 'realtime');
-			this.props.apiGetSocketData('Technical Room', 'F18', 'realtime');
-			this.props.apiGetSocketData('Technical Room', 'F24', 'realtime');
-		/* this.props.apiGetSocketData('Technical Room', 'realtime'); */
-        this.props.apiGetSocketData('Outdoor', false, 'all');
-		/* this.props.apiGetSocketData('Outdoor', 'realtime'); */
-        this.props.apiGetSocketData('Living Room', false, 'all');
-		/* this.props.apiGetSocketData('Living Room', 'realtime'); */
-        this.props.apiGetSocketData('Kitchen', false, 'all');
-			//this.props.apiGetSocketData('Kitchen', 'F10', 'realtime');
-		/* this.props.apiGetSocketData('Kitchen', 'realtime'); */
-        this.props.apiGetSocketData('Hallway', false, 'all');
-		/* this.props.apiGetSocketData('Hallway', 'realtime'); */
-        this.props.apiGetSocketData('Dinner Room', false, 'all');
-		/* this.props.apiGetSocketData('Dinner Room', 'realtime'); */
-        this.props.apiGetSocketData('Bedroom', false, 'all');
-		/* this.props.apiGetSocketData('Bedroom', 'realtime'); */
-        this.props.apiGetSocketData('Bathroom', false, 'all');
-		/* this.props.apiGetSocketData('Bathroom', 'realtime'); */
-		this.props.apiGetSocketData('Bathroom', false, 'all');
+		// TODO: ok bad fix. Just wait 10 seconds with data loading (assuming that token is retrieved)
+		this.props.updateIndoorTemperature();
+        this.props.updateEnergyUsage('All Rooms');
+		/* this.props.updateEnergyUsage('All Rooms', 'realtime'); <<<------ kan je niet gewoon laatste value pakken van 'all'?? */
+        this.props.updateEnergyUsage('Technical Room');
+			this.props.updateEnergyUsage('Technical Room');
+			this.props.updateEnergyUsage('Technical Room');
+			this.props.updateEnergyUsage('Technical Room');
+			this.props.updateEnergyUsage('Technical Room');
+        this.props.updateEnergyUsage('Outdoor');
+        this.props.updateEnergyUsage('Living Room');
+        this.props.updateEnergyUsage('Kitchen');
+        this.props.updateEnergyUsage('Hallway');
+        this.props.updateEnergyUsage('Dinner Room');
+        this.props.updateEnergyUsage('Bedroom');
+        this.props.updateEnergyUsage('Bathroom');
 	}
 
 	loadPublicData() {
@@ -132,16 +124,16 @@ class App extends Component {
 			.then(res => res.json())
 			.then(
 				(result) => {
-					let celcius = Math.ceil(result.main.temp);
+					let celsius = Math.ceil(result.main.temp);
 					let description = result.weather[0].description;
 					description = description.charAt(0).toUpperCase() + description.slice(1);
 					let sunrise = result.sys.sunrise;
 					let sunset = result.sys.sunset;
 					
-					this.props.updateWeatherData(celcius, description, sunrise, sunset);
+					this.props.updateWeatherData(celsius, description, sunrise, sunset);
 				},
 				(error) => {
-					console.log('Error fetching current temperature [OpenWeatherMap API]');
+					console.log('Error fetching current temperature [OpenWeatherMap API]: ' + error);
 				}
 			);
 		

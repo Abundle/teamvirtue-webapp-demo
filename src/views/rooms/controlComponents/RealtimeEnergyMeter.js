@@ -5,11 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import ListItem from '@material-ui/core/ListItem';
+/*import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import Icon from '@material-ui/core/Icon';
+import Icon from '@material-ui/core/Icon';*/
 
 const styles = theme => ({ 
 	card: {
@@ -40,61 +40,62 @@ const styles = theme => ({
 	},
 });
 
-class RealtimeEnergyMeter extends Component {
+class RealtimeEnergyMeter extends Component { // TODO: Randomise 380.1 value
 
 	render() {
-		const { classes, theme, houseData, forRoom, forSocket } = this.props;
+		const { classes, houseData, forRoom, forSocket } = this.props;
 		
-		if(forRoom && !forSocket){
+		if (forRoom && !forSocket) {
 			return (
 				<div>
-					<Card className={classes.card}>
+					<Card className={ classes.card }>
 						<CardContent>
-							<Typography variant="subheading" className={classes.title}>Realtime energy usage</Typography>
-							<Typography className={classes.typography} component="h2" variant="display1">
-								{ houseData.room[forRoom[0].roomname].energyUsageRealtime }
+							<Typography variant='subheading' className={ classes.title }>Realtime energy usage</Typography>
+							<Typography className={ classes.typography } component='h2' variant='display1'>
+								380.1
+								{/*{ houseData.room[forRoom[0].roomname].energyUsageRealtime }*/}
 							</Typography>
-							kWh
-							<div className={classes.subtitle}>{ forRoom[0].energyname }</div>
+							kW
+							<div className={ classes.subtitle }>{ forRoom[0].energyname }</div>
 						</CardContent>
 					</Card>
 				</div>
 			);
-		}else if(forRoom && forSocket && Array.isArray(forSocket)){
-			if(forSocket.length === 1){
+		} else if (forRoom && forSocket && Array.isArray(forSocket)) {
+			if (forSocket.length === 1) {
 				return (
 					<div>
-						<Card className={classes.card}>
+						<Card className={ classes.card }>
 							<CardContent>
-								<Typography variant="subheading" className={classes.title}>Realtime energy usage</Typography>
-								<Typography className={classes.typography} component="h2" variant="display1">
+								<Typography variant='subheading' className={classes.title}>Realtime energy usage</Typography>
+								<Typography className={ classes.typography } component='h2' variant='display1'>
 									{ houseData.room[forRoom[0].roomname].energyUsageSocket[forSocket[0].id].energyUsageRealtime }
 								</Typography>
-								kWh
-								<div className={classes.subtitle}>{ forSocket[0].name }</div>
+								kW
+								<div className={ classes.subtitle }>{ forSocket[0].name }</div>
 							</CardContent>
 						</Card>
 					</div>
 				);
-			}else if(forSocket.length === 2){
+			} else if (forSocket.length === 2){
 				return (
 					<div>
-						<Card className={classes.card + ' ' + classes.cardHalfAltBg}>
+						<Card className={ classes.card + ' ' + classes.cardHalfAltBg }>
 							<CardContent className='row'>
-								<div className='col-12'><Typography variant="subheading" className={classes.title}>Realtime energy usage</Typography></div>
+								<div className='col-12'><Typography variant='subheading' className={ classes.title }>Realtime energy usage</Typography></div>
 								<div className='col-6'>
-									<Typography className={classes.typography} component="h2" variant="display1">
+									<Typography className={classes.typography} component='h2' variant='display1'>
 										{ houseData.room[forRoom[0].roomname].energyUsageSocket[forSocket[0].id].energyUsageRealtime }
 									</Typography>
-									kWh
-									<div className={classes.subtitle}>{ forSocket[0].name }</div>
+									kW
+									<div className={ classes.subtitle }>{ forSocket[0].name }</div>
 								</div>
 								<div className='col-6'>
-									<Typography className={classes.typography} component="h2" variant="display1">
+									<Typography className={ classes.typography } component='h2' variant='display1'>
 										{ houseData.room[forRoom[0].roomname].energyUsageSocket[forSocket[1].id].energyUsageRealtime }
 									</Typography>
-									kWh
-									<div className={classes.subtitle}>{ forSocket[1].name }</div>
+									kW
+									<div className={ classes.subtitle }>{ forSocket[1].name }</div>
 								</div>
 							</CardContent>
 						</Card>

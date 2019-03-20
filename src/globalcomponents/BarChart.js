@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Radio  from '@material-ui/core/Radio';
+/*import Radio  from '@material-ui/core/Radio';
 import RadioGroup  from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';*/
 import { HorizontalBar } from 'react-chartjs-2';
 import 'chartjs-plugin-datalabels';
 
 // const Chart = require('chart.js');
 
-let dataRealtime = [];
+/*let dataRealtime = [];
 let dataDay = [];
 let dataWeek = [];
 let dataMonth = [];
-let dataYear = [];
+let dataYear = [];*/
 
-var labels = [];
+let labels = [];
 
 const energyGraph = {
 	labels: labels,
@@ -88,24 +88,27 @@ class BarChart extends Component{
     };*/
 
     componentWillMount() {
-		if(labels.length < 1){
-			{ this.props.data.map(data => {
-				labels.push(data[0]);
-			})}
+		if (labels.length < 1) {
+            this.props.data.forEach(data => {
+                labels.push(data[0]);
+            })
+            /*this.props.data.map(data => {
+                labels.push(data[0]);
+            })*/
 		}
     };
 	
 	componentWillReceiveProps() {
 		//okay, so new data retrieved. Now update the array data correctly.
-		var datasetsCopy = this.state.data.datasets.slice(0);
-		
-		var dataCopy = [];
-		{ this.props.data.map(data => {
-			dataCopy.push(data[1]);
-		})}
+		let datasetsCopy = this.state.data.datasets.slice(0);
+
+        let dataCopy = [];
+        this.props.data.forEach(data => {
+            dataCopy.push(data[1]);
+        });
 		
 		datasetsCopy[0].data = dataCopy;
-		var finalData = Object.assign( {}, this.state.data, { datasets: datasetsCopy } );
+        let finalData = Object.assign( {}, this.state.data, { datasets: datasetsCopy } );
 		this.setState({
 			data: finalData
 		});

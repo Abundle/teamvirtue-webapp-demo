@@ -25,17 +25,17 @@ class RealtimeEnergyBar extends Component {
 	render() {
 		const { classes, houseData } = this.props;
 		
-		var barData = [];
-		{ this.props.showData.map(room => {
+		let barData = [];
+		this.props.showData.forEach(room => {
 			barData.push([room, houseData.room[room].energyUsageRealtime]);
-		})}
+		});
 		
 		return (
 			<div>
-				<Card className={classes.card}>
+				<Card className={ classes.card }>
 					<CardContent>
-						<Typography variant="subheading" className={classes.title}>{ this.props.title }</Typography>
-						<ListItem disableGutters={true}>
+						<Typography variant='subheading' className={ classes.title }>{ this.props.title }</Typography>
+						<ListItem disableGutters={ true }>
 							<BarChart data={ barData } />
 						</ListItem>
 					</CardContent>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { withTheme } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -38,7 +38,8 @@ class SustainabilityCards extends Component {
 	}
 
     render() {
-		const { classes, sustainabilityStatus } = this.props;
+		const { sustainabilityStatus } = this.props;
+		// const { classes, sustainabilityStatus } = this.props;
 
 
         return (

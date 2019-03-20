@@ -117,5 +117,30 @@ export const updateEatTogetherMessage = (message) => ({
 
 export const resetEatTogetherMessage = () => ({
     type: 'RESET_EAT_TOGETHER_MESSAGE',
-    payload: { },
+    payload: {},
+});
+
+export const updateEnergyUsageAll = (room) => ({
+    type: 'UPDATE_ENERGY_USAGE_ALL',
+    payload: {
+        room: room,
+        energyUsageAll: [10, 20, 30, 35, 60, 10, 15, 3, 12, 19, 36, 45, 12, 10, 20, 32, 35, 40, 38, 15, 6, 12, 19, 33, 25, 62],
+    }
+});
+
+export const updateEnergyUsageRealtime = (room) => ({
+    type: 'UPDATE_ENERGY_USAGE_REALTIME',
+    payload: {
+        room: room,
+        energyUsageRealtime: (Math.round((Math.random() * 40) + 1)),
+    }
+});
+
+export const updateIndoorTemperature = (response) => ({
+    type: 'UPDATE_ATMO_TEMPERATURE',
+    payload: {
+        temperature: 16,
+        humidity: 40,
+        CO2: 750
+    }
 });

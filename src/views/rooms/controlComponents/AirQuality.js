@@ -5,13 +5,13 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import ListItem from '@material-ui/core/ListItem';
+/*import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';*/
 import Icon from '@material-ui/core/Icon';
 
-const styles = theme => ({ 
+const styles = {
 	card: {
 		marginBottom: 25,
 		textAlign: 'center',
@@ -33,12 +33,12 @@ const styles = theme => ({
 		display: 'inline-block',
 		padding: '10px 10px 20px 0',
 	},
-});
+};
 
 class AirQuality extends Component {
 
 	render() {
-		const { classes, theme, houseData } = this.props;
+		const { classes, houseData } = this.props;
 		
 		if (houseData.indoorHumidity >= 35 && 
 			houseData.indoorHumidity <= 50 &&

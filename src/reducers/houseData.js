@@ -1,9 +1,9 @@
 const houseData = (state = {
-	eatTogetherStatus: 'requested', 	/* }	TODO: move this to other reducer (linqData??) */
-	eatTogetherMessage: [], 			/* } 	*/
-	indoorTemperature: 0,
-	indoorHumidity: 0,
-	indoorCO2: 0,
+	eatTogetherStatus: 'requested', 	/* TODO: move this to other reducer (linqData??) */
+	eatTogetherMessage: [],
+	indoorTemperature: 24,
+	indoorHumidity: 47,
+	indoorCO2: 656,
 	room: {
 		'All Rooms': {
 			airco: {

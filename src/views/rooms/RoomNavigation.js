@@ -12,7 +12,7 @@ import Slide from '@material-ui/core/Slide';
 
 import Apartment from './rooms/Apartment';
 import LivingRoom from './rooms/LivingRoom';
-import DinnerRoom from './rooms/DinnerRoom';
+// import DinnerRoom from './rooms/DinnerRoom';
 import Bedroom from './rooms/Bedroom';
 import Bathroom from './rooms/Bathroom';
 import Hallway from './rooms/Hallway';
@@ -132,7 +132,7 @@ class RoomNavigation extends Component {
         };
     }
 
-    handleClick = (id, event) => {
+    handleClick = (id) => {
         this.setState({
             currentId: id,
         });
@@ -167,7 +167,7 @@ class RoomNavigation extends Component {
 									} }
 								>
 									<div className={ classes.subNavItemContent }>
-										{data.highlight === true && <div className={classes.subNavItemHighlight}></div>}
+										{ data.highlight === true && <div className={ classes.subNavItemHighlight } /> }
 										<Icon color='primary' style={{ fontSize: 40 }}>{ data.icon }</Icon>
 										<Typography component='p' className={ classes.subNavItemRoomName }>
 											{ data.value }
@@ -182,9 +182,9 @@ class RoomNavigation extends Component {
 				
 				<Dialog
 					fullScreen={ fullScreen }
-					open={this.state.openDialog}
-					TransitionComponent={Transition}
-					onClose={this.handleDialogClose}
+					open={ this.state.openDialog }
+					TransitionComponent={ Transition }
+					onClose={ this.handleDialogClose }
 					classes={{
 						root: classes.dialogRoot,
 						paper: classes.dialogPaperRoot,
@@ -194,18 +194,18 @@ class RoomNavigation extends Component {
 				>
 					<IconButton
 						onClick={ this.handleDialogClose }
-						aria-label="Close"
-						className={classes.dialogCloseButton}
+						aria-label='Close'
+						className={ classes.dialogCloseButton }
 					>
 						<Icon>arrow_back</Icon>
 					</IconButton>
 					{ rooms.map(data => {
 						if(currentId === data.id){
 							return (
-								<div key={ data.id } className={ classes.flex + " h3-bold" }>
+								<div key={ data.id } className={ classes.flex + ' h3-bold' }>
 									<div className={ classes.dialogHeader }>
 										{ /* <Icon color='primary' className={ classes.dialogHeaderIcon }>{ data.icon }</Icon> */ }
-										<Typography className={ classes.dialogHeaderHeading } variant="title" gutterBottom>
+										<Typography className={ classes.dialogHeaderHeading } variant='title' gutterBottom>
 											{ data.value }
 										</Typography>
 									</div>

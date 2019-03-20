@@ -6,11 +6,11 @@ import FormControlLabel  from '@material-ui/core/FormControlLabel';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 
-var dataRealtime = [];
-var dataDay = [];
-var dataWeek = [];
-var dataMonth = [];
-var dataYear = [];
+let dataRealtime = [];
+let dataDay = [];
+let dataWeek = [];
+let dataMonth = [];
+let dataYear = [];
 
 const LABELS_REALTIME = ['','','','','','','',''];
 const LABELS_DAY = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'];
@@ -158,9 +158,9 @@ class LineChart extends Component{
 	
 	updateData() {
 		//okay, so new data retrieved. Now update the array data correctly.
-		var newData = this.props.data;
+        let newData = this.props.data;
 		newData.reverse();//reverse array so old data becomes first.
-		var now = moment();
+        // let now = moment();
 		
 		
 		/*** CALCULATE NEW DATA ***/
@@ -169,8 +169,8 @@ class LineChart extends Component{
 		
 		//REALTIME DATA
 				dataRealtime = [];
-				var minusPowerConsumed;
-				var previousPowerConsumed = 0;
+                /*let minusPowerConsumed;
+                let previousPowerConsumed = 0;*/
 				/*newData.map( function(item, i) {
 					if(moment(item.created).isSame(now, 'day')){
 						if(!minusPowerConsumed){
@@ -188,12 +188,12 @@ class LineChart extends Component{
 		
 		//DAY DATA
 				dataDay = [];
-				var minusPowerConsumed;
-				var previousPowerConsumed = 0;
-				
-				var latestCalculatedHour = 0;
-				var powerConsumedHourBeginning = 0;
-				var thisHourCalculated = 0;
+                /*let minusPowerConsumed;
+                let previousPowerConsumed = 0;
+
+                let latestCalculatedHour = 0;
+                let powerConsumedHourBeginning = 0;
+                let thisHourCalculated = 0;*/
 				
 				/*newData.map( function(item, i) {
 					if(moment(item.created).isSame(moment(), 'day')){//okay, data is from today
@@ -226,12 +226,12 @@ class LineChart extends Component{
 		
 		//WEEK DATA
 				dataWeek = [];
-				var minusPowerConsumed;
-				var previousPowerConsumed = 0;
-				
-				var latestCalculatedDay = 0;
-				var powerConsumedDayBeginning = 0;
-				var thisDayCalculated = 0;
+                /*let minusPowerConsumed;
+                let previousPowerConsumed = 0;
+
+                let latestCalculatedDay = 0;
+                let powerConsumedDayBeginning = 0;
+                let thisDayCalculated = 0;*/
 				
 				/*newData.map( function(item, i) {
 					if(moment(item.created).isSameOrAfter(moment().subtract(6, 'days'))){//okay, data is from last 7 days
@@ -273,31 +273,28 @@ class LineChart extends Component{
 		
 		/*** END CALCULATE NEW DATA ***/
 
-		var datasetsCopy = this.state.data.datasets.slice(0);
-		var dataCopy;
+        let datasetsCopy = this.state.data.datasets.slice(0);
+        let dataCopy;
 		
-		if(this.state.timespan === 'realtime'){
+		if (this.state.timespan === 'realtime') {
 			dataCopy = dataRealtime;
-		}else if (this.state.timespan === 'day'){
+		} else if (this.state.timespan === 'day') {
 			dataCopy = dataDay;
-		}else if (this.state.timespan === 'week'){
+		} else if (this.state.timespan === 'week') {
 			dataCopy = dataWeek;
-		}else if (this.state.timespan === 'month'){
+		} else if (this.state.timespan === 'month') {
 			dataCopy = dataMonth;
-		}else if (this.state.timespan === 'year'){
+		} else if (this.state.timespan === 'year') {
 			dataCopy = dataYear;
 		}
 		
 		datasetsCopy[0].data = dataCopy;
 
-		var finalData = Object.assign( {}, this.state.data, { datasets: datasetsCopy } );
+		let finalData = Object.assign( {}, this.state.data, { datasets: datasetsCopy } );
 		this.setState({
 			data: finalData
 		});
 	};
-	
-	
-	
 
     render(){
         const { classes } = this.props;
@@ -393,7 +390,7 @@ class LineChart extends Component{
                                 ticks: {
                                     display: true,
 									beginAtZero:true,
-									fontFamily: "inherit",
+									fontFamily: 'inherit',
                                     /*suggestedMin: 0,    // minimum will be 0, unless there is a lower value
                                     fontFamily: "'Roboto'",
                                     fontColor: 'gray',*/

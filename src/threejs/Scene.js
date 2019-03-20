@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import * as THREE from 'three';
 import OrbitControls  from 'three-orbitcontrols';
-import { MTLLoader, OBJLoader } from 'three-obj-mtl-loader';
+import { OBJLoader } from 'three-obj-mtl-loader';
+// import { MTLLoader, OBJLoader } from 'three-obj-mtl-loader';
 import { Easing, Tween } from 'es6-tween';
 import GLTFLoader from 'three-gltf-loader';
 
@@ -50,7 +51,7 @@ let tween = new Tween(coordinates)
     });
     // .start();*/
 
-// TODO: adjust camera, markers following camera, update loaded status to Redux store, check LINQ complexes
+// TODO: adjust camera, markers following camera, update loaded status to Redux store (loading icon/number), check LINQ complexes
 class Scene extends Component { // code based on https://stackoverflow.com/questions/41248287/how-to-connect-threejs-to-react
     constructor(props) {
         super(props);
@@ -213,7 +214,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
             },
             // called when loading is in progresses
             (xhr) => {
-                //console.log('Model ' + (xhr.loaded / xhr.total * 100) + '% loaded'); // TODO: check Infinity
+                console.log('Model ' + (xhr.loaded / xhr.total * 100) + '% loaded'); // TODO: check Infinity
             },
             // called when loading has errors
             (error) => {
@@ -497,7 +498,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         }
 
         if (status.advices !== previousProps.advices) {
-            console.log(status.advices[status.selected][0].id)
+            // console.log(status.advices[status.selected][0].id)
             // this.selectHighlight(status.advices[status.selected][0].id);
             // this.setColor(this.scene.getObjectByName('Marker');, highlightMarkerColor);
         }
@@ -717,18 +718,39 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
     selectLevel = (level) => { // TODO: check if level is already selected? + Make marker object global
         // let level = object.userData.parent.name;
 
+        let roof = this.MYLINQ_GROUP.getObjectByName('MYLINQ_roof_solar_panels');
         let indicator = this.OTHER_GROUP.getObjectByName('Indicator');
         let marker = this.scene.getObjectByName('Marker');
-        let roof = this.MYLINQ_GROUP.getObjectByName('MYLINQ_roof_solar_panels');
-        let laptop = this.OTHER_GROUP.getObjectByName('Laptop');
+
+        for (let i = 0; i < markers.length; i ++) {
+            console.log(markers[i])
+        }
+
+        /*let laptop = this.OTHER_GROUP.getObjectByName('Laptop');
         let tv = this.OTHER_GROUP.getObjectByName('TV');
-        let washingMachine = this.OTHER_GROUP.getObjectByName('Washing_machine');
+        let washingMachine = this.OTHER_GROUP.getObjectByName('Washing_machine');*/
 
         // console.log(this.scene.getObjectByName('Marker'));
+
+        let advices = this.props.sustainabilityStatus.advices[level];
+        // console.log(advices)
 
         switch(level) {
             case 'mylinq':
                 this.setTransparency({ objects: [roof, indicator, marker], opacity: [0, 0, 1] });
+
+                for (let i = 0; i < advices.length; i++) {
+                    if (advices[i].active) {
+                        let object = this.OTHER_GROUP.getObjectByName(advices[i].id);
+                        this.setMarker(object);
+                        this.setColor(object, highlightColor);
+                    }
+                }
+
+                /*let laptop = this.OTHER_GROUP.getObjectByName('Laptop');
+                let tv = this.OTHER_GROUP.getObjectByName('TV');
+                let washingMachine = this.OTHER_GROUP.getObjectByName('Washing_machine');
+
                 this.setMarker(laptop);
                 this.setColor(laptop, highlightColor);
 
@@ -736,7 +758,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                 this.setColor(tv, highlightColor);
 
                 this.setMarker(washingMachine);
-                this.setColor(washingMachine, highlightColor);
+                this.setColor(washingMachine, highlightColor);*/
 
                 // roof.position.setY(10);
 
@@ -793,6 +815,8 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                     // this.animateCamera(this.camera, { x: 25, y: 25, z: 25 }, 1000, 0.15, { x: 11, y: -17, z: 3});
                 }
                 break;
+            default:
+                console.log('error');
         }
 
         // update Redux state
@@ -1041,7 +1065,6 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
 
             marker.traverse((node) => {
                 if (node instanceof THREE.Mesh) {
-                // if (node.isMesh) {
                     node.material = node.material.clone();
                 }
             });
@@ -1116,9 +1139,8 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
     };
 
     render() {
-        // const { classes } = this.props;
-        const { sustainabilityStatus } = this.props;
-        let advice = sustainabilityStatus.advices[sustainabilityStatus.selected];
+        /*const { sustainabilityStatus } = this.props;
+        let advice = sustainabilityStatus.advices[sustainabilityStatus.selected];*/
 
         // console.log(sustainabilityStatus.advices[sustainabilityStatus.selected][0].id)
 

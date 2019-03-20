@@ -1,7 +1,13 @@
 import { connect } from 'react-redux';
 import App from '../App';
-import { updateWeatherData, updateWeatherForecastData } from '../actions';
-import { getApiToken, apiGetAtmoTemperature, apiGetSocketData } from '../actions/asyncActions';
+import {
+    updateWeatherData,
+    updateWeatherForecastData,
+    updateEnergyUsageAll,
+    updateIndoorTemperature,
+    updateEnergyUsageRealtime
+} from '../actions';
+// import { getApiToken, apiGetAtmoTemperature, apiGetSocketData } from '../actions/asyncActions';
 
 const mapStateToProps = (state) => {
     return {
@@ -10,20 +16,18 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    updateWeatherData: (celcius, description, sunrise, sunset) => {
-        dispatch(updateWeatherData(celcius, description, sunrise, sunset));
+    updateWeatherData: (celsius, description, sunrise, sunset) => {
+        dispatch(updateWeatherData(celsius, description, sunrise, sunset));
     },
     updateWeatherForecastData: (forecast3hDatetime, forecast3hCelsius, forecast3hDescription, forecast6hDatetime, forecast6hCelsius, forecast6hDescription) => {
         dispatch(updateWeatherForecastData(forecast3hDatetime, forecast3hCelsius, forecast3hDescription, forecast6hDatetime, forecast6hCelsius, forecast6hDescription));
     },
-	getApiToken: () => {
-		dispatch(getApiToken());
+    updateIndoorTemperature: () => {
+		dispatch(updateIndoorTemperature());
 	},
-	apiGetAtmoTemperature: () => {
-		dispatch(apiGetAtmoTemperature());
-	},
-	apiGetSocketData: (room, socket, time) => {
-		dispatch(apiGetSocketData(room, socket, time));
+    updateEnergyUsage: (room) => {
+		dispatch(updateEnergyUsageAll(room));
+		dispatch(updateEnergyUsageRealtime(room));
 	},
 });
 

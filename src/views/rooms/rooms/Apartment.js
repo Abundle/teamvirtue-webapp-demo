@@ -22,7 +22,7 @@ class Apartment extends Component {
 				</div>
 				
 				<div className='col-6'>
-					<RealtimeEnergyMeter forRoom={[{'roomname': 'All Rooms', 'energyname': 'All Rooms'}]} />
+					<RealtimeEnergyMeter forRoom={[{ 'roomname': 'All Rooms', 'energyname': 'All Rooms' }]} />
 				</div>
 
 				<div className='col-12'>
@@ -31,7 +31,7 @@ class Apartment extends Component {
 
 				{/*<WaterUsage />*/}
 				
-				<div className='col-12'><RealtimeEnergyBar title='Usage per room (kWh)' showData={['Living Room', 'Kitchen', 'Dinner Room', 'Bedroom', 'Bathroom', 'Hallway', 'Technical Room', 'Outdoor']} /></div>
+				<div className='col-12'><RealtimeEnergyBar title='Usage per room (kWh)' showData={ ['Living Room', 'Kitchen', 'Dinner Room', 'Bedroom', 'Bathroom', 'Hallway', 'Technical Room', 'Outdoor'] } /></div>
             </List>
         );
     }
