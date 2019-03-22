@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import { MuiPickersUtilsProvider } from 'material-ui-pickers';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import 'material-design-icons/iconfont/material-icons.css';
 // import materialIcons from 'material-design-icons/iconfont/material-icons.css';
 import 'typeface-open-sans';
@@ -73,13 +72,11 @@ defaults.global.elements.point.hitRadius = 15;
 
 
 class App extends Component {
-	async componentDidMount() {
+	componentDidMount() {
+	// async componentDidMount() {
 		// Call Public API's every 5 minutes
 		this.loadPublicData();
 		this.intervalId = setInterval(() => this.loadPublicData(), 5 * 60 * 1000);
-
-		// Get API token
-		//NOT NEEDED ANYMORE: this.props.getApiToken();
 		
 		// Load API data every 20 seconds
 		/* TODO: use promises to do this directly - and only do this - after successful retrieval of token (the call in asyncActions.js can then be removed too) */
@@ -97,10 +94,6 @@ class App extends Component {
         this.props.updateEnergyUsage('All Rooms');
 		/* this.props.updateEnergyUsage('All Rooms', 'realtime'); <<<------ kan je niet gewoon laatste value pakken van 'all'?? */
         this.props.updateEnergyUsage('Technical Room');
-			this.props.updateEnergyUsage('Technical Room');
-			this.props.updateEnergyUsage('Technical Room');
-			this.props.updateEnergyUsage('Technical Room');
-			this.props.updateEnergyUsage('Technical Room');
         this.props.updateEnergyUsage('Outdoor');
         this.props.updateEnergyUsage('Living Room');
         this.props.updateEnergyUsage('Kitchen');
@@ -121,7 +114,7 @@ class App extends Component {
 		// Current Weather
 		let weatherURL = 'https://api.openweathermap.org/data/2.5/weather?id=292223&APPID=1473962c711c59e516b01eb4065ce872&units=metric';
 		fetch(weatherURL)
-			.then(res => res.json())
+			.then(response => response.json())
 			.then(
 				(result) => {
 					let celsius = Math.ceil(result.main.temp);
@@ -156,7 +149,7 @@ class App extends Component {
 					this.props.updateWeatherForecastData(forecast3hDatetime, forecast3hCelsius, forecast3hDescription, forecast6hDatetime, forecast6hCelsius, forecast6hDescription);
 				},
 				(error) => {
-					console.log('Error fetching forecast temperature [OpenWeatherMap API]');
+					console.log('Error fetching forecast temperature [OpenWeatherMap API] ' + error);
 				}
 			);
 	}
@@ -167,16 +160,12 @@ class App extends Component {
 		
         return (
             <div id='app' className={ (sustainabilityStatus.fullscreen ? 'fullscreen' : '') }>
+				<CssBaseline />
+
 				<div className='container-fluid'>
-					<div className='row'>
-						<div className='col-12'>
-							<MuiThemeProvider theme={ theme }>
-								<MuiPickersUtilsProvider utils={ MomentUtils }>
-									<MainNavigationContainer />
-								</MuiPickersUtilsProvider>
-							</MuiThemeProvider>
-						</div>
-					</div>
+					<MuiThemeProvider theme={ theme }>
+						<MainNavigationContainer />
+					</MuiThemeProvider>
 				</div>
             </div>
         );

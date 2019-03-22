@@ -5,15 +5,16 @@
 </h1>
 <h2 align="center">
   <br>
-   <img src="https://teamvirtue.nl/wp-content/uploads/LINQ_Logo_Black-300x138.png" alt="Fraunhofer" width="200">
-   <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Eindhoven_University_of_Technology_logo.svg" alt="Fraunhofer" width="200">
-   <img src="https://cdn.worldvectorlogo.com/logos/fontys-39.svg" alt="Fraunhofer" width="200">
+   <img src="https://teamvirtue.nl/wp-content/uploads/LINQ_Logo_Black-300x138.png" alt="LINQ" width="200">
+   <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Eindhoven_University_of_Technology_logo.svg" alt="TU/e" width="300">
+   <img src="https://cdn.worldvectorlogo.com/logos/fontys-39.svg" alt="Fontys" width="200">
   <br>
 </h2>
 
 # VIRTUe Web App Demo
 
-Demo version of team VIRTUe's [repository](https://github.com/teamvirtue/webapp-react), see [here](https://teamvirtue.nl/webapp) for live version.
+Demo version of team VIRTUe's original [repository](https://github.com/teamvirtue/webapp-react), see 
+[here](https://teamvirtue.nl/webapp) for live version (tablet size).
 
 # VIRTUe Student Team
 VIRTUe is a student team from the Eindhoven University of Technology. Follow us on our journey designing and building

@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation  from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction  from '@material-ui/core/BottomNavigationAction';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Icon from '@material-ui/core/Icon';
 
 // local import
@@ -19,7 +15,7 @@ import '../index.css';
 import logo from '../assets/linq_logo_white.png';
 import linqBg from '../assets/linq_top_down_view.jpg';
 
-const styles = theme => ({
+const styles = {
     root: {
         position: 'relative',
     },
@@ -37,46 +33,22 @@ const styles = theme => ({
 			cursor: 'pointer',
 		}
 	},
-    desktopNav: {
-        position: 'fixed',
-        display: 'flex',
-		flexDirection: 'column',
-		textAlign: 'center',
-        height: '100%',
-		width: '200px',
-		marginLeft: '-15px',
-        backgroundColor: theme.palette.primary.main,
-    },
-    desktopNavList: {
-		flex: 1,
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'center',
-    },
-    desktopNavListItem: {
-		width: '200px',
-        paddingTop: '20px',
-		paddingBottom: '20px',
-    },
-	desktopNavListItemContent: {
-		color: 'white',
-	},
     mobileNav: {
         position: 'fixed',
         bottom: 0,
 		marginLeft: '-15px',
         zIndex: 5,
         width: '100%',
-        boxShadow: '0px -3px 3px 0px rgba(0,0,0,0.10)',
+        boxShadow: '0px -3px 3px 0px rgba(0, 0, 0, 0.10)',
 		backgroundColor: 'white',
     },
     mobileNavItem: {
         minWidth: '60px',
     },
     checked: {
-		backgroundColor: 'rgba(255,255,255,0.3) !important',
+		backgroundColor: 'rgba(255, 255, 255, 0.3) !important',
     },
-});
+};
 
 
 class MainNavigation extends Component {
@@ -89,14 +61,14 @@ class MainNavigation extends Component {
 
     handleChange = (event, value) => {
         this.setState({ value });
-		if(value !== this.state.value){
+		if (value !== this.state.value) {
 			this.props.updateSustainabilityStatus('mylinq');
 		}
     };
 
     handleClick = (name) => {
         this.setState({ value: name });
-		if(name !== this.state.value){
+		if (name !== this.state.value){
 			this.props.updateSustainabilityStatus('mylinq');
 		}
     };
@@ -107,42 +79,13 @@ class MainNavigation extends Component {
 
         return (
             <div className={ classes.root }>
-                <div className='d-none d-lg-block'>
-                    <div className={ classes.desktopNav }>
-						<img className={ classes.logo } src={ logo } width='80' alt='LINQ logo' onClick={ () => this.handleClick('home') } />
-
-						<div className={ classes.desktopNavList }>
-							<List component='nav'>
-								<ListItem className={ classes.desktopNavListItem + ' ' + (value === 'home' ? classes.checked : '') } button onClick={ () => this.handleClick('home') }>
-									<ListItemIcon>
-										<Icon className={ classes.desktopNavListItemContent }>home</Icon>
-									</ListItemIcon>
-									<ListItemText primary='Home' classes={{ primary: classes.desktopNavListItemContent }} />
-								</ListItem>
-								<ListItem className={ classes.desktopNavListItem + ' ' + (value === 'rooms' ? classes.checked : '') } button onClick={ () => this.handleClick('rooms') }>
-									<ListItemIcon>
-										<Icon className={ classes.desktopNavListItemContent }>dashboard</Icon>
-									</ListItemIcon>
-									<ListItemText primary='Rooms' classes={{ primary: classes.desktopNavListItemContent }} />
-								</ListItem>
-								<ListItem className={ classes.desktopNavListItem + ' ' + (value === 'settings' ? classes.checked : '') } button onClick={ () => this.handleClick('settings') }>
-									<ListItemIcon>
-										<Icon className={ classes.desktopNavListItemContent }>settings</Icon>
-									</ListItemIcon>
-									<ListItemText primary='Settings' classes={{ primary: classes.desktopNavListItemContent }} />
-								</ListItem>
-							</List>
-						</div>
-                    </div>
-                </div>
-
 				<img className={ classes.logo } src={ logo } width='80' alt='LINQ logo' onClick={ () => this.handleClick('home') } />
 				<NotificationsDialogContainer />
 				
 				<div className={ 'wrapper ' + value }>
 					<div className={ 'row ' + classes.bg } style={{ position: 'relative' }}>
 						<div className={ 'col-lg-5 headerBg' } style={{ zIndex: sustainabilityStatus.fullscreen ? 10 : 0 }}>
-							<SustainabilityStatusCircleContainer view={value} />
+							<SustainabilityStatusCircleContainer view={ value } />
 						</div>
 						
 						<div className={ 'col-lg-7 content' }>

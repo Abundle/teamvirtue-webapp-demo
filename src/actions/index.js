@@ -136,7 +136,7 @@ export const updateEnergyUsageRealtime = (room) => ({
     }
 });
 
-export const updateIndoorTemperature = (response) => ({
+export const updateIndoorTemperature = () => ({
     type: 'UPDATE_ATMO_TEMPERATURE',
     payload: {
         temperature: 16,

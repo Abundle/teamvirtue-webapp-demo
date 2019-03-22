@@ -111,7 +111,8 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
             near,
             far
         );*/
-        camera.position.set(0, 100, 5);
+        camera.position.set(0, 50, 25);
+        // camera.position.set(0, 100, 5);
         // camera.position.set(0, 500, 100);
         // camera.zoom = 1.3;
         // camera.position.set(0, 75, 10);
@@ -674,7 +675,6 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
 
                     /*this.setTransparency(selectedObject, 1);
                     this.animateCamera(this.camera, { x: 0, y: 75, z: 5 });*/
-
                     this.setColor(selectedObject, selectedObject.currentHex);
                     // this.setMarker(selectedObject);
                 }

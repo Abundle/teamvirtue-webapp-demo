@@ -10,9 +10,9 @@ body {
     height: 100%;
     overflow: hidden;
 	overscroll-behavior-y: none;
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+    /*font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;*/
     margin: 0;
-    background-color:#f9f9f9 !important;
+    /*background-color:#f9f9f9 !important;*/
 }
 
 #app{  
@@ -23,7 +23,7 @@ body {
 }
 
 #app.fullscreen{
-	overflow-y:hidden;
+	overflow-y: hidden;
 }
 
 /* width */
@@ -33,35 +33,71 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; }
+    background: #f1f1f1;
+}
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #A0A0A0; }
+    background: #A0A0A0;
+}
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #808080; }
+    background: #808080;
+}
 
 /* Make selected text gold on a red background */
 ::-moz-selection {
     color: white;
-    background: #f15b27; }
+    background: #f15b27;
+}
 
 ::selection {
     color: white;
-    background: #f15b27; }
+    background: #f15b27;
+}
 
 .pageContainer {
-    width: 100%; }
+    width: 100%;
+}
 
 .tabIndicator {
     top: 0;
-    bottom: auto; }
+    bottom: auto;
+}
 
 @media only screen and (min-width: 991px) {
     .wrapper {
-        margin-left: 200px; }
+        margin-left: 200px;
+	}
+}
+
+.mobile-app {
+	position: absolute;
+	/* Minus top margin in App.js */
+	height: 100%;
+	width: 100%;
+	background-color: white;
+}
+
+@media only screen and (min-width: 900px) {
+	.mobile-app {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.demo {
+		display: none;
+	}
+
+	.mobile-chatlist {
+		height: calc(100% - 56px) !important;
+	}
+
+	.mobile-message {
+		width: 100% !important;
+	}
 }
 
 .statusBar {
@@ -116,11 +152,13 @@ body {
     position: relative;
     width: calc(100% / 3);
 }
+
 @media only screen and (min-width: 1200px) {
     .infoBar [class*='infoItem'] {
         width: 30%;
     }
 }
+
 .infoBar .infoItem2:before {
     content: '';
     position: absolute;

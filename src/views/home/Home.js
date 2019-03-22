@@ -820,10 +820,10 @@ class Home extends Component {
 
                         {houseData.eatTogetherStatus === 'yes' ? (
                             <List>
-                                <ListItem dense className={classes.eatTogetherJoining + ' notificationPositive'}>
-                                    <Avatar alt='Mohamed' src={accountPicture4} className={classes.avatarSmall} />
-                                    <Avatar alt='Ana' src={accountPicture5} className={classes.avatarSmall} style={{marginLeft: '-28px'}} />
-                                    <Avatar alt='You' src={accountPicture2} className={classes.avatarSmall} style={{marginLeft: '-28px'}} />
+                                <ListItem dense className={ classes.eatTogetherJoining + ' notificationPositive' }>
+                                    <Avatar alt='Mohamed' src={ accountPicture4 } className={ classes.avatarSmall } />
+                                    <Avatar alt='Ana' src={ accountPicture5 } className={ classes.avatarSmall } style={{ marginLeft: '-28px' }} />
+                                    <Avatar alt='You' src={ accountPicture2 } className={ classes.avatarSmall } style={{ marginLeft: '-28px' }} />
                                     <span>
 											<em>Ana, Mohammed and you are joining. </em>
                                             {/*eslint-disable no-script-url*/}
@@ -839,9 +839,9 @@ class Home extends Component {
                             </List>
                         ) : (
                             <List>
-                                <ListItem dense className={classes.eatTogetherJoining + (houseData.eatTogetherStatus === 'no' ? ' notificationNegative' : '')}>
-                                    <Avatar alt='Mohamed' src={accountPicture4} className={classes.avatarSmall} />
-                                    <Avatar alt='Ana' src={accountPicture5} className={classes.avatarSmall} style={{marginLeft: '-28px'}} />
+                                <ListItem dense className={ classes.eatTogetherJoining + (houseData.eatTogetherStatus === 'no' ? ' notificationNegative' : '')}>
+                                    <Avatar alt='Mohamed' src={ accountPicture4 } className={ classes.avatarSmall } />
+                                    <Avatar alt='Ana' src={ accountPicture5 } className={ classes.avatarSmall } style={{ marginLeft: '-28px' }} />
                                     {houseData.eatTogetherStatus === 'no' ? (
                                         <span>
 												<em>Ana and Mohammed are joining. You are not. </em>
