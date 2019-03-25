@@ -772,7 +772,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
 
                     this.animateMarker(markers);
 
-                    this.controls.enableZoom = false;
+                    // this.controls.enableZoom = false;
                     // this.controls.enabled = false;
                     // this.animateCamera(this.camera, { x: 0, y: 500, z: 100 });
                     // this.animateCamera(this.camera, { x: 0, y: 75, z: 10 });
@@ -795,9 +795,9 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                 // this.setTransparency({ objects: [roof, indicator], opacity: [1, 1] });
 
                 if (this.props.sustainabilityStatus.fullscreen) {
-                    this.animateCamera(this.camera, { x: 35, y: 20, z: 35 }, 1500, 0.5);
+                    this.animateCamera(this.camera, { x: 35, y: 20, z: 35 }, 1500, 0.5); // lookAt: { x: 0, y: 0, z: 2 }
                     // this.animateCamera(this.camera, { x: 35, y: 25, z: 35 }, 1500);
-                    this.controls.enableZoom = false;
+                    // this.controls.enableZoom = true;
                 } else {
                     this.animateCamera(this.camera, { x: 25, y: 25, z: 25 }, 1000, 0.25, { x: 10, y: -3, z: 7 });
                 }
@@ -807,8 +807,8 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                 // this.setTransparency({ objects: [roof, indicator], opacity: [1, 1] });
 
                 if (this.props.sustainabilityStatus.fullscreen) {
-                    this.animateCamera(this.camera, { x: 35, y: 45, z: 35 }, 1500, 0.25);
-                    this.controls.enableZoom = true;
+                    this.animateCamera(this.camera, { x: 35, y: 45, z: 35 }, 1500, 0.20);
+                    // this.controls.enableZoom = true;
                     // this.controls.enabled = true;
                 } else {
                     this.animateCamera(this.camera, { x: 35, y: 25, z: 35 }, 1000, 0.15, { x: 11, y: -17, z: 3});
@@ -835,8 +835,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         let originalRotation = new THREE.Euler().copy(camera.rotation); // original rotation
 
         camera.position.set(targetPosition.x, targetPosition.y, targetPosition.z);
-        // camera.lookAt(0, 0, 0);
-        let targetRotation = new THREE.Euler().copy(camera.rotation);
+        // let targetRotation = new THREE.Euler().copy(camera.rotation);
 
         // Reset original position and rotation
         camera.position.set(originalPosition.x, originalPosition.y, originalPosition.z);
@@ -869,7 +868,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
             });
 
         // Rotation Tweening (using slerp)
-        let originalQuaternion = new THREE.Quaternion().copy(camera.quaternion);
+        /*let originalQuaternion = new THREE.Quaternion().copy(camera.quaternion);
         let targetQuaternion = new THREE.Quaternion().setFromEuler(targetRotation);
         let quaternion = new THREE.Quaternion();
 
@@ -882,11 +881,11 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                 quaternion.normalize();
                 camera.quaternion.set(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
                 camera.lookAt(lookAt.x, lookAt.y, lookAt.z);
-            });
+            });*/
 
         cameraPositionTween.start();
         cameraZoomTween.start();
-        cameraRotationTween.start();
+        // cameraRotationTween.start();
     };
 
     /*animateCamera = (camera, position, zoom = 1) => {

@@ -24,7 +24,7 @@ let sockets = [
 ];
 */
 
-const styles = theme => ({
+const styles = {
 	root: {
 		// backgroundColor: 'red',
 	},
@@ -50,7 +50,7 @@ const styles = theme => ({
 		textAlign: 'center',
 		color: 'white',
 	},
-});
+};
 
 
 class NotificationsDialog extends Component {
@@ -61,17 +61,17 @@ class NotificationsDialog extends Component {
 			openNotificationsPopup: false,
 			notificationsCount: 0,
         };
-    }
+    };
 	
 	getNotificationsCount = (notifications) => {
-		var newNotificationsCount = 0;
+		let newNotificationsCount = 0;
 		Object.keys(notifications).forEach((key) => {
 			if (notifications[key].visible) {
 				newNotificationsCount += 1;
 			}
 		});
 		this.setState({ notificationsCount: newNotificationsCount });
-	}
+	};
 
 	handleNotificationsPopupOpen = () => {
 		this.setState({ openNotificationsPopup: true });
@@ -81,9 +81,9 @@ class NotificationsDialog extends Component {
 		this.setState({ openNotificationsPopup: false });
 	};
 	
-	componentWillMount(){
+	componentWillMount() {
 		this.getNotificationsCount(this.props.notifications.byId);
-	}
+	};
 	
 	componentWillReceiveProps(nextProps) {
 		this.getNotificationsCount(nextProps.notifications.byId);

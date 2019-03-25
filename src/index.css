@@ -12,7 +12,6 @@ body {
 	overscroll-behavior-y: none;
     /*font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;*/
     margin: 0;
-    /*background-color:#f9f9f9 !important;*/
 }
 
 #app {
@@ -20,6 +19,7 @@ body {
 	height: 100vh;
 	overflow-y: auto;
 	text-align: center;
+	background-color: #e5e6e6;
 }
 
 #app.fullscreen{
@@ -64,6 +64,35 @@ body {
 .tabIndicator {
     top: 0;
     bottom: auto;
+}
+
+.navBar {
+	width: 100%;
+}
+
+@media only screen and (min-width: 1100px) {
+	.mainNavigation {
+		width: 50vw;
+		margin: auto;
+	}
+
+	.navBar {
+		width: 50vw;
+	}
+
+	.subNavBarContainerTabSelected span:not(.badge) {
+		font-size: 2vw !important;
+	}
+
+	.roomNavigation {
+		width: 50%;
+		margin: auto;
+	}
+
+	.settingsContainer {
+		width: 65%;
+		margin: auto;
+	}
 }
 
 /*@media only screen and (min-width: 991px) {
@@ -185,18 +214,6 @@ body {
     text-align: left;
 }
 
-@media only screen and (min-width: 991px) {
-	.roomNavigation {
-		width: 50%;
-		margin: auto;
-	}
-
-	.settingsContainer {
-		width: 65%;
-		margin: auto;
-	}
-}
-
 .pageTitle {
     line-height: 48px;
 }
@@ -234,8 +251,8 @@ body {
 	-webkit-transform-style: preserve-3d;
 	-webkit-perspective: 1000;
 	transform: translateZ(0) scale(1,1)!important;*/
-	border-radius:50%;
-	overflow:hidden;
+	border-radius: 50%;
+	overflow: hidden;
 	transform: scale(1.0);
 	box-sizing:border-box;
 }
@@ -512,17 +529,25 @@ body {
 
 .content{
 	width: 100%;
-    /*padding-bottom: 95px;*/
+    padding-bottom: 95px;
 	background-color: #f9f9f9;
 	transition: margin 200ms linear;
 }
 
 .notificationsIcon {
+	position: absolute;
+	top: 12px;
+	right: 15px;
+	left: auto;
+	bottom: auto;
+	z-index: 2;
+}
+
+/*.notificationsIcon {
     position: fixed;
     top: 15px;
     left: 125px;
-    z-index: 2;
-}
+}*/
 
 .h3-bold h3 {
     font-weight: 600;
@@ -552,14 +577,15 @@ body {
 .notificationWarning + .notificationWarning,
 .notificationPositive + .notificationWarning,
 .notificationWarning + .notificationPositive {
-	margin-top:15px;
+	margin-top: 15px;
 }
 
 .row.no-margin {
-	margin-left:0;
-	margin-right:0;
+	height: 220px;
+	margin-left: 0;
+	margin-right: 0;
+	padding-top: 15px;
 }
-
 
 .headerBg {
 	background: linear-gradient(175deg,
@@ -592,7 +618,8 @@ body {
 
 /* Home Screen */
 .home {
-	height: 100vh;
+	overflow: hidden;
+	/*height: 100vh;*/
 }
 
 .home .sustainabilityStatusCircleContainer {
@@ -614,6 +641,7 @@ body {
 	position: absolute;
 	bottom: 0;
 	margin-bottom: 25px;
+	/*overflow: hidden;*/
 	pointer-events: none;
 	background-color: rgba(0, 0, 0, 0.15);
 	border-top: 1px solid rgba(0,0,0,0.1);
@@ -625,9 +653,10 @@ body {
 	position: absolute;
 	pointer-events: auto;
 	margin-top: -50px;
-	margin-left: -15px;
-	margin-right: -15px;
-	width: 100vw;
+	/*margin-left: -15px;
+	margin-right: -15px;*/
+	width: 100%;
+	/*width: 100vw;*/
 }
 
 
@@ -664,14 +693,6 @@ body {
 	margin-top:-10px;
 }
 
-.notificationsIcon {
-	position: absolute;
-	top: 12px;
-	right: 0;
-	left: auto;
-	bottom: auto;
-}
-
 @media only screen and (max-width: 500px) {
     .reduceDialogMarginMobile {
         margin-left: 10px !important;
@@ -684,10 +705,10 @@ body {
         margin-top:5px;
         margin-bottom:5px;
     }
-    .row.mobileReducePadding {
+    /*.row.mobileReducePadding {
         margin-left:-5px;
         margin-right:-5px;
-    }
+    }*/
 }
 
 /* Animations */

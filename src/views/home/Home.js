@@ -66,7 +66,7 @@ const styles = theme => ({
         boxShadow: 'none',
         cursor: 'pointer',
         display: 'table-cell',
-        paddingBottom: '100%',
+        // paddingBottom: '100%',
         transition: 'transform 50ms ease-out',
         '&:hover': {
             transform: 'scale(0.85)',
@@ -492,14 +492,18 @@ class Home extends Component {
                         <Tab label='DISTRICT' classes={{ label: classes.subNavBarContainerTab, selected: 'subNavBarContainerTabSelected' }} />
                     </Tabs>
 
-                    <SwipeableViews index={ (this.props.sustainabilityStatus.selected === 'linq') ? (0) : ((this.props.sustainabilityStatus.selected === 'mylinq') ? (1) : (2)) } onChangeIndex={ this.handleTabChangeIndex } style={{ overflow: 'hidden' }}>
+                    <SwipeableViews
+                        index={ (this.props.sustainabilityStatus.selected === 'linq') ? (0) : ((this.props.sustainabilityStatus.selected === 'mylinq') ? (1) : (2)) }
+                        onChangeIndex={ this.handleTabChangeIndex }
+                        // style={{ overflow: 'hidden' }}
+                    >
 
                         <div className='row no-margin'>
                             <div className={ classes.iconBox + ' col-3' }>
                                 <Paper
                                     className={ classes.iconBoxPaper }
                                     elevation={ 1 }
-                                    square={true}
+                                    square={ true }
                                     onClick={ () => this.handleDialogOpen('bikes') }
                                 >
                                     <div className={ classes.iconBoxContent }>

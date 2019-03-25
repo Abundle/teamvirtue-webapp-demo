@@ -17,9 +17,12 @@ import linqBg from '../assets/linq_top_down_view.jpg';
 
 const styles = {
     root: {
-        position: 'relative',
+        // position: 'relative',
+        // width: '50%',
+        // margin: 'auto'
     },
 	bg: {
+        position: 'relative',
 		backgroundImage: 'url("' + linqBg +'")',
 		backgroundSize: 'cover',
 		backgroundAttachment: 'fixed',
@@ -33,16 +36,16 @@ const styles = {
 			cursor: 'pointer',
 		}
 	},
-    mobileNav: {
+    nav: {
         position: 'fixed',
         bottom: 0,
-		marginLeft: '-15px',
+		// marginLeft: '-15px',
         zIndex: 5,
-        width: '100%',
+        // width: '100%',
         boxShadow: '0px -3px 3px 0px rgba(0, 0, 0, 0.10)',
 		backgroundColor: 'white',
     },
-    mobileNavItem: {
+    navItem: {
         minWidth: '60px',
     },
     checked: {
@@ -80,29 +83,40 @@ class MainNavigation extends Component {
         let fullscreen = sustainabilityStatus.fullscreen;
 
         return (
-            <div className={ classes.root }>
-				<img className={ classes.logo } src={ logo } width='80' alt='LINQ logo' onClick={ () => this.handleClick('home') } />
-				<NotificationsDialogContainer />
-				
+            <div className={ classes.root + ' mainNavigation'}>
+                { !fullscreen &&
+                    <img className={classes.logo}
+                         src={logo}
+                         width='80'
+                         alt='LINQ logo'
+                         onClick={ () => this.handleClick('home') }
+                    />
+                }
+                {!fullscreen &&
+                    <NotificationsDialogContainer/>
+                }
+
 				<div className={ 'wrapper ' + value }>
-					<div className={ 'row ' + classes.bg } style={{ position: 'relative' }}>
+					<div className={ classes.bg }>
 						<div className={ 'fluid-container headerBg' } style={{ zIndex: fullscreen ? 10 : 0 }}>
 							<SustainabilityStatusCircleContainer view={ value } />
 						</div>
-						
-						<div className={ 'content' }>
-							{ value === 'home' && <HomeContainer /> }
-							{ value === 'rooms' && !fullscreen ? <Rooms /> : '' }
-							{ value === 'settings' && !fullscreen ? <AppSettingsContainer /> : '' }
-						</div>
+
+                        { !fullscreen &&
+                            <div className={ 'content' }>
+                                {value === 'home' && <HomeContainer />}
+                                {value === 'rooms' && <Rooms />}
+                                {value === 'settings' && <AppSettingsContainer />}
+                            </div>
+                        }
 					</div>
 				</div>
 
                 { !fullscreen &&
-                    <BottomNavigation value={ value } onChange={ this.handleChange } className={ classes.mobileNav } showLabels>
-                        <BottomNavigationAction className={ classes.mobileNavItem } label='Home' value='home' icon={ <Icon>home</Icon> } />
-                        <BottomNavigationAction className={ classes.mobileNavItem } label='Rooms' value='rooms' icon={ <Icon>dashboard</Icon> } />
-                        <BottomNavigationAction className={ classes.mobileNavItem } label='Settings' value='settings' icon={ <Icon>settings</Icon> } />
+                    <BottomNavigation value={ value } onChange={ this.handleChange } className={ classes.nav + ' navBar' } showLabels>
+                        <BottomNavigationAction className={ classes.navItem } label='Home' value='home' icon={ <Icon>home</Icon> } />
+                        <BottomNavigationAction className={ classes.navItem } label='Rooms' value='rooms' icon={ <Icon>dashboard</Icon> } />
+                        <BottomNavigationAction className={ classes.navItem } label='Settings' value='settings' icon={ <Icon>settings</Icon> } />
                     </BottomNavigation>
                 }
             </div>

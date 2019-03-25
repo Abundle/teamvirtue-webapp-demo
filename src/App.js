@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 import 'material-design-icons/iconfont/material-icons.css';
 // import materialIcons from 'material-design-icons/iconfont/material-icons.css';
 // import 'typeface-open-sans';
@@ -160,13 +160,11 @@ class App extends Component {
 		
         return (
             <div id='app' className={ (sustainabilityStatus.fullscreen ? 'fullscreen' : '') }>
-				<CssBaseline />
+				{/*<CssBaseline />*/}
 
-				<div className='container-fluid'>
-					<MuiThemeProvider theme={ theme }>
-						<MainNavigationContainer />
-					</MuiThemeProvider>
-				</div>
+				<MuiThemeProvider theme={ theme }>
+					<MainNavigationContainer />
+				</MuiThemeProvider>
             </div>
         );
     }
