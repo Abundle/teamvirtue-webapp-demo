@@ -38,11 +38,7 @@ const optionsNightmode = [
     'Custom time range',
 ];*/
 
-const styles = theme => ({
-    root: {
-        // backgroundColor: theme.palette.primary.main,
-		marginTop: 10,
-    },
+const styles = {
     pageTitle: {
         paddingTop: 48,
         paddingBottom: 16,
@@ -53,7 +49,7 @@ const styles = theme => ({
 		textTransform: 'uppercase',
 		letterSpacing: 1,
 	},
-});
+};
 
 class ListMenu extends Component {
     constructor(props) {
@@ -150,19 +146,19 @@ class Settings extends Component {
 		this.props.updateSleepCycleEndTime(date);
     };
 
-    handleNightMode = name => event => {
+    handleNightMode = (name) => (event) => {
 		this.props.updateNightMode(event.target.checked);
     };
 
-    handleNotificationsVolume = name => newVolume => {
+    handleNotificationsVolume = name => (newVolume) => {
 		this.props.updateNotificationsVolume(newVolume);
     };
 
-    handleNotificationsVibrate = name => event => {
+    handleNotificationsVibrate = (name) => (event) => {
 		this.props.updateNotificationsVibrate(event.target.checked);
     };
 
-    handleNotificationsDesktop = name => event => {
+    handleNotificationsDesktop = (name) => (event) => {
 		this.props.updateNotificationsDesktop(event.target.checked);
     };
 
@@ -173,16 +169,12 @@ class Settings extends Component {
         const currentUserName = settings.accounts.byId[settings.accounts.currentUser].name;
 
         return (
-            <div className={classes.root}>
-				<div className='settingsContainer h3-bold'> {/*TODO: remove settings/reportsContainer CSS?*/}
-					<div className='d-none d-lg-block'>
-						<h1 className={ classes.pageTitle }>Change your settings</h1>
-					</div>
-
-					<Card className={classes.card}>
+            <div className={ 'settings' }>
+				<div className='settingsContainer h3-bold'>
+					<Card className={ classes.card }>
 						<CardContent>
 							<List>
-								<Typography variant="subheading" className={classes.title}>Profile</Typography>
+								<Typography variant='subheading' className={classes.title}>Profile</Typography>
 								
 								<UserDialogContainer
 									// user={{ id: currentUserId, name: currentUser }}

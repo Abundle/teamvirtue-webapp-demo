@@ -7,12 +7,13 @@ import Typography from '@material-ui/core/Typography';
 // Local import
 import RoomNavigation from './RoomNavigation';
 
-const styles = theme => ({
+const styles = {
     root: {
+        // width: '100%'
         //textAlign: 'left',
     },
     marginTop: {
-        paddingTop: 48,
+        paddingTop: 16,
         paddingBottom: 16,
     },
     /*controlsTitle: {
@@ -30,12 +31,12 @@ const styles = theme => ({
 		marginRight: 5,
 		minWidth: 120,
 	},*/
-});
+};
 
 function TabContainer({ children, dir }) {
 	return (
-		<Typography component='div' dir={dir} style={{ padding: 8 * 3 }}>
-			{children}
+		<Typography component='div' dir={ dir } style={{ padding: 8 * 3 }}>
+			{ children }
 		</Typography>
 	);
 }
@@ -53,11 +54,11 @@ class Rooms extends Component {
         return (
             <div className={ classes.root }>
 				<div>
-                    <div className={'d-none d-lg-block ' + classes.marginTop }>
+                    {/*<div className={ classes.marginTop }>
 						<h1>Control your room</h1>
-					</div>
+					</div>*/}
 					
-					<RoomNavigation />
+
 				</div>
             </div>
         );

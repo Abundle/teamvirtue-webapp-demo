@@ -66,7 +66,7 @@ class SustainabilityStatusCircle extends Component {
         // this.setState({ fullscreen: false });
 	};
 
-    setActiveTab = (tab) => (event) => { // TODO: check event variable
+    setActiveTab = (tab) => () => {
         // this.setState({ tab });
         this.props.updateSustainabilityStatus(tab);
     };
@@ -85,7 +85,7 @@ class SustainabilityStatusCircle extends Component {
 
         return (
             <div className={ classes.root }>
-                <div className={'sustainabilityStatusCircleContainer ' + circleColorClass} onClick={ this.handleOpen }>
+                <div className={ 'sustainabilityStatusCircleContainer ' + circleColorClass } onClick={ this.handleOpen }>
                     <div className={ 'sustainabilityStatusCircle' }>
                         <SceneContainer view={ this.props.view } />
                     </div>

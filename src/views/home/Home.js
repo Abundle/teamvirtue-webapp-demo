@@ -77,7 +77,7 @@ const styles = theme => ({
         top: 0,
         left: 0,
         width: '100%',
-        height: '100%',
+        // height: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -276,7 +276,7 @@ class Home extends Component {
     handleSubmitEatTogetherStatus = (status, close) => {
         /*** Reset state after a while ***/
         clearTimeout(current_timeout);
-        current_timeout = setTimeout(function(){
+        current_timeout = setTimeout(function() { // TODO: Write in ES6
             this.props.updateEatTogetherStatus('requested');
             this.props.resetEatTogetherMessage();
         }.bind(this), 1000 * 45);//45 seconds
@@ -285,15 +285,15 @@ class Home extends Component {
         this.props.updateEatTogetherStatus(status);
         this.setState({ newMessageInput: '' });
 
-        if(this.state.newMessageInput){
+        if (this.state.newMessageInput) {
             this.props.updateEatTogetherMessage(this.state.newMessageInput);
         }
-        if(close){
+        if (close) {
             this.handleDialogClose();
         }
     };
 
-    renderWashingMachineMessage(){
+    renderWashingMachineMessage() {
         let sunrise = moment.unix(this.props.temperature.outside.sunrise);
         let sunset = moment.unix(this.props.temperature.outside.sunset);
         let forecast3h = moment.unix(this.props.temperature.outside.forecast3hDatetime);
@@ -303,27 +303,27 @@ class Home extends Component {
         let warning = '';
         let positive = '';
 
-        if(now.isSameOrBefore(sunrise, 'hour')){// if before sunrise hour
+        if (now.isSameOrBefore(sunrise, 'hour')) {// if before sunrise hour
             warning = 'Because the sun hasn\'t fully risen yet, you can better wait for a while.';
-        }else{
-            if(now.isSameOrAfter(sunset, 'hour')){// if after sunset hour
+        } else {
+            if (now.isSameOrAfter(sunset, 'hour')) {// if after sunset hour
                 warning = 'Because the sun is already set, it is better to wait for tomorrow to do the laundry.';
-            }else{
-                if(this.props.temperature.outside.description !== 'Clear sky'){//if currently not clear sky
-                    if( this.props.temperature.outside.forecast3hDescription === 'Clear sky' &&
+            } else {
+                if (this.props.temperature.outside.description !== 'Clear sky') {//if currently not clear sky
+                    if ( this.props.temperature.outside.forecast3hDescription === 'Clear sky' &&
                         forecast3h.isSameOrBefore(sunset, 'hour')
-                    ){//if sun is shining within next forecast time
+                    ) {//if sun is shining within next forecast time
                         warning = 'You can better wait doing your laundry until ' + moment(forecast3h).format('HH') + 'u. The sky will be clearer and more energy is generated!';
-                    }else{
-                        if( this.props.temperature.outside.forecast6hDescription === 'Clear sky' &&
+                    } else {
+                        if ( this.props.temperature.outside.forecast6hDescription === 'Clear sky' &&
                             forecast6h.isSameOrBefore(sunset, 'hour')
-                        ){//if sun is shining within 2nd forecast time
+                        ) {//if sun is shining within 2nd forecast time
                             warning = 'You can better wait doing your laundry until ' + moment(forecast6h).format('HH') + 'u. The sky will be clearer and more energy is generated!';
-                        }else{
+                        } else {
                             positive = 'The solar panels aren\'t generating lots of energy but the forecasts aren\'t any better. It\'s fine to use the washing machine now.';
                         }
                     }
-                }else{//everything looks fine now
+                } else {//everything looks fine now
                     positive = 'The weather is currently sunny enough to use the washing machines efficiently!';
                 }
             }
@@ -348,7 +348,7 @@ class Home extends Component {
         );
     }
 
-    renderCO2Message(){
+    renderCO2Message() {
         if (this.props.houseData.indoorCO2 >= 0 && this.props.houseData.indoorCO2 < 600) {
             return (
                 <div className='notificationPositive'>
@@ -387,7 +387,7 @@ class Home extends Component {
         }
     }
 
-    renderCO2LineProgress(){
+    renderCO2LineProgress() {
         if (this.props.houseData.indoorCO2 >= 0 && this.props.houseData.indoorCO2 < 600) {
             return '12.5%';
         } else if (this.props.houseData.indoorCO2 >= 600 && this.props.houseData.indoorCO2 < 1000) {
@@ -426,7 +426,7 @@ class Home extends Component {
         }
     }
 
-    renderTemperatureMessage(){
+    renderTemperatureMessage() {
         if (
             this.props.houseData.indoorTemperature <= 23 &&
             this.props.houseData.room['All Rooms'].airco.onOff === true &&
@@ -437,19 +437,19 @@ class Home extends Component {
                     It is recommended to set your AC to 24°C.
                 </div>
             );
-        }else if (
+        } else if (
             this.props.houseData.indoorTemperature <= 23 &&
             this.props.houseData.room['All Rooms'].airco.onOff === true &&
             this.props.houseData.room['All Rooms'].airco.temperature >= 24
         ) {
             return (
                 <div className='notificationPositive'>
-                    It is currently {this.props.houseData.indoorTemperature}°C.
+                    It is currently { this.props.houseData.indoorTemperature }°C.
                     You already set the AC to 24°C.
                     The temperature in the room will be adjusted soon.
                 </div>
             );
-        }else{
+        } else {
             return (
                 <div className='notificationPositive'>
                     The HVAC is a huge energy consumer. It is currently disabled.
@@ -513,9 +513,9 @@ class Home extends Component {
                             </div>
                             <div className={ classes.iconBox + ' col-3' }>
                                 <Paper
-                                    className={classes.iconBoxPaper}
-                                    elevation={1}
-                                    square={true}
+                                    className={ classes.iconBoxPaper }
+                                    elevation={ 1 }
+                                    square={ true }
                                     onClick={ () => this.handleDialogOpen('solarcar') }
                                 >
                                     <div className={ classes.iconBoxContent }>
@@ -529,9 +529,9 @@ class Home extends Component {
                             </div>
                             <div className={ classes.iconBox + ' col-3' }>
                                 <Paper
-                                    className={classes.iconBoxPaper}
-                                    elevation={1}
-                                    square={true}
+                                    className={ classes.iconBoxPaper }
+                                    elevation={ 1 }
+                                    square={ true }
                                     onClick={ () => this.handleDialogOpen('washingmachine') }
                                 >
                                     <div className={ classes.iconBoxContent }>
@@ -551,7 +551,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('eattogether') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-                                        {houseData.eatTogetherStatus === 'requested' ? (
+                                        { houseData.eatTogetherStatus === 'requested' ? (
                                             <div>
                                                 <Badge badgeContent='1' classes={{ badge: classes.iconBoxContentBadge }} color='secondary'>
 													<span className={ classes.iconBoxContentInfo }>
@@ -569,7 +569,7 @@ class Home extends Component {
 												</span>
                                                 <span className={ classes.iconCounterDescription }>Eat together</span>
                                             </div>
-                                        )}
+                                        ) }
                                     </div>
                                 </Paper>
                             </div>
@@ -578,9 +578,9 @@ class Home extends Component {
                         <div className='row no-margin'>
                             <div className={ classes.iconBox + ' col-3' }>
                                 <Paper
-                                    className={classes.iconBoxPaper}
-                                    elevation={1}
-                                    square={true}
+                                    className={ classes.iconBoxPaper }
+                                    elevation={ 1 }
+                                    square={ true }
                                     onClick={ () => this.handleDialogOpen('temperatureindoor') }
                                 >
                                     <div className={ classes.iconBoxContent }>
@@ -595,9 +595,9 @@ class Home extends Component {
                             </div>
                             <div className={ classes.iconBox + ' col-3' }>
                                 <Paper
-                                    className={classes.iconBoxPaper}
-                                    elevation={1}
-                                    square={true}
+                                    className={ classes.iconBoxPaper }
+                                    elevation={ 1 }
+                                    square={ true }
                                     onClick={ () => this.handleDialogOpen('humidity') }
                                 >
                                     <div className={ classes.iconBoxContent }>
@@ -700,9 +700,9 @@ class Home extends Component {
                             </div>
                             <div className={ classes.iconBox + ' col-3' }>
                                 <Paper
-                                    className={classes.iconBoxPaper}
-                                    elevation={1}
-                                    square={true}
+                                    className={ classes.iconBoxPaper }
+                                    elevation={ 1 }
+                                    square={ true }
                                     onClick={ () => this.handleDialogOpen('publictransport') }
                                 >
                                     <div className={ classes.iconBoxContent }>
@@ -733,16 +733,16 @@ class Home extends Component {
                     fullWidth
                 >
 
-                    {this.state.dialogContent === 'bikes' &&
-                    <DialogContent className={'row no-margin ' + classes.dialogContent}>
-                        <div className={'col-6 ' + classes.dialogLeftColumn}>
+                    { this.state.dialogContent === 'bikes' &&
+                    <DialogContent className={ 'row no-margin ' + classes.dialogContent }>
+                        <div className={ 'col-6 ' + classes.dialogLeftColumn }>
                             <Icon className={ classes.dialogHeaderIcon }>directions_bike</Icon>
                             <Typography className={ classes.dialogHeaderHeading } variant='title' gutterBottom>
                                 Bike Shed
                             </Typography>
                             Biking is fast, cheap, reduces stress and anxiety, improves sleep patterns, and is better for the environment!
                         </div>
-                        <div className={'col-6 ' + classes.dialogRightColumn}>
+                        <div className={ 'col-6 ' + classes.dialogRightColumn }>
                             <div className='notificationPositive'>
                                 There are <strong>5</strong> bikes available in the shared bike shed.
                             </div>
@@ -804,12 +804,13 @@ class Home extends Component {
                                 transitionEnterTimeout={ 350 }
                                 transitionLeaveTimeout={ 350 }
                             >
-                                { houseData.eatTogetherMessage.map((message, i) => {
+                                { houseData.eatTogetherMessage.map((message) => {
+                                // { houseData.eatTogetherMessage.map((message, i) => {
                                         return (
-                                            <ListItem className={classes.eatTogetherMessageListItem}>
-                                                <Avatar alt='You' src={accountPicture2} />
+                                            <ListItem className={ classes.eatTogetherMessageListItem }>
+                                                <Avatar alt='You' src={ accountPicture2 } />
                                                 <ListItemText
-                                                    primary={message}
+                                                    primary={ message }
                                                     secondary='You, just now' />
                                             </ListItem>
                                         );
@@ -854,21 +855,21 @@ class Home extends Component {
                             </List>
                         )}
 
-                        <div className={classes.dialogActionContainer}>
+                        <div className={ classes.dialogActionContainer }>
                             <TextField
                                 id='filled-dense'
                                 placeholder='Message'
-                                className={classes.eatTogetherNewMessage}
+                                className={ classes.eatTogetherNewMessage }
                                 margin='normal'
                                 variant='filled'
                                 InputProps={{
                                     disableUnderline: true
                                 }}
                                 onChange={ this.handleNewMessageInput }
-                                value={this.state.newMessageInput}
-                                ref={el => this.input = el}
+                                value={ this.state.newMessageInput }
+                                ref={ el => this.input = el }
                             />
-                            {houseData.eatTogetherStatus === 'requested' ? (
+                            { houseData.eatTogetherStatus === 'requested' ? (
                                 <div>
                                     <IconButton className={ classes.dialogAction } style={{ backgroundColor: '#03cea4' }} onClick={ () => this.handleSubmitEatTogetherStatus('yes', false) }>
                                         <Icon>thumb_up_alt</Icon>
@@ -883,36 +884,36 @@ class Home extends Component {
                                         <Icon>mode_comment</Icon>
                                     </IconButton>
                                 </div>
-                            )}
+                            ) }
                         </div>
                     </DialogContent>
                     }
 
-                    {this.state.dialogContent === 'temperatureindoor' &&
-                    <DialogContent className={'row no-margin ' + classes.dialogContent}>
-                        <div className={'col-6 ' + classes.dialogLeftColumn}>
+                    { this.state.dialogContent === 'temperatureindoor' &&
+                    <DialogContent className={ 'row no-margin ' + classes.dialogContent }>
+                        <div className={ 'col-6 ' + classes.dialogLeftColumn }>
                             <FontAwesome className={ classes.dialogHeaderIcon } name='thermometer-half' /><br />
                             <Typography className={ classes.dialogHeaderHeading } variant='title' gutterBottom>
                                 Temperature ({ this.props.houseData.indoorTemperature }°C)
                             </Typography>
                             Did you know that each extra degree can mean up to 9% savings on cooling costs?
                         </div>
-                        <div className={'col-6 ' + classes.dialogRightColumn}>
+                        <div className={ 'col-6 ' + classes.dialogRightColumn }>
                             { this.renderTemperatureMessage() }
                         </div>
                     </DialogContent>
                     }
 
-                    {this.state.dialogContent === 'humidity' &&
-                    <DialogContent className={'row no-margin ' + classes.dialogContent + ' ' + classes.dialogContentHasProgressContainer}>
-                        <div className={'col-6 ' + classes.dialogLeftColumn}>
+                    { this.state.dialogContent === 'humidity' &&
+                    <DialogContent className={ 'row no-margin ' + classes.dialogContent + ' ' + classes.dialogContentHasProgressContainer }>
+                        <div className={ 'col-6 ' + classes.dialogLeftColumn }>
                             <FontAwesome className={ classes.dialogHeaderIcon } name='tint' /><br />
                             <Typography className={ classes.dialogHeaderHeading } variant='title' gutterBottom>
                                 Humidity ({ this.props.houseData.indoorHumidity }%)
                             </Typography>
                             A good level of humidity is better for your health and for the condition of materials in the house.
                         </div>
-                        <div className={'col-6 ' + classes.dialogRightColumn}>
+                        <div className={ 'col-6 ' + classes.dialogRightColumn }>
                             { this.renderHumidityMessage() }
                         </div>
 
@@ -947,15 +948,15 @@ class Home extends Component {
                     }
 
                     { this.state.dialogContent === 'CO2' &&
-                    <DialogContent className={'row no-margin ' + classes.dialogContent + ' ' + classes.dialogContentHasProgressContainer}>
-                        <div className={'col-6 ' + classes.dialogLeftColumn}>
+                    <DialogContent className={ 'row no-margin ' + classes.dialogContent + ' ' + classes.dialogContentHasProgressContainer }>
+                        <div className={ 'col-6 ' + classes.dialogLeftColumn }>
                             <Icon color='primary' className={ classes.dialogHeaderIcon }>cloud</Icon><br />
                             <Typography className={ classes.dialogHeaderHeading } variant='title' gutterBottom>
                                 CO2 ({ this.props.houseData.indoorCO2 } ppm)
                             </Typography>
                             Controlling ventilation is good for your health and increases productivity.
                         </div>
-                        <div className={'col-6 ' + classes.dialogRightColumn}>
+                        <div className={ 'col-6 ' + classes.dialogRightColumn }>
                             { this.renderCO2Message() }
                         </div>
 
@@ -986,15 +987,15 @@ class Home extends Component {
                     }
 
                     { this.state.dialogContent === 'energyusage' &&
-                    <DialogContent className={'row no-margin ' + classes.dialogContent}>
-                        <div className={'col-6 ' + classes.dialogLeftColumn}>
+                    <DialogContent className={ 'row no-margin ' + classes.dialogContent }>
+                        <div className={ 'col-6 ' + classes.dialogLeftColumn }>
                             <Icon className={ classes.dialogHeaderIcon }>power</Icon><br />
                             <Typography className={ classes.dialogHeaderHeading } variant='title' gutterBottom>
                                 Energy usage ({ houseData.room['All Rooms'].energyUsageRealtime } kW)
                             </Typography>
                             A smart way to use solar energy wisely is to run energy-hungry appliances, such as the dishwasher, washing machine and dryer, during sunny hours.
                         </div>
-                        <div className={'col-6 ' + classes.dialogRightColumn}>
+                        <div className={ 'col-6 ' + classes.dialogRightColumn }>
                             <div className={ 'notificationPositive' }>
                                 Everything looks fine
                             </div>
@@ -1003,8 +1004,8 @@ class Home extends Component {
                     }
 
                     { this.state.dialogContent === 'temperatureoutside' &&
-                    <DialogContent className={'row no-margin ' + classes.dialogContent}>
-                        <div className={'col-6 ' + classes.dialogLeftColumn}>
+                    <DialogContent className={ 'row no-margin ' + classes.dialogContent }>
+                        <div className={ 'col-6 ' + classes.dialogLeftColumn }>
                             <FontAwesome className={ classes.dialogHeaderIcon } name='thermometer-half' /><br />
                             <Typography className={ classes.dialogHeaderHeading } variant='title' gutterBottom>
                                 Temperature
@@ -1014,27 +1015,27 @@ class Home extends Component {
 									The sun goes down at { moment.unix(temperature.outside.sunset).format('HH:mm') } and rises at { moment.unix(temperature.outside.sunrise).format('HH:mm') }.
 								</span>
                         </div>
-                        <div className={'col-6 ' + classes.dialogRightColumn}>
+                        <div className={ 'col-6 ' + classes.dialogRightColumn }>
                             <div className={ classes.center }>
                                 <FontAwesome className={ classes.dialogContentIcon } name='cloud' /><br />
                                 <strong>Forecast</strong><br />
-                                { moment.unix(temperature.outside.forecast3hDatetime).format('HH:mm') }: {temperature.outside.forecast3hDescription} ({temperature.outside.forecast3hCelsius}°C)
+                                { moment.unix(temperature.outside.forecast3hDatetime).format('HH:mm') }: { temperature.outside.forecast3hDescription } ({ temperature.outside.forecast3hCelsius }°C)
                                 <br />
-                                { moment.unix(temperature.outside.forecast6hDatetime).format('HH:mm') }: {temperature.outside.forecast6hDescription} ({temperature.outside.forecast6hCelsius}°C)
+                                { moment.unix(temperature.outside.forecast6hDatetime).format('HH:mm') }: { temperature.outside.forecast6hDescription } ({ temperature.outside.forecast6hCelsius }°C)
                             </div>
                         </div>
                     </DialogContent>
                     }
 
                     { this.state.dialogContent === 'publictransport' &&
-                    <DialogContent className={'row no-margin ' + classes.dialogContent}>
-                        <div className={'col-6 ' + classes.dialogLeftColumn}>
+                    <DialogContent className={ 'row no-margin ' + classes.dialogContent }>
+                        <div className={ 'col-6 ' + classes.dialogLeftColumn }>
                             <Typography className={ classes.dialogHeaderHeading } variant='title' gutterBottom>
                                 Public transport
                             </Typography>
                             Using public transport brings more security, convenience, efficiency, money-saving, and physical fitness.
                         </div>
-                        <div className={'col-6 ' + classes.dialogRightColumn}>
+                        <div className={ 'col-6 ' + classes.dialogRightColumn }>
                             <div className={ 'row ' + classes.center }>
                                 <div className='col-4'>
                                     <Icon className={ classes.dialogContentIcon }>directions_bus</Icon>
@@ -1061,7 +1062,7 @@ class Home extends Component {
                                     <br />
                                     9m<br />
                                     17m<br />
-                                    29m <span className={classes.publicTransportDelay}>(+3)</span><br />
+                                    29m <span className={ classes.publicTransportDelay }>(+3)</span><br />
                                 </div>
                             </div>
                         </div>

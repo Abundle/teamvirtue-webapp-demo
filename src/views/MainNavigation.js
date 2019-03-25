@@ -7,7 +7,7 @@ import Icon from '@material-ui/core/Icon';
 
 // local import
 import { HomeContainer } from '../containers/HomeContainer';
-import Rooms from './rooms/Rooms';
+import RoomNavigation from './rooms/RoomNavigation';
 import { AppSettingsContainer } from '../containers/AppSettingsContainer';
 import { SustainabilityStatusCircleContainer } from '../containers/SustainabilityStatusCircleContainer';
 import { NotificationsDialogContainer } from '../containers/NotificationsDialogContainer';
@@ -20,7 +20,7 @@ const styles = {
         position: 'relative',
     },
 	bg: {
-		backgroundImage: 'url("'+linqBg+'")',
+		backgroundImage: 'url("' + linqBg +'")',
 		backgroundSize: 'cover',
 		backgroundAttachment: 'fixed',
 	},
@@ -68,12 +68,12 @@ class MainNavigation extends Component {
 
     handleClick = (name) => {
         this.setState({ value: name });
-		if (name !== this.state.value){
+		if (name !== this.state.value) {
 			this.props.updateSustainabilityStatus('mylinq');
 		}
     };
 
-    render() { /*TODO: remove inline styles*/
+    render() {
         const { classes, sustainabilityStatus } = this.props;
         const { value } = this.state;
 
@@ -84,26 +84,24 @@ class MainNavigation extends Component {
 				
 				<div className={ 'wrapper ' + value }>
 					<div className={ 'row ' + classes.bg } style={{ position: 'relative' }}>
-						<div className={ 'col-lg-5 headerBg' } style={{ zIndex: sustainabilityStatus.fullscreen ? 10 : 0 }}>
+						<div className={ 'fluid-container headerBg' } style={{ zIndex: sustainabilityStatus.fullscreen ? 10 : 0 }}>
 							<SustainabilityStatusCircleContainer view={ value } />
 						</div>
 						
-						<div className={ 'col-lg-7 content' }>
+						<div className={ 'content' }>
 							{ value === 'home' && <HomeContainer /> }
-							{ value === 'rooms' && <Rooms /> }
+							{ value === 'rooms' && <RoomNavigation /> }
 							{ value === 'settings' && <AppSettingsContainer /> }
 						</div>
 					</div>
 				</div>
 
                 { !sustainabilityStatus.fullscreen &&
-					<div className='d-lg-none'>
-						<BottomNavigation value={ value } onChange={ this.handleChange } className={ classes.mobileNav } showLabels>
-							<BottomNavigationAction className={ classes.mobileNavItem } label='Home' value='home' icon={ <Icon>home</Icon> } />
-							<BottomNavigationAction className={ classes.mobileNavItem } label='Rooms' value='rooms' icon={ <Icon>dashboard</Icon> } />
-							<BottomNavigationAction className={ classes.mobileNavItem } label='Settings' value='settings' icon={ <Icon>settings</Icon> } />
-						</BottomNavigation>
-					</div>
+                    <BottomNavigation value={ value } onChange={ this.handleChange } className={ classes.mobileNav } showLabels>
+                        <BottomNavigationAction className={ classes.mobileNavItem } label='Home' value='home' icon={ <Icon>home</Icon> } />
+                        <BottomNavigationAction className={ classes.mobileNavItem } label='Rooms' value='rooms' icon={ <Icon>dashboard</Icon> } />
+                        <BottomNavigationAction className={ classes.mobileNavItem } label='Settings' value='settings' icon={ <Icon>settings</Icon> } />
+                    </BottomNavigation>
                 }
             </div>
         );

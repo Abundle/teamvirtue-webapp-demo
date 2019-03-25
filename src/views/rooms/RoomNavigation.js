@@ -20,7 +20,7 @@ import Kitchen from './rooms/Kitchen';
 import Outdoor from './rooms/Outdoor';
 import TechnicalRoom from './rooms/TechnicalRoom';
 
-const styles = theme => ({
+const styles = {
 	flex: {
 		flex: 1
 	},
@@ -105,7 +105,7 @@ const styles = theme => ({
 		position: 'absolute',
 		marginTop: 10,
 	},
-});
+};
 		
 let rooms = [
 	{ id: 1, value: 'Apartment', icon: 'home', component: Apartment, highlight: true },
@@ -152,15 +152,15 @@ class RoomNavigation extends Component {
         const currentId = this.state.currentId;
 
         return (
-			<div>
+			<div className={ 'roomNavigation' }>
 				<div className='row mobileReducePadding'>
 					{ rooms.map(data => {
 						return (
 							<div key={ data.id } className={ classes.subNavItem + ' col-4 mobileReducePadding' }>
 								<Paper
-									className={classes.subNavItemPaper}
-									elevation={1}
-									square={true}
+									className={ classes.subNavItemPaper }
+									elevation={ 1 }
+									square={ true }
 									onClick={ () => {
 										this.handleClick(data.id);
 										this.handleDialogOpen();
@@ -200,7 +200,7 @@ class RoomNavigation extends Component {
 						<Icon>arrow_back</Icon>
 					</IconButton>
 					{ rooms.map(data => {
-						if(currentId === data.id){
+						if (currentId === data.id) {
 							return (
 								<div key={ data.id } className={ classes.flex + ' h3-bold' }>
 									<div className={ classes.dialogHeader }>

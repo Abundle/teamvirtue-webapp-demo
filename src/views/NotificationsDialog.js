@@ -102,7 +102,7 @@ class NotificationsDialog extends Component {
 					<div>
 						<div className='notificationsIcon' onClick={ this.handleNotificationsPopupOpen }>
 							<IconButton>
-								<Badge classes={{ badge: classes.badge }} badgeContent={ this.state.notificationsCount } color="secondary">
+								<Badge classes={{ badge: classes.badge }} badgeContent={ this.state.notificationsCount } color='secondary'>
 									<Icon className={ classes.badgeIcon }>notifications</Icon>
 								</Badge>
 							</IconButton>

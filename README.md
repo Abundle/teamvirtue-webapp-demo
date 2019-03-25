@@ -6,7 +6,7 @@
 <h2 align="center">
   <br>
    <img src="https://teamvirtue.nl/wp-content/uploads/LINQ_Logo_Black-300x138.png" alt="LINQ" width="200">
-   <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Eindhoven_University_of_Technology_logo.svg" alt="TU/e" width="300">
+   <img src="https://storage-prtl-co.imgix.net/endor/organisations/1/logos/1539847178_TUe-logo-descriptor-line-scarlet-L.png" alt="TU/e" width="300">
    <img src="https://cdn.worldvectorlogo.com/logos/fontys-39.svg" alt="Fontys" width="200">
   <br>
 </h2>
