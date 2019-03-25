@@ -7,7 +7,7 @@ import Icon from '@material-ui/core/Icon';
 
 // local import
 import { HomeContainer } from '../containers/HomeContainer';
-import RoomNavigation from './rooms/RoomNavigation';
+import Rooms from './rooms/Rooms';
 import { AppSettingsContainer } from '../containers/AppSettingsContainer';
 import { SustainabilityStatusCircleContainer } from '../containers/SustainabilityStatusCircleContainer';
 import { NotificationsDialogContainer } from '../containers/NotificationsDialogContainer';
@@ -73,9 +73,11 @@ class MainNavigation extends Component {
 		}
     };
 
-    render() {
+    render() { /*TODO: remove inline styles*/
         const { classes, sustainabilityStatus } = this.props;
         const { value } = this.state;
+
+        let fullscreen = sustainabilityStatus.fullscreen;
 
         return (
             <div className={ classes.root }>
@@ -84,19 +86,19 @@ class MainNavigation extends Component {
 				
 				<div className={ 'wrapper ' + value }>
 					<div className={ 'row ' + classes.bg } style={{ position: 'relative' }}>
-						<div className={ 'fluid-container headerBg' } style={{ zIndex: sustainabilityStatus.fullscreen ? 10 : 0 }}>
+						<div className={ 'fluid-container headerBg' } style={{ zIndex: fullscreen ? 10 : 0 }}>
 							<SustainabilityStatusCircleContainer view={ value } />
 						</div>
 						
 						<div className={ 'content' }>
 							{ value === 'home' && <HomeContainer /> }
-							{ value === 'rooms' && <RoomNavigation /> }
-							{ value === 'settings' && <AppSettingsContainer /> }
+							{ value === 'rooms' && !fullscreen ? <Rooms /> : '' }
+							{ value === 'settings' && !fullscreen ? <AppSettingsContainer /> : '' }
 						</div>
 					</div>
 				</div>
 
-                { !sustainabilityStatus.fullscreen &&
+                { !fullscreen &&
                     <BottomNavigation value={ value } onChange={ this.handleChange } className={ classes.mobileNav } showLabels>
                         <BottomNavigationAction className={ classes.mobileNavItem } label='Home' value='home' icon={ <Icon>home</Icon> } />
                         <BottomNavigationAction className={ classes.mobileNavItem } label='Rooms' value='rooms' icon={ <Icon>dashboard</Icon> } />

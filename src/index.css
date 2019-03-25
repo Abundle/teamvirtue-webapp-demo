@@ -406,8 +406,8 @@ body {
 
 /* Sustainability Cards */
 .sustainabilityCardContainer {
-	position:relative;
-	min-height:190px;
+	position: relative;
+	min-height: 190px;
 }
 
 .sustainabilityCard {
@@ -512,7 +512,7 @@ body {
 
 .content{
 	width: 100%;
-    padding-bottom: 95px;
+    /*padding-bottom: 95px;*/
 	background-color: #f9f9f9;
 	transition: margin 200ms linear;
 }

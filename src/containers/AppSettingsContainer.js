@@ -5,7 +5,7 @@ import { updateBirthdate, updateSleepCycleMode, updateSleepCycleStartTime, updat
 const mapStateToProps = (state) => {
     // console.log(state);
     return {
-        settings: state.settings
+        settings: state.settings,
     }
 };
 

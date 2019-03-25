@@ -66,7 +66,7 @@ class SustainabilityStatusCircle extends Component {
         // this.setState({ fullscreen: false });
 	};
 
-    setActiveTab = (tab) => () => {
+    setActiveTab = (tab) => (event) => { // TODO: check event variable
         // this.setState({ tab });
         this.props.updateSustainabilityStatus(tab);
     };

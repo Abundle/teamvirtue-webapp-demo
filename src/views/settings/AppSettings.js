@@ -170,92 +170,93 @@ class Settings extends Component {
 
         return (
             <div className={ 'settings' }>
-				<div className='settingsContainer h3-bold'>
-					<Card className={ classes.card }>
-						<CardContent>
-							<List>
-								<Typography variant='subheading' className={classes.title}>Profile</Typography>
-								
-								<UserDialogContainer
-									// user={{ id: currentUserId, name: currentUser }}
-									// family={ settings.accounts.byId }
-									// onSubmit={ (event) => this.handleNameChangeSubmit(event) }
-								/>
-								
-								<ListItem>
-									<ListItemIcon>
-										<Icon>cake</Icon>
-									</ListItemIcon>
+                <div className='settingsContainer h3-bold'>
+                    <Card className={ classes.card }>
+                        <CardContent>
+                            <List>
+                                <Typography variant='subheading' className={classes.title}>Profile</Typography>
 
-									<ListItemText primary='Birthdate' />
+                                <UserDialogContainer
+                                    // user={{ id: currentUserId, name: currentUser }}
+                                    // family={ settings.accounts.byId }
+                                    // onSubmit={ (event) => this.handleNameChangeSubmit(event) }
+                                />
 
-									<DatePicker className='datePicker'
-										keyboard
-										format='MMMM Do, YYYY'
-										value={ settings.birthdate }
-										onChange={ this.handleBirthdate }
-										animateYearScrolling={ false }
-									/>
-								</ListItem>
-								<ListItem>
-									<ListItemIcon>
-										<Icon>timelapse</Icon>
-									</ListItemIcon>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <Icon>cake</Icon>
+                                    </ListItemIcon>
 
-									<ListItemText
-										primary='Sleep cycle'
-										secondary='Allows system to automatically adjust light settings' />
+                                    <ListItemText primary='Birthdate'/>
 
-									<ListItemSecondaryAction>
-										<Switch
-											checked={ settings.checkedSleepCycleMode }
-											onChange={ this.handleSleepCycleMode() }
-											value='checkedSleepCycleMode'
-											color='primary'
-										/>
-									</ListItemSecondaryAction>
-								</ListItem>
+                                    <DatePicker className='datePicker'
+                                                keyboard
+                                                format='MMMM Do, YYYY'
+                                                value={settings.birthdate}
+                                                onChange={this.handleBirthdate}
+                                                animateYearScrolling={false}
+                                    />
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <Icon>timelapse</Icon>
+                                    </ListItemIcon>
 
-								{ settings.checkedSleepCycleMode &&
-									<ListItem>
-										<ListItemText inset primary='Start' />
-										<TimePicker
-											value={ settings.sleepCycleStartTime }
-											onChange={ this.handleSleepCycleStartTime }
-										/>
-									</ListItem>
-								}
-								{ settings.checkedSleepCycleMode &&
-									<ListItem>
-										<ListItemText inset primary='End' />
-										<TimePicker
-											value={ settings.sleepCycleEndTime }
-											onChange={ this.handleSleepCycleEndTime }
-										/>
-									</ListItem>
-								}
+                                    <ListItemText
+                                        primary='Sleep cycle'
+                                        secondary='Allows system to automatically adjust light settings'/>
 
-								{ /* <ListMenu label='Food preferences' title='Food preferences' options={ optionsFood } icon='restaurant'/> */ }
-								
-								<ListItem
-									button
-									// divider
-									aria-haspopup='true'
-									aria-controls='ringtone-menu'
-									aria-label='Phone ringtone'
-									// onClick={this.handleClickListItem}
-								>
-									<ListItemIcon>
-										<Icon>exit_to_app</Icon>
-									</ListItemIcon>
+                                    <ListItemSecondaryAction>
+                                        <Switch
+                                            checked={settings.checkedSleepCycleMode}
+                                            onChange={this.handleSleepCycleMode()}
+                                            value='checkedSleepCycleMode'
+                                            color='primary'
+                                        />
+                                    </ListItemSecondaryAction>
+                                </ListItem>
 
-									<ListItemText primary='Sign out' secondary={'Signed in as ' + currentUserName + '. Apartment building 70 LINQ, Dubai'} />
-								</ListItem>
-							</List>
-						</CardContent>
-					</Card>
-					
-					{ /*
+                                {settings.checkedSleepCycleMode &&
+                                <ListItem>
+                                    <ListItemText inset primary='Start'/>
+                                    <TimePicker
+                                        value={settings.sleepCycleStartTime}
+                                        onChange={this.handleSleepCycleStartTime}
+                                    />
+                                </ListItem>
+                                }
+                                {settings.checkedSleepCycleMode &&
+                                <ListItem>
+                                    <ListItemText inset primary='End'/>
+                                    <TimePicker
+                                        value={settings.sleepCycleEndTime}
+                                        onChange={this.handleSleepCycleEndTime}
+                                    />
+                                </ListItem>
+                                }
+
+                                { /* <ListMenu label='Food preferences' title='Food preferences' options={ optionsFood } icon='restaurant'/> */}
+
+                                <ListItem
+                                    button
+                                    // divider
+                                    aria-haspopup='true'
+                                    aria-controls='ringtone-menu'
+                                    aria-label='Phone ringtone'
+                                    // onClick={this.handleClickListItem}
+                                >
+                                    <ListItemIcon>
+                                        <Icon>exit_to_app</Icon>
+                                    </ListItemIcon>
+
+                                    <ListItemText primary='Sign out'
+                                                  secondary={'Signed in as ' + currentUserName + '. Apartment building 70 LINQ, Dubai'}/>
+                                </ListItem>
+                            </List>
+                        </CardContent>
+                    </Card>
+
+                    { /*
 					<Typography variant="subheading" gutterBottom>App Settings</Typography>
 					<Card className={classes.card}>
 						<CardContent>
@@ -282,9 +283,9 @@ class Settings extends Component {
 							</List>
 						</CardContent>
 					</Card>
-					*/ }
+					*/}
 
-					{/*
+                    {/*
 					<List subheader={ <ListSubheader disableSticky="true">Clock</ListSubheader> }>
 						<ListItem>
 							<ListItemIcon>
@@ -319,63 +320,63 @@ class Settings extends Component {
 
 					<Divider />*/}
 
-					<Card className={classes.card}>
-						<CardContent>
-							<List>
-								<Typography variant="subheading" className={classes.title}>Notifications</Typography>
-								<ListItem>
-									<ListItemIcon>
-										<Icon>volume_up</Icon>
-									</ListItemIcon>
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <List>
+                                <Typography variant="subheading" className={classes.title}>Notifications</Typography>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <Icon>volume_up</Icon>
+                                    </ListItemIcon>
 
-									<div className='listitem-secondaryflex'>
-										<ListItemText primary='Volume' />
-										<Slider
-											min={ 0 }
-											max={ 100 }
-											defaultValue={ settings.notificationsVolume }
-											onChange={ this.handleNotificationsVolume() }
-											trackStyle={{ backgroundColor: theme.palette.primary.main }}
-											handleStyle={{
-												borderColor: theme.palette.primary.main,
-												backgroundColor: theme.palette.primary.main,
-											}}
-											railStyle={{ backgroundColor: 'lightgray' }}
-										/>
-									</div>
+                                    <div className='listitem-secondaryflex'>
+                                        <ListItemText primary='Volume'/>
+                                        <Slider
+                                            min={0}
+                                            max={100}
+                                            defaultValue={settings.notificationsVolume}
+                                            onChange={this.handleNotificationsVolume()}
+                                            trackStyle={{backgroundColor: theme.palette.primary.main}}
+                                            handleStyle={{
+                                                borderColor: theme.palette.primary.main,
+                                                backgroundColor: theme.palette.primary.main,
+                                            }}
+                                            railStyle={{backgroundColor: 'lightgray'}}
+                                        />
+                                    </div>
 
-								</ListItem>
-								<ListItem>
-									<ListItemIcon>
-										<Icon>vibration</Icon>
-									</ListItemIcon>
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <Icon>vibration</Icon>
+                                    </ListItemIcon>
 
-									<ListItemText primary='Vibrate' />
+                                    <ListItemText primary='Vibrate'/>
 
-									<ListItemSecondaryAction>
-										<Switch
-											checked={ settings.checkedNotificationsVibrate }
-											onChange={ this.handleNotificationsVibrate() }
-											color='primary'
-										/>
-									</ListItemSecondaryAction>
-								</ListItem>
-								<ListItem>
-									<ListItemIcon>
-										<Icon>desktop_windows</Icon>
-									</ListItemIcon>
+                                    <ListItemSecondaryAction>
+                                        <Switch
+                                            checked={settings.checkedNotificationsVibrate}
+                                            onChange={this.handleNotificationsVibrate()}
+                                            color='primary'
+                                        />
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <Icon>desktop_windows</Icon>
+                                    </ListItemIcon>
 
-									<ListItemText primary='Desktop notifications' />
+                                    <ListItemText primary='Desktop notifications'/>
 
-									<ListItemSecondaryAction>
-										<Switch
-											checked={ settings.checkedNotificationsDesktop }
-											onChange={ this.handleNotificationsDesktop() }
-											color='primary'
-										/>
-									</ListItemSecondaryAction>
-								</ListItem>
-								{ /*
+                                    <ListItemSecondaryAction>
+                                        <Switch
+                                            checked={settings.checkedNotificationsDesktop}
+                                            onChange={this.handleNotificationsDesktop()}
+                                            color='primary'
+                                        />
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                                { /*
 								<ListItem
 									button
 									aria-haspopup='true'
@@ -389,40 +390,41 @@ class Settings extends Component {
 
 									<ListItemText primary='Notifications types' secondary='Choose what you want to be notified of' />
 								</ListItem>
-								*/ }
-							</List>
-						</CardContent>
-					</Card>
+								*/}
+                            </List>
+                        </CardContent>
+                    </Card>
 
 
-					<Card className={classes.card}>
-						<CardContent>
-							{/*TODO: add licences and dependencies*/}
-							<List>
-								<Typography variant="subheading" className={classes.title}>About</Typography>
-								<ListItem
-									button
-									aria-haspopup='true'
-									aria-controls='ringtone-menu'
-									aria-label='Phone ringtone'
-									// onClick={this.handleClickListItem}
-								>
-									<ListItemText primary='App version' secondary='v1.0.0' />
-								</ListItem>
+                    <Card className={classes.card}>
+                        <CardContent>
+                            {/*TODO: add licences and dependencies*/}
+                            <List>
+                                <Typography variant="subheading" className={classes.title}>About</Typography>
+                                <ListItem
+                                    button
+                                    aria-haspopup='true'
+                                    aria-controls='ringtone-menu'
+                                    aria-label='Phone ringtone'
+                                    // onClick={this.handleClickListItem}
+                                >
+                                    <ListItemText primary='App version' secondary='v1.0.0'/>
+                                </ListItem>
 
-								<ListItem
-									button
-									aria-haspopup='true'
-									aria-controls='ringtone-menu'
-									aria-label='Phone ringtone'
-									// onClick={this.handleClickListItem}
-								>
-									<ListItemText primary='Open-source licences' secondary='Licence details for open-source software' />
-								</ListItem>
-							</List>
-						</CardContent>
-					</Card>
-				</div>
+                                <ListItem
+                                    button
+                                    aria-haspopup='true'
+                                    aria-controls='ringtone-menu'
+                                    aria-label='Phone ringtone'
+                                    // onClick={this.handleClickListItem}
+                                >
+                                    <ListItemText primary='Open-source licences'
+                                                  secondary='Licence details for open-source software'/>
+                                </ListItem>
+                            </List>
+                        </CardContent>
+                    </Card>
+                </div>
             </div>
         );
     }
