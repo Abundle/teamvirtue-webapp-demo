@@ -14,7 +14,7 @@
 # VIRTUe Web App Demo
 
 Demo version of team VIRTUe's original [repository](https://github.com/teamvirtue/webapp-react), see 
-[here](https://teamvirtue.nl/webapp) for live version (tablet size).
+[here](https://teamvirtue.nl/webapp) for live version (optimal experience in tablet size for now).
 
 # VIRTUe Student Team
 VIRTUe is a student team from the Eindhoven University of Technology. Follow us on our journey designing and building
