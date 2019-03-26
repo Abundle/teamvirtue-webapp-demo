@@ -22,6 +22,9 @@ import gltfUrl from '../assets/models/linq_low_poly_web_app.glb';
 // let loadingProgress;
 let levels = ['MY', 'LINQ', 'DISTRICT'];
 let selectedObject = null;
+let width;
+let height;
+let cameraFactor;
 // let alpha = 0;
 let highlightColor = 0xff0000;
 let highlightMarkerColor = 0xef490f;
@@ -35,6 +38,11 @@ let opacityTween,
     cameraRotationTween,
     markerTween;
     // cameraTween;
+
+/*
+let width = window.innerWidth;
+let height = window.innerHeight;
+*/
 
 // let currentOpacity = opacity === 1 ? 0.25 : 1;
 /*let opacity = { o: 1 };
@@ -68,11 +76,16 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         // this.canvas.addEventListener('click', this.onClick, false);
         // window.addEventListener('mousemove', this.onMouseMove, false);
 
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        /*let width = this.canvas.clientWidth;
-        let height = this.canvas.clientHeight;*/
-        let cameraFactor = (width / height) * 350;
+        if (window.innerWidth >= 1100) {
+            width = window.innerWidth * 0.6;
+
+        } else {
+            width = window.innerWidth;
+        }
+
+        height = window.innerHeight;
+
+        cameraFactor = (width / height) * 350;
         // let cameraFactor = (width / height) * 200;
 
         /*let fieldOfView = 45,
@@ -544,9 +557,9 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
 
         // console.log(this.MYLINQ_GROUP.getObjectByName('MYLINQ_roof_solar_panels'));
 
-        if (this.camera) {
+        /*if (this.camera) {
             // console.log(this.camera.rotation)
-        }
+        }*/
 
         /*if (this.lights[1]) {
             alpha += 0.05;
@@ -602,14 +615,23 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
     resizeCanvas = () => {
         if (window.innerWidth >= 1100) {
             this.renderer.setSize(window.innerWidth * 0.6, window.innerHeight);
-            this.canvas.width = window.innerWidth * 0.6;
-            this.canvas.height = window.innerHeight;
+
+            width = window.innerWidth * 0.6;
 
         } else {
             this.renderer.setSize(window.innerWidth, window.innerHeight);
-            this.canvas.width = window.innerWidth;
-            this.canvas.height = window.innerHeight;
+            width = window.innerWidth;
         }
+
+        height = window.innerHeight;
+        cameraFactor = (width / height) * 350;
+
+        this.camera.left = width / -cameraFactor;
+        this.camera.right = width / cameraFactor;
+        this.camera.top = height / cameraFactor;
+        this.camera.bottom = height / -cameraFactor;
+
+        console.log(this.camera.left, this.camera.top)
 
         /*this.canvas.style.width = window.innerWidth;
         this.canvas.style.height = window.innerHeight;*/
@@ -1160,7 +1182,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
 
         // console.log(sustainabilityStatus.advices[sustainabilityStatus.selected][0].id)
 
-        return ( // TODO: put styles in classes?
+        return (
             <canvas
                 // className={ this.props.fullScreen ? '' : classes.canvasCircle }
                 // style={{ width: '100%', height: '100%' }}
