@@ -85,14 +85,14 @@ class MainNavigation extends Component {
         return (
             <div className={ classes.root + ' mainNavigation'}>
                 { !fullscreen &&
-                    <img className={classes.logo}
-                         src={logo}
+                    <img className={ classes.logo }
+                         src={ logo }
                          width='80'
                          alt='LINQ logo'
-                         onClick={ () => this.handleClick('home') }
+                         // onClick={ () => this.handleClick('home') }
                     />
                 }
-                {!fullscreen &&
+                { !fullscreen &&
                     <NotificationsDialogContainer/>
                 }
 
@@ -104,9 +104,9 @@ class MainNavigation extends Component {
 
                         { !fullscreen &&
                             <div className={ 'content' }>
-                                {value === 'home' && <HomeContainer />}
-                                {value === 'rooms' && <Rooms />}
-                                {value === 'settings' && <AppSettingsContainer />}
+                                { value === 'home' && <HomeContainer /> }
+                                { value === 'rooms' && <Rooms /> }
+                                { value === 'settings' && <AppSettingsContainer /> }
                             </div>
                         }
 					</div>

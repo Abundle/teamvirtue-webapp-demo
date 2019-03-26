@@ -14,14 +14,17 @@ const styles = theme => ({
 	root: {
 		overflow: 'hidden',
 	},
-	bottomContent: {
+    /*flex: {
+	    display: 'flex',
+    },*/
+	/*bottomContent: {
         position: 'absolute',
 		width: '75vw',
         top: 'auto',
 		left: '12.5vw',
         bottom: 50,
 		zIndex: 15,
-	},
+	},*/
     backButton: {
         position: 'absolute',
         top: 12,
@@ -40,11 +43,10 @@ const styles = theme => ({
             cursor: 'pointer',
         }
     },
-    subNavBarContainerTabSelected: {
-        // color: 'white',
+    /*subNavBarContainerTabSelected: {
         fontWeight: 'bold',
         fontSize: '3.5vw',
-    },
+    },*/
 });
 
 class SustainabilityStatusCircle extends Component {
@@ -94,15 +96,15 @@ class SustainabilityStatusCircle extends Component {
 				<div className='sustainabilityStatusCircleFullscreen'>
 					{ sustainabilityStatus.fullscreen &&
 						<div>
-							<div className={ classes.bottomContent }>
+							<div className={ 'bottomContent' }>
 								<div className='subNavBarContainerFullscreen'>
-									<div className={ classes.subNavBarContainerTab + ' ' + ( tab === 'linq' ? classes.subNavBarContainerTabSelected : '' ) } onClick={ this.setActiveTab('linq') }>
+									<div className={ classes.subNavBarContainerTab + ' ' + ( tab === 'linq' ? 'subNavBarContainerTabSelected' : '' ) } onClick={ this.setActiveTab('linq') }>
 										LINQ
 									</div>
-									<div className={ classes.subNavBarContainerTab + ' ' + ( tab === 'mylinq' ? classes.subNavBarContainerTabSelected : '' )} onClick={ this.setActiveTab('mylinq') }>
+									<div className={ classes.subNavBarContainerTab + ' ' + ( tab === 'mylinq' ? 'subNavBarContainerTabSelected' : '' )} onClick={ this.setActiveTab('mylinq') }>
 										My LINQ
 									</div>
-									<div className={ classes.subNavBarContainerTab + ' ' + ( tab === 'district' ? classes.subNavBarContainerTabSelected : '' )} onClick={ this.setActiveTab('district') }>
+									<div className={ classes.subNavBarContainerTab + ' ' + ( tab === 'district' ? 'subNavBarContainerTabSelected' : '' )} onClick={ this.setActiveTab('district') }>
 										District
 									</div>
 								</div>

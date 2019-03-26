@@ -16,6 +16,13 @@
 Demo version of team VIRTUe's original [repository](https://github.com/teamvirtue/webapp-react), see 
 [here](https://teamvirtue.nl/webapp) for live version (optimal experience in tablet size for now).
 
+## Built With
+
+* [Create React App](https://github.com/facebook/create-react-app) - The JavaScript library used
+* [Material-UI](https://github.com/mui-org/material-ui) - Material Design styling
+* [Three.js](https://github.com/mrdoob/three.js/) - For displaying the 3D model of house LINQ
+* [React Redux](https://github.com/reduxjs/react-redux) - Storing the state
+
 # VIRTUe Student Team
 VIRTUe is a student team from the Eindhoven University of Technology. Follow us on our journey designing and building
 the most sustainable house at the Solar Decathlon Middle East 2018 in Dubai.

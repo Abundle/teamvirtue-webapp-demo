@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 // import CssBaseline from '@material-ui/core/CssBaseline';
-import 'material-design-icons/iconfont/material-icons.css';
+// import 'material-design-icons/iconfont/material-icons.css';
 // import materialIcons from 'material-design-icons/iconfont/material-icons.css';
 // import 'typeface-open-sans';
 import { defaults } from 'react-chartjs-2';
