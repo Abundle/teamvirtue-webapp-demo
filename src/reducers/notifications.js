@@ -5,14 +5,15 @@ const notifications = (state = {
             title: 'Connecting people with technology',
             message: 'LINQ connects people and technologies. This app makes users aware of the house functioning and ' +
                 'helps people to live more sustainable lifestyles',
-            // message: 'LINQ connects people and technologies. This app makes users aware of the house functioning and helps people to live more sustainable lifestyles. Please be aware that this app resets itself every few minutes during public tours.',
+            // message: 'LINQ connects people and technologies. This app makes users aware of the house functioning and
+            // helps people to live more sustainable lifestyles. Please be aware that this app resets itself every few
+            // minutes during public tours.',
             buttonIcon: '',
             buttonText: '',
             visible: true,
 			bordered: false,
         },
     },
-    //allIds: ['card1'],
 }, action) => {
 	switch (action.type) {
         case 'DISMISS_CARD':
@@ -25,16 +26,7 @@ const notifications = (state = {
                         visible: action.payload.visibility,
                     },
                 },
-                //allIds: [...state.allIds, action.payload],
             };
-		/*case 'ADD_ADVICECARD':
-			return state.concat([
-				{
-					content: action.content,
-					author: action.author,
-					id: action.id
-				}
-			]);*/
 	default:
 		return state;
 	}

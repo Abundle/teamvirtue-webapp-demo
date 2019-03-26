@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 
 // Local import
@@ -18,17 +17,21 @@ class Kitchen extends Component {
 				</div>
 				
 				<div className='col-6'>
-					<RealtimeEnergyMeter forRoom={[{'roomname': 'Kitchen'}]} forSocket={[ 
-																		{'name': 'Fridge', id: 'F10'},
-																		{'name': 'Induction Cooker', id: 'F11'},
-																	  ]} />
+					<RealtimeEnergyMeter
+						forRoom={ [{ 'roomname': 'Kitchen' }] }
+						forSocket={ [
+									{ 'name': 'Fridge', id: 'F10' },
+									{ 'name': 'Induction Cooker', id: 'F11' },
+								  ] } />
 				</div>
 				
 				<div className='col-6'>
-					<RealtimeEnergyMeter forRoom={[{'roomname': 'Kitchen'}]} forSocket={[ 
-																		{'name': 'Dishwasher', id: 'F15'},
-																		{'name': 'Oven', id: 'F19'},
-																	  ]} />
+					<RealtimeEnergyMeter
+						forRoom={ [{ 'roomname': 'Kitchen' }]}
+						forSocket={ [
+									{'name': 'Dishwasher', id: 'F15'},
+									{'name': 'Oven', id: 'F19'},
+								  ] } />
 				</div>
 				
 				<div className='col-6'>
@@ -38,7 +41,7 @@ class Kitchen extends Component {
 				<div className='col-12'>
 					<NetEnergy forRoom='Kitchen' />
 				</div>
-				
+
 				{ /* Washer-Dryer, Dishwasher, Oven, Refrigerator */ }
 			</List>
         );

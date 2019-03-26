@@ -3,7 +3,6 @@ import NotificationCard from '../globalcomponents/NotificationCard';
 import { dismissCard } from '../actions';
 
 const mapStateToProps = (state) => {
-    // console.log(state);
     return {
         notifications: state.notifications,
     }

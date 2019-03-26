@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-/*import Radio  from '@material-ui/core/Radio';
-import RadioGroup  from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';*/
 import { HorizontalBar } from 'react-chartjs-2';
 import 'chartjs-plugin-datalabels';
-
-// const Chart = require('chart.js');
-
-/*let dataRealtime = [];
-let dataDay = [];
-let dataWeek = [];
-let dataMonth = [];
-let dataYear = [];*/
 
 let labels = [];
 
@@ -52,54 +41,25 @@ const styles = {
 class BarChart extends Component{
     constructor(props){
         super(props);
+
         // Chart.defaults.global.defaultFontColor = 'red';
+
         this.state = {
             value: 'week',
 			data: energyGraph,
         };
     }
 
-    /*handleChange = (event, value) => {
-        this.setState({ value });
-        const oldDataSet = this.state.datasets[0];
-        let newData = [];
-
-        switch (value) {
-            case 'week':
-                newData.push(...dataWeek);
-                break;
-            case 'month':
-                newData.push(...dataMonths);
-                break;
-            case 'year':
-                newData.push(...dataYears);
-                break;
-            default:
-                newData.push(...dataWeek);
-        }
-
-        let newDataSet = { ...oldDataSet };
-
-        newDataSet.data = newData;
-
-        this.setState({
-            datasets: [newDataSet]
-        });
-    };*/
-
     componentWillMount() {
 		if (labels.length < 1) {
             this.props.data.forEach(data => {
                 labels.push(data[0]);
             })
-            /*this.props.data.map(data => {
-                labels.push(data[0]);
-            })*/
 		}
     };
 	
 	componentWillReceiveProps() {
-		//okay, so new data retrieved. Now update the array data correctly.
+		// okay, so new data retrieved. Now update the array data correctly.
 		let datasetsCopy = this.state.data.datasets.slice(0);
 
         let dataCopy = [];
@@ -152,24 +112,17 @@ class BarChart extends Component{
                         scales: {
                             xAxes: [{
                                 display: false,
-                                /*gridLines: {
-                                    display: false,
-                                    offsetGridLines : true,
-                                    drawBorder: false,
-                                },*/
                                 ticks: {
                                     fontFamily: "inherit",
                                     fontColor: 'gray',
                                 },
                             }],
                             yAxes: [{
-                                // barThickness: 17,
                                 gridLines: {
                                     color: 'rgba(0, 0, 0, 0)',
                                     display: false,
                                 },
                                 ticks: {
-                                    //beginAtZero: false,
                                     suggestedMin: 0,    // minimum will be 0, unless there is a lower value
                                     fontFamily: "inherit",
                                     fontColor: 'gray',
@@ -181,24 +134,6 @@ class BarChart extends Component{
                                 radius: 0,
                             },
                         },
-                        /*animation: {
-                            duration: 500,
-                            onComplete: function() {
-                                const chartInstance = this.chart;
-                                const ctx = chartInstance.ctx;
-                                const meta = chartInstance.controller.getDatasetMeta(0);
-
-                                Chart.helpers.each(meta.data.forEach((bar, index) => {
-                                    const label = this.data.labels[index];
-                                    const labelPositionX = 55; // padding + 10
-
-                                    ctx.textBaseline = 'middle';
-                                    ctx.textAlign = 'left';
-                                    ctx.fillStyle = 'black';
-                                    ctx.fillText(label, labelPositionX, bar._model.y);
-                                }));
-                            }
-                        },*/
                         plugins: {
                             datalabels: {
                                 backgroundColor: function(context) {

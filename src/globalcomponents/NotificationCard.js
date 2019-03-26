@@ -16,13 +16,11 @@ const styles = theme => ({
 		border: '3px solid ' + theme.palette.primary.main,
 	},
     card: {
-        /*minWidth: 275,
-        maxWidth: 600,*/
         textAlign: 'left',
     },
-    controls: {
-        /*justifyContent: 'space-between',*/
-    },
+    /*controls: {
+        justifyContent: 'space-between',
+    },*/
     title: {
         marginBottom: 16,
         fontSize: 20,
@@ -38,13 +36,12 @@ const styles = theme => ({
 	},
 });
 
-var current_timeout = 0;
-
+let current_timeout = 0;
 
 class NotificationCard extends Component {
 	constructor() {
 		super();
-		this.state = { cardHeight: "" };
+		this.state = { cardHeight: '' };
 		this.updateCardHeight = this.updateCardHeight.bind(this);
 	}
 	
@@ -57,12 +54,10 @@ class NotificationCard extends Component {
 		clearTimeout(current_timeout);
         current_timeout = setTimeout(function(){
 			this.props.dispatch(id, true);
-        }.bind(this), 1000 * 30);//30 seconds
+        }.bind(this), 1000 * 30); // 30 seconds
 		/*********************************/
 
         this.props.dispatch(id, visibility);
-        // console.log(event, id);
-        // this.props.onDismissCard(this.props.id);
     };
 	
 	updateCardHeight() {

@@ -58,7 +58,6 @@ const waterGraph = {
 	}]
 };
 
-
 const styles = {
     root: {
 		width: '100%',
@@ -80,9 +79,6 @@ const styles = {
     checked: {},
 };
 
-
-
-
 class LineChart extends Component{
     constructor(props){
         super(props);
@@ -93,7 +89,7 @@ class LineChart extends Component{
         };
     }
 
-	//switch timespan
+	// switch timespan
     handleChange = (event, value) => {
         this.setState({ timespan: value });
 		let selectedLabel = LABELS_REALTIME;
@@ -126,12 +122,12 @@ class LineChart extends Component{
 				break;
         }
 		
-		var datasetsCopy = this.state.data.datasets.slice(0);
-		var dataCopy = datasetsCopy[0].data.slice(0);
+		let datasetsCopy = this.state.data.datasets.slice(0);
+        let dataCopy = datasetsCopy[0].data.slice(0);
 		dataCopy = selectedData;
 		datasetsCopy[0].data = dataCopy;
 
-		var newData = Object.assign( {}, this.state.data, { labels: selectedLabel, datasets: datasetsCopy } );
+        let newData = Object.assign( {}, this.state.data, { labels: selectedLabel, datasets: datasetsCopy } );
 		this.setState({
 			data: newData
 		});
@@ -151,126 +147,110 @@ class LineChart extends Component{
     };
 
     componentWillReceiveProps(newProps) {
-		//if( newProps.data !== this.props.data ){//Only update after change of data (so not after update from other props)
-			this.updateData();
-		//}
+        this.updateData();
     };
 	
 	updateData() {
-		//okay, so new data retrieved. Now update the array data correctly.
+		// okay, so new data retrieved. Now update the array data correctly.
         let newData = this.props.data;
-		newData.reverse();//reverse array so old data becomes first.
-        // let now = moment();
-		
-		
+		newData.reverse(); // reverse array so old data becomes first.
+
 		/*** CALCULATE NEW DATA ***/
-		
-		
-		
+
 		//REALTIME DATA
-				dataRealtime = [];
-                /*let minusPowerConsumed;
-                let previousPowerConsumed = 0;*/
-				/*newData.map( function(item, i) {
-					if(moment(item.created).isSame(now, 'day')){
-						if(!minusPowerConsumed){
-							//start power_consumed is previous value
-							minusPowerConsumed = newData[i - 1].power_consumed;
-						}
-						var powerConsumed = item.power_consumed - minusPowerConsumed - previousPowerConsumed;
-						dataRealtime.push(powerConsumed);
-						previousPowerConsumed = powerConsumed;
-					}
-				});*/
-				dataRealtime = newData;
-		
-		
-		
+        dataRealtime = [];
+        /*let minusPowerConsumed;
+        let previousPowerConsumed = 0;*/
+        /*newData.map( function(item, i) {
+            if(moment(item.created).isSame(now, 'day')){
+                if(!minusPowerConsumed){
+                    //start power_consumed is previous value
+                    minusPowerConsumed = newData[i - 1].power_consumed;
+                }
+                var powerConsumed = item.power_consumed - minusPowerConsumed - previousPowerConsumed;
+                dataRealtime.push(powerConsumed);
+                previousPowerConsumed = powerConsumed;
+            }
+        });*/
+        dataRealtime = newData;
+
 		//DAY DATA
-				dataDay = [];
-                /*let minusPowerConsumed;
-                let previousPowerConsumed = 0;
+        dataDay = [];
+        /*let minusPowerConsumed;
+        let previousPowerConsumed = 0;
 
-                let latestCalculatedHour = 0;
-                let powerConsumedHourBeginning = 0;
-                let thisHourCalculated = 0;*/
-				
-				/*newData.map( function(item, i) {
-					if(moment(item.created).isSame(moment(), 'day')){//okay, data is from today
-						if(!minusPowerConsumed){
-							//start power_consumed is last value from yesterday
-							minusPowerConsumed = newData[i - 1].power_consumed;
-						}
-						
-						//add data point when  A)an entire hour is looped through  B)it is the last data point
-						if(latestCalculatedHour !== moment(item.created).hour() || (!newData[i + 1])){
-							//okay, new hour can be calculated. Add data point.
-							dataRealtime.push(thisHourCalculated);
-							
-							//reset variables
-							latestCalculatedHour = moment(item.created).hour();
-							powerConsumedHourBeginning = 0;
-							thisHourCalculated = 0;
-						}
-						
-						//update variables
-						if(powerConsumedHourBeginning === 0){
-							powerConsumedHourBeginning = item.power_consumed;
-						}
-						thisHourCalculated = thisHourCalculated + item.power_consumed;
-					}
-				});*/
-				dataDay = newData;
-		
-		
-		
+        let latestCalculatedHour = 0;
+        let powerConsumedHourBeginning = 0;
+        let thisHourCalculated = 0;*/
+
+        /*newData.map( function(item, i) {
+            if(moment(item.created).isSame(moment(), 'day')){//okay, data is from today
+                if(!minusPowerConsumed){
+                    //start power_consumed is last value from yesterday
+                    minusPowerConsumed = newData[i - 1].power_consumed;
+                }
+
+                //add data point when  A)an entire hour is looped through  B)it is the last data point
+                if(latestCalculatedHour !== moment(item.created).hour() || (!newData[i + 1])){
+                    //okay, new hour can be calculated. Add data point.
+                    dataRealtime.push(thisHourCalculated);
+
+                    //reset variables
+                    latestCalculatedHour = moment(item.created).hour();
+                    powerConsumedHourBeginning = 0;
+                    thisHourCalculated = 0;
+                }
+
+                //update variables
+                if(powerConsumedHourBeginning === 0){
+                    powerConsumedHourBeginning = item.power_consumed;
+                }
+                thisHourCalculated = thisHourCalculated + item.power_consumed;
+            }
+        });*/
+        dataDay = newData;
+
 		//WEEK DATA
-				dataWeek = [];
-                /*let minusPowerConsumed;
-                let previousPowerConsumed = 0;
+        dataWeek = [];
+        /*let minusPowerConsumed;
+        let previousPowerConsumed = 0;
 
-                let latestCalculatedDay = 0;
-                let powerConsumedDayBeginning = 0;
-                let thisDayCalculated = 0;*/
-				
-				/*newData.map( function(item, i) {
-					if(moment(item.created).isSameOrAfter(moment().subtract(6, 'days'))){//okay, data is from last 7 days
-						if(!minusPowerConsumed){
-							//start power_consumed is last value from yesterday
-							minusPowerConsumed = newData[i - 1].power_consumed;
-						}
-						
-						//add data point when  A)an entire day is looped through  B)it is the last data point
-						if(latestCalculatedDay !== moment(item.created).day() || (!newData[i + 1])){
-							//okay, new day can be calculated. Add data point.
-							dataRealtime.push(thisDayCalculated);
-							
-							//reset variables
-							latestCalculatedDay = moment(item.created).day();
-							powerConsumedDayBeginning = 0;
-							thisDayCalculated = 0;
-						}
-						
-						//update variables
-						if(powerConsumedDayBeginning === 0){
-							powerConsumedDayBeginning = item.power_consumed;
-						}
-						thisDayCalculated = thisDayCalculated + item.power_consumed;
-					}
-				});*/
-				dataWeek = newData;
-		
-		
-		
+        let latestCalculatedDay = 0;
+        let powerConsumedDayBeginning = 0;
+        let thisDayCalculated = 0;*/
+
+        /*newData.map( function(item, i) {
+            if(moment(item.created).isSameOrAfter(moment().subtract(6, 'days'))){//okay, data is from last 7 days
+                if(!minusPowerConsumed){
+                    //start power_consumed is last value from yesterday
+                    minusPowerConsumed = newData[i - 1].power_consumed;
+                }
+
+                //add data point when  A)an entire day is looped through  B)it is the last data point
+                if(latestCalculatedDay !== moment(item.created).day() || (!newData[i + 1])){
+                    //okay, new day can be calculated. Add data point.
+                    dataRealtime.push(thisDayCalculated);
+
+                    //reset variables
+                    latestCalculatedDay = moment(item.created).day();
+                    powerConsumedDayBeginning = 0;
+                    thisDayCalculated = 0;
+                }
+
+                //update variables
+                if(powerConsumedDayBeginning === 0){
+                    powerConsumedDayBeginning = item.power_consumed;
+                }
+                thisDayCalculated = thisDayCalculated + item.power_consumed;
+            }
+        });*/
+        dataWeek = newData;
+
 		//MONTH DATA
-				dataMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-		
-		
+        dataMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
 		//YEAR DATA
-				dataYear = [0, 0, 0, 0, 0];
-		
-		
-		
+        dataYear = [0, 0, 0, 0, 0];
 		/*** END CALCULATE NEW DATA ***/
 
         let datasetsCopy = this.state.data.datasets.slice(0);
@@ -296,7 +276,7 @@ class LineChart extends Component{
 		});
 	};
 
-    render(){
+    render() {
         const { classes } = this.props;
 
         return (
@@ -343,12 +323,9 @@ class LineChart extends Component{
 
                 <Line
                     data={ this.state.data } // TODO: chart is cut off sometimes (https://github.com/chartjs/Chart.js/issues/2872), fixed it with setting the padding for now (mobile)
-                    /*width={75}*/
-                    /*height={ 175 }*/
                     options={{
                         tooltips: {
                             enabled: true,
-                            // mode: 'nearest'
                         },
                         layout: {
                             padding: {
@@ -377,23 +354,18 @@ class LineChart extends Component{
                                 },
                             }],
                             yAxes: [{
-                                // display: false,
                                 gridLines: {
                                     display: true,
                                     color: 'white',
                                     drawBorder: false,
                                     lineWidth: 0,
-                                    zeroLineColor: '#e3e3e3', //'#e3e3e3',
+                                    zeroLineColor: '#e3e3e3',
                                     zeroLineWidth: 2,
-                                    //tickMarkLength: 0
                                 },
                                 ticks: {
                                     display: true,
 									beginAtZero:true,
 									fontFamily: 'inherit',
-                                    /*suggestedMin: 0,    // minimum will be 0, unless there is a lower value
-                                    fontFamily: "'Roboto'",
-                                    fontColor: 'gray',*/
                                 },
                             }],
                         },
@@ -407,13 +379,12 @@ class LineChart extends Component{
                         },
                         responsive: true,
                         responsiveAnimationDuration: 0, // animation duration after a resize
-                        //maintainAspectRatio: false,
                         plugins: {
                             datalabels: {
                                 backgroundColor: function(context) {
                                     return context.dataset.borderColor;
                                 },
-                                borderRadius: 10, //4,
+                                borderRadius: 10,
                                 color: 'white',
                                 font: {
                                     weight: 'bold'

@@ -16,7 +16,7 @@ import Slider from 'rc-slider';
 
 import { updateRoomsLightOnOff, updateRoomsLightIntensity, updateRoomsLightWarmth } from '../../../actions';
 
-const styles = theme => ({ 
+const styles = {
 	card: {
 		marginBottom: 25,
 	},
@@ -26,19 +26,19 @@ const styles = theme => ({
 		textTransform: 'uppercase',
 		letterSpacing: 1,
 	},
-});
+};
 
 class Light extends Component {
 	
-	handleLightOnOff = name => event => {
+	handleLightOnOff = (name) => (event) => {
 		this.props.updateLightOnOff(this.props.forRoom, event.target.checked);
     };
 	
-	handleLightIntensity = name => newIntensity => {
+	handleLightIntensity = (name) => (newIntensity) => {
 		this.props.updateLightIntensity(this.props.forRoom, newIntensity);
     };
 	
-	handleLightWarmth = name => newWarmth => {
+	handleLightWarmth = (name) => (newWarmth) => {
 		this.props.updateLightWarmth(this.props.forRoom, newWarmth);
     };
 	
@@ -47,10 +47,10 @@ class Light extends Component {
 		
 		return (
 			<div>
-				<Card className={classes.card}>
+				<Card className={ classes.card }>
 					<CardContent>
-						<Typography variant="subheading" className={classes.title}>Lights</Typography>
-						<ListItem disableGutters={true}>
+						<Typography variant="subheading" className={ classes.title }>Lights</Typography>
+						<ListItem disableGutters={ true }>
 							<ListItemIcon>
 								<Icon>power_settings_new</Icon>
 							</ListItemIcon>
@@ -63,7 +63,7 @@ class Light extends Component {
 								/>
 							</ListItemSecondaryAction>
 						</ListItem>
-						<ListItem disableGutters={true}>
+						<ListItem disableGutters={ true }>
 							<ListItemIcon>
 								<Icon>wb_incandescent</Icon>
 							</ListItemIcon>
@@ -83,35 +83,12 @@ class Light extends Component {
 								/>
 							</div>
 						</ListItem>
-						{ /*
-						<ListItem disableGutters={true}>
-							<ListItemIcon>
-								<Icon>colorize</Icon>
-							</ListItemIcon>
-							<div className='listitem-secondaryflex'>
-								<ListItemText primary='Warmth' />
-								<Slider
-									min={ 0 }
-									max={ 2 }
-									defaultValue={ houseData.room[forRoom].lights.warmth }
-									onChange={ this.handleLightWarmth() }
-									trackStyle={{ backgroundColor: theme.palette.primary.main }}
-									handleStyle={{
-										borderColor: theme.palette.primary.main,
-										backgroundColor: theme.palette.primary.main,
-									}}
-									railStyle={{ backgroundColor: 'lightgray' }}
-								/>
-							</div>
-						</ListItem> 
-						*/}
 					</CardContent>
 				</Card>
 			</div>
 		);
 	}
 }
-
 
 const mapStateToProps = (state) => {
     return {

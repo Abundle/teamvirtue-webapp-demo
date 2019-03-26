@@ -16,32 +16,16 @@ import logo from '../assets/linq_logo_white.png';
 import linqBg from '../assets/linq_top_down_view.jpg';
 
 const styles = {
-    root: {
-        // position: 'relative',
-        // width: '50%',
-        // margin: 'auto'
-    },
 	bg: {
         position: 'relative',
 		backgroundImage: 'url("' + linqBg +'")',
 		backgroundSize: 'cover',
 		backgroundAttachment: 'fixed',
 	},
-	/*logo: {
-		position: 'absolute',
-		left: 0,
-		margin: '23px 20px',
-		zIndex: 1,
-		'&:hover': {
-			cursor: 'pointer',
-		}
-	},*/
     nav: {
         position: 'fixed',
         bottom: 0,
-		// marginLeft: '-15px',
         zIndex: 5,
-        // width: '100%',
         boxShadow: '0px -3px 3px 0px rgba(0, 0, 0, 0.10)',
 		backgroundColor: 'white',
     },
@@ -52,7 +36,6 @@ const styles = {
 		backgroundColor: 'rgba(255, 255, 255, 0.3) !important',
     },
 };
-
 
 class MainNavigation extends Component {
     constructor(props) {
@@ -76,19 +59,18 @@ class MainNavigation extends Component {
 		}
     };
 
-    render() { /*TODO: remove inline styles*/
+    render() { // TODO: reduce inline styles
         const { classes, sustainabilityStatus } = this.props;
         const { value } = this.state;
 
         let fullscreen = sustainabilityStatus.fullscreen;
 
         return (
-            <div className={ classes.root + ' mainNavigation'}>
+            <div className={ 'mainNavigation'}>
                 {
                     <img className={ 'logo' }
                          src={ logo }
                          style={{ visibility: fullscreen ? 'hidden' : 'visible' }}
-                         // width='80'
                          alt='LINQ logo'
                          // onClick={ () => this.handleClick('home') }
                     />
@@ -127,7 +109,6 @@ class MainNavigation extends Component {
 
 MainNavigation.propTypes = {
     classes: PropTypes.object.isRequired,
-    //checked: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(MainNavigation);

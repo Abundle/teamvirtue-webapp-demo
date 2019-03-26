@@ -3,7 +3,6 @@ import Home from '../views/home/Home';
 import { updateSustainabilityStatus, updateEatTogetherStatus, updateEatTogetherMessage, resetEatTogetherMessage } from '../actions';
 
 const mapStateToProps = (state) => {
-    // console.log(state);
     return {
 		sustainabilityStatus: state.sustainabilityStatus,
 		temperature: state.temperature,

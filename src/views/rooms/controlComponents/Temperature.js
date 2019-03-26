@@ -15,7 +15,7 @@ import Slider from 'rc-slider';
 
 import { updateRoomsAircoOnOff, updateRoomsAircoTemperature } from '../../../actions';
 
-const styles = theme => ({
+const styles = {
 	card: {
 		marginBottom: 25,
 	},
@@ -25,7 +25,7 @@ const styles = theme => ({
 		textTransform: 'uppercase',
 		letterSpacing: 1,
 	},
-});
+};
 
 const Handle = Slider.Handle;
 const handle = (props: HandleProps) => {
@@ -47,11 +47,11 @@ const handle = (props: HandleProps) => {
 
 class Temperature extends Component {
 	
-	handleAircoOnOff = name => event => {
+	handleAircoOnOff = (name) => (event) => {
 		this.props.updateAircoOnOff(event.target.checked);
     };
 	
-	handleAircoTemperature = name => newTemperature => {
+	handleAircoTemperature = (name) => (newTemperature) => {
 		this.props.updateAircoTemperature(newTemperature);
     };
 
@@ -60,10 +60,10 @@ class Temperature extends Component {
 		
 		return (
 			<div>
-				<Card className={classes.card}>
+				<Card className={ classes.card }>
 					<CardContent>
-						<Typography variant="subheading" className={classes.title}>Air conditioning</Typography>
-						<ListItem disableGutters={true}>
+						<Typography variant='subheading' className={ classes.title }>Air conditioning</Typography>
+						<ListItem disableGutters={ true }>
 							<ListItemIcon>
 								<Icon>power_settings_new</Icon>
 							</ListItemIcon>
@@ -76,7 +76,7 @@ class Temperature extends Component {
 								/>
 							</ListItemSecondaryAction>
 						</ListItem>
-						<ListItem disableGutters={true}>
+						<ListItem disableGutters={ true }>
 							<ListItemIcon>
 								<Icon>toys</Icon>
 							</ListItemIcon>
@@ -104,7 +104,6 @@ class Temperature extends Component {
 		);
 	}
 }
-
 
 const mapStateToProps = (state) => {
     return {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 
 // Local import
@@ -17,7 +16,7 @@ class Bedroom extends Component {
 				</div>
 				
 				<div className='col-6'>
-					<RealtimeEnergyMeter forRoom={[{'roomname': 'Bedroom', 'energyname': 'Sockets'}]} />
+					<RealtimeEnergyMeter forRoom={ [{ 'roomname': 'Bedroom', 'energyname': 'Sockets' }] } />
 				</div>
 
 				<div className='col-12'>

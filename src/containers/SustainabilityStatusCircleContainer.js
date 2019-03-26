@@ -3,7 +3,6 @@ import SustainabilityStatusCircle from '../globalcomponents/SustainabilityStatus
 import { updateFullscreenStatus, updateSustainabilityStatus } from '../actions';
 
 const mapStateToProps = (state) => {
-    // console.log(state);
     return {
 		sustainabilityStatus: state.sustainabilityStatus,
     }

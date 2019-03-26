@@ -4,7 +4,6 @@ import MainNavigation from '../views/MainNavigation';
 import { updateSustainabilityStatus } from '../actions';
 
 const mapStateToProps = (state) => {
-    // console.log(state);
     return {
         settings: state.settings,
         sustainabilityStatus: state.sustainabilityStatus,

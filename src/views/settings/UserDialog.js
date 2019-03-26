@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles'
 import { withTheme } from '@material-ui/core/styles';
@@ -24,11 +23,6 @@ const styles = {
 	},
 };
 
-/*let accountNames = [
-    { id:'2', value: 'Manar Bishara', imgName: accountPicture2 },
-    { id:'3', value: 'Sara Abadi', imgName: accountPicture3 },
-];*/
-
 class UserDialog extends Component {
     constructor(props) {
         super(props);
@@ -38,13 +32,10 @@ class UserDialog extends Component {
         this.state = {
 			openNamePopup: false,
             currentAccountName: this.props.settings.accounts.byId[user].name,
-			// currentAccountName: this.props.accounts.currentUser,
-			// currentAccountName: this.props.user,
         };
     }
 	
     handleSubmit = (event, id) => {
-        // console.log(this.newAccountName.value);
 		event.preventDefault();
         this.setState({ currentAccountName: this.newAccountName.value });
         this.props.dispatch(this.newAccountName.value, id);
@@ -60,7 +51,6 @@ class UserDialog extends Component {
 
     render() {
 		const { classes, settings } = this.props;
-		// const { classes, user, family } = this.props;
         let family = settings.accounts.allIds.slice();
         let index = family.indexOf(String(settings.accounts.currentUser));
 
@@ -69,7 +59,7 @@ class UserDialog extends Component {
         }
 
         return (
-            <div> {/*TODO: reduce unnamed divs*/}
+            <div>
 				<ListItem
 					button
 					onClick={ this.handleNamePopupOpen }
@@ -140,26 +130,6 @@ class UserDialog extends Component {
                                     </ListItemAvatar>
                                     <ListItemText primary='Add account' />
                                 </ListItem>
-								{/*{ accountNames.map(data => (
-									<ListItem button key={ data.value }>
-										<ListItemAvatar>
-											<Avatar 
-											  alt={ data.value }
-											  src={ data.imgName }
-											  className={ classes.avatar }
-											/>
-										</ListItemAvatar>
-										<ListItemText primary={ data.value } />
-									</ListItem>
-								)) }
-								<ListItem button>
-									<ListItemAvatar>
-										<Avatar>
-											<Icon>add</Icon>
-										</Avatar>
-									</ListItemAvatar>
-									<ListItemText primary='Add account' onClick={()=>{ alert('Not supported yet'); }} />
-								</ListItem>*/}
 							</List>
 						</DialogContent>
 						<DialogActions>

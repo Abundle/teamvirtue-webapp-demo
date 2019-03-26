@@ -3,7 +3,6 @@ import AppSettings from '../views/settings/AppSettings';
 import { updateBirthdate, updateSleepCycleMode, updateSleepCycleStartTime, updateSleepCycleEndTime, updateNightMode, updateNotificationsVolume, updateNotificationsVibrate, updateNotificationsDesktop } from '../actions';
 
 const mapStateToProps = (state) => {
-    // console.log(state);
     return {
         settings: state.settings,
     }

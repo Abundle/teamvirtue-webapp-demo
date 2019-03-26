@@ -11,13 +11,9 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormHelperText from '@material-ui/core/FormHelperText';
 import Icon from '@material-ui/core/Icon';
 
-const styles = theme => ({ //theme
-    root: {
-        // backgroundColor: 'lightblue',
-    },
+const styles = theme => ({
     button: {
         margin: theme.spacing.unit,
     },
@@ -53,12 +49,12 @@ class ResponsiveDialog extends Component {
         this.setState({ value: event.target.value });
     };
 
-    render() {
+    render() { // TODO: implement data dynamically
         const { fullScreen } = this.props;
         const classes = styles;
 
         return (
-            <div style={ classes.root }>
+            <div>
                 <Button
                     style={ classes.button }
                     onClick={ this.handleClickOpen }
@@ -82,7 +78,6 @@ class ResponsiveDialog extends Component {
                         </DialogContentText>
 
                         <FormControl component='fieldset' required className={ classes.formControl }>
-                            {/*<FormLabel component='legend'>Devices</FormLabel>*/}
                             <RadioGroup
                                 aria-label='appliances'
                                 name='appliances1'
@@ -90,7 +85,6 @@ class ResponsiveDialog extends Component {
                                 value={ this.state.value }
                                 onChange={ this.handleChange }
                             >
-                                {/*TODO: implement data dynamically*/}
                                 <FormControlLabel value='blender' control={ <Radio /> } label='Blender' />
                                 <FormControlLabel value='coffee machine' control={ <Radio /> } label='Coffee machine' />
                                 <FormControlLabel value='toaster' control={ <Radio /> } label='Toaster' />
@@ -98,7 +92,6 @@ class ResponsiveDialog extends Component {
                                 <FormControlLabel value='other' control={ <Radio /> } label='Other' />
                             </RadioGroup>
 
-                            {/*<FormHelperText>Lorem ipsum</FormHelperText>*/}
                         </FormControl>
                     </DialogContent>
                     <DialogActions>

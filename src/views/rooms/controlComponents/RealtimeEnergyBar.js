@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import BarChart from '../../../globalcomponents/BarChart';
 
-const styles = theme => ({
+const styles = {
 	card: {
 		marginBottom: 25,
 	},
@@ -18,7 +18,7 @@ const styles = theme => ({
 		textTransform: 'uppercase',
 		letterSpacing: 1,
 	},
-});
+};
 
 class RealtimeEnergyBar extends Component {
 	

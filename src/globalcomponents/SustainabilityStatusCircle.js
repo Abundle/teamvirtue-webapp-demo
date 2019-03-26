@@ -7,24 +7,11 @@ import IconButton from '@material-ui/core/IconButton';
 // Local import
 import { SceneContainer } from '../containers/SceneContainer';
 import SustainabilityCards from '../globalcomponents/SustainabilityCards';
-// import Scene from '../threejs/Scene';
-// import ThreeEntryPoint from '../threejs/ThreeEntryPoint';
 
 const styles = theme => ({
 	root: {
 		overflow: 'hidden',
 	},
-    /*flex: {
-	    display: 'flex',
-    },*/
-	/*bottomContent: {
-        position: 'absolute',
-		width: '75vw',
-        top: 'auto',
-		left: '12.5vw',
-        bottom: 50,
-		zIndex: 15,
-	},*/
     backButton: {
         position: 'absolute',
         top: 12,
@@ -43,35 +30,20 @@ const styles = theme => ({
             cursor: 'pointer',
         }
     },
-    /*subNavBarContainerTabSelected: {
-        fontWeight: 'bold',
-        fontSize: '3.5vw',
-    },*/
 });
 
 class SustainabilityStatusCircle extends Component {
-    /*constructor(props) {
-        super(props);
-        this.state = {
-            tab: this.props.sustainabilityStatus.selected,
-            // fullscreen: false,
-        };
-    }*/
-
 	handleOpen = () => {
         if (this.props.sustainabilityStatus.loadingStatus === 'loaded') {
             this.props.updateFullscreenStatus(true);
         }
-        // this.setState({ fullScreen: true });
 	};
 
 	handleClose = () => {
         this.props.updateFullscreenStatus(false);
-        // this.setState({ fullscreen: false });
 	};
 
     setActiveTab = (tab) => (event) => { // TODO: check event variable
-        // this.setState({ tab });
         this.props.updateSustainabilityStatus(tab);
     };
 
@@ -80,20 +52,10 @@ class SustainabilityStatusCircle extends Component {
         const tab = this.props.sustainabilityStatus.selected;
         let circleColorClass = sustainabilityStatus[sustainabilityStatus.selected]['efficiency'];;
 
-        /*if (sustainabilityStatus.selected) {
-            const circleColorClass = sustainabilityStatus[sustainabilityStatus.selected]['efficiency'];
-        }*/
-		// const fullscreenClass = sustainabilityStatus.fullscreen ? ' fullscreen' : '';
-
-        // console.log(this.props.sustainabilityStatus.fullscreen);
-
-        // console.log(sustainabilityStatus.loadingStatus)
-
         return (
             <div className={ classes.root }>
                 <div className={ 'sustainabilityStatusCircleContainer ' + circleColorClass } onClick={ this.handleOpen }>
                     <div className={ 'sustainabilityStatusCircle' }>
-                        {/*<p>{ sustainabilityStatus.loadingStatus }</p>*/}
                         <SceneContainer view={ this.props.view } />
                     </div>
                 </div>
@@ -129,10 +91,7 @@ class SustainabilityStatusCircle extends Component {
 }
 
 SustainabilityStatusCircle.propTypes = {
-	// fullscreen: PropTypes.bool.isRequired,
     classes: PropTypes.object.isRequired,
-    //src: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(SustainabilityStatusCircle);
-// export default withStyles(styles)(withMobileDialog()(SustainabilityStatusCircle));

@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import LineChart from '../../../globalcomponents/LineChart';
 
-const styles = theme => ({
+const styles = {
 	card: {
 		marginBottom: 25,
 	},
@@ -18,7 +18,7 @@ const styles = theme => ({
 		textTransform: 'uppercase',
 		letterSpacing: 1,
 	},
-});
+};
 
 class NetEnergy extends Component {
 	
@@ -29,8 +29,8 @@ class NetEnergy extends Component {
 			<div>
 				<Card className={classes.card}>
 					<CardContent>
-						<Typography variant="subheading" className={classes.title}>Net Energy (kWh)</Typography>
-						<ListItem disableGutters={true}>
+						<Typography variant='subheading' className={ classes.title }>Net Energy (kWh)</Typography>
+						<ListItem disableGutters={ true }>
 							<LineChart type='energy' data={ houseData.room[forRoom].energyUsageAll } />
 						</ListItem>
 					</CardContent>
@@ -39,7 +39,6 @@ class NetEnergy extends Component {
 		);
 	}
 }
-
 
 const mapStateToProps = (state) => {
     return {

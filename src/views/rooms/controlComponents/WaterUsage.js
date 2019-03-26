@@ -5,9 +5,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
-import LineChart from '../../../globalcomponents/LineChart';
+// import LineChart from '../../../globalcomponents/LineChart';
 
-const styles = theme => ({
+const styles = {
 	card: {
 		marginBottom: 25,
 	},
@@ -17,7 +17,7 @@ const styles = theme => ({
 		textTransform: 'uppercase',
 		letterSpacing: 1,
 	},
-});
+};
 
 class WaterUsage extends Component {
 
@@ -26,10 +26,10 @@ class WaterUsage extends Component {
 		
 		return (
 			<div>
-				<Card className={classes.card}>
+				<Card className={ classes.card }>
 					<CardContent>
-						<Typography variant="subheading" className={classes.title}>Water Usage (L)</Typography>
-						<ListItem disableGutters={true}>
+						<Typography variant='subheading' className={ classes.title }>Water Usage (L)</Typography>
+						<ListItem disableGutters={ true }>
 							{/* <LineChart type='water' /> */}
 						</ListItem>
 					</CardContent>

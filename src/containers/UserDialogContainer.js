@@ -3,7 +3,6 @@ import UserDialog from '../views/settings/UserDialog';
 import { updateAccountName } from '../actions';
 
 const mapStateToProps = (state) => {
-    // console.log(state);
     return {
         settings: state.settings,
     }

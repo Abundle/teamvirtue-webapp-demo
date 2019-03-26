@@ -14,7 +14,7 @@
 # VIRTUe Web App Demo
 
 Demo version of team VIRTUe's original [repository](https://github.com/teamvirtue/webapp-react), see 
-[here](https://teamvirtue.nl/webapp) for live version.
+[here](https://teamvirtue.nl/webapp) for live version (tablet size works best for now).
 
 ## Built With
 

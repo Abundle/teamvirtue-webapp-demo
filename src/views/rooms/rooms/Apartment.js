@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 
 // Local import
 import Temperature from '../controlComponents/Temperature';
 import RealtimeEnergyMeter from '../controlComponents/RealtimeEnergyMeter';
 import NetEnergy from '../controlComponents/NetEnergy';
-//import WaterUsage from '../controlComponents/WaterUsage';
 import RealtimeEnergyBar from '../controlComponents/RealtimeEnergyBar';
 
 class Apartment extends Component {
@@ -16,13 +14,12 @@ class Apartment extends Component {
 	
         return (
             <List className='row'>
-				{/* <div className='notificationWarning notificationMargin'>This is a mock-up. Appliance controls are disabled during tours.</div> */}
 				<div className='col-6'>
 					<Temperature />
 				</div>
 				
 				<div className='col-6'>
-					<RealtimeEnergyMeter forRoom={[{ 'roomname': 'All Rooms', 'energyname': 'All Rooms' }]} />
+					<RealtimeEnergyMeter forRoom={ [{ 'roomname': 'All Rooms', 'energyname': 'All Rooms' }] } />
 				</div>
 
 				<div className='col-12'>

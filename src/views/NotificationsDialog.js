@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles'
 import { withTheme } from '@material-ui/core/styles';
@@ -12,22 +11,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import '../animations.css';
 import { CardContainer } from '../containers/CardContainer';
 
-/*
-import SocketCard from './../globalcomponents/SocketCard';
-let sockets = [
-    {   id: '1',
-        title: 'Appliance Connected',
-        message: 'A new applicance is connected to a socket in the kitchen. Please specify what appliance this is.',
-        // buttonIcon: 'schedule',
-        // buttonText: 'schedule',
-    },
-];
-*/
-
 const styles = {
-	root: {
-		// backgroundColor: 'red',
-	},
     badge: {
 		fontSize: '1.4vh',
 		width: '2.0vh',
@@ -51,7 +35,6 @@ const styles = {
 		color: 'white',
 	},
 };
-
 
 class NotificationsDialog extends Component {
     constructor(props) {
@@ -88,7 +71,7 @@ class NotificationsDialog extends Component {
 	componentWillReceiveProps(nextProps) {
 		this.getNotificationsCount(nextProps.notifications.byId);
 		
-		if(this.state.notificationsCount <= 0) {//close popup if all cards are dismissed
+		if (this.state.notificationsCount <= 0) { //close popup if all cards are dismissed
 			this.handleNotificationsPopupClose();
 		}
 	}
@@ -97,7 +80,7 @@ class NotificationsDialog extends Component {
 		const { classes, notifications } = this.props;
 
         return (
-            <div className={ classes.root }>
+            <div>
 				{ this.state.notificationsCount > 0 && 
 					<div>
 						<div className='notificationsIcon' onClick={ this.handleNotificationsPopupOpen }>
@@ -130,7 +113,6 @@ class NotificationsDialog extends Component {
 								
 								{ Object.keys(notifications.byId).map((id) => {
 										let card = notifications.byId[id];
-										// let lastMessage = messageArray[messageArray.length - 1];
 
 										return card.visible ?
 											<CardContainer
@@ -140,27 +122,12 @@ class NotificationsDialog extends Component {
 												buttonIcon={ card.buttonIcon }
 												buttonText={ card.buttonText }
 												bordered={ card.bordered }
-												// onDismissCard={this.dismissCard}
 											>
 												{ card.message }
 											</CardContainer> : null
 									}
 								) }
-								{ /* (Object.keys(notifications.byId).length === 0) && <div>asdfasdfasdf</div> */ }
 							</CSSTransitionGroup>
-							
-							{/*<div className={ classes.cardContainer }>
-								{ sockets.map(data => {
-									return (
-										<SocketCard
-											key={ data.id }
-											title={ data.title }
-										>
-											{ data.message }
-										</SocketCard>
-									);
-								})}
-							</div>*/}
 						</Dialog>
 					</div>
 				}

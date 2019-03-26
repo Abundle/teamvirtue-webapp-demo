@@ -13,10 +13,7 @@ import '../animations.css';
 
 import { updateAdvice } from '../actions';
 
-// let indexCount = 100;
-
-const styles = theme => ({
-});
+const styles = {};
 
 class SustainabilityCards extends Component {
 	
@@ -27,10 +24,6 @@ class SustainabilityCards extends Component {
         setTimeout(() => {
             this.props.updateAdvice(level, id, true);
         }, 1000 * 60); //60 seconds
-
-        /*setTimeout(function(){
-			this.props.updateAdvice(level, id, true);
-        }.bind(this), 1000 * 60); //60 seconds*/
 	};
 	
 	componentDidUpdate(prevProps){
@@ -39,8 +32,6 @@ class SustainabilityCards extends Component {
 
     render() {
 		const { sustainabilityStatus } = this.props;
-		// const { classes, sustainabilityStatus } = this.props;
-
 
         return (
             <div className='sustainabilityCardContainer'>
@@ -55,11 +46,8 @@ class SustainabilityCards extends Component {
 						let advices = sustainabilityStatus.advices[sustainabilityStatus.selected];
 						let advice = advices[id];
 
-						// console.log(advices.indexOf(advice))
-
 						return advice.active ?
 							<Card className='sustainabilityCard row no-margin' key={ advice.id } style={{ zIndex: (100 - id) }}>
-							{/*<Card className='sustainabilityCard row no-margin' key={ id } style={{ zIndex: (100 - id) }}>*/}
 								<div className='col-9'>
 									<div>
 										<CardContent className='sustainabilityCardContent'>

@@ -1,7 +1,5 @@
-// import * as types from '../constants/ActionTypes'
 import accountPicture1 from '../assets/accounts/1.jpg';
 import accountPicture2 from '../assets/accounts/2.jpg';
-// import accountPicture3 from '../assets/accounts/3.jpg';
 
 const settings = (state = {
 	accounts: {
@@ -14,7 +12,6 @@ const settings = (state = {
 			'user2': {
 				id: 'user2',
 				name: 'John',
-				// name: 'Manar Bishara',
 				imgName: accountPicture1,
 			},
 			/*'user3': {
@@ -42,7 +39,6 @@ const settings = (state = {
 }, action) => {
 	switch (action.type) {
         case 'UPDATE_ACCOUNT_NAME':
-		    // console.log(action.payload.id);
 			return {
                 ...state,
 				accounts: {

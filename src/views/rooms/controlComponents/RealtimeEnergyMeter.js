@@ -5,11 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-/*import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import Icon from '@material-ui/core/Icon';*/
 
 const styles = theme => ({ 
 	card: {
@@ -40,8 +35,7 @@ const styles = theme => ({
 	},
 });
 
-class RealtimeEnergyMeter extends Component { // TODO: Randomise 380.1 value
-
+class RealtimeEnergyMeter extends Component { // TODO: Randomise 180.1 value?
 	render() {
 		const { classes, houseData, forRoom, forSocket } = this.props;
 		
@@ -52,7 +46,7 @@ class RealtimeEnergyMeter extends Component { // TODO: Randomise 380.1 value
 						<CardContent>
 							<Typography variant='subheading' className={ classes.title }>Realtime energy usage</Typography>
 							<Typography className={ classes.typography } component='h2' variant='display1'>
-								380.1
+								180.1
 								{/*{ houseData.room[forRoom[0].roomname].energyUsageRealtime }*/}
 							</Typography>
 							kW
@@ -105,7 +99,6 @@ class RealtimeEnergyMeter extends Component { // TODO: Randomise 380.1 value
 		}
 	}
 }
-
 
 const mapStateToProps = (state) => {
     return {

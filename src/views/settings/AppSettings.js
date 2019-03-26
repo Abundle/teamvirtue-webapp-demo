@@ -19,24 +19,6 @@ import Icon from '@material-ui/core/Icon';
 
 // Local import
 import { UserDialogContainer } from '../../containers/UserDialogContainer';
-// import UserDialog from './setting/UserDialog';
-// import './AppSettings.css';
-
-// const options = [];
-
-/*const optionsFood = [
-    'Not applicable',
-    'Flexitarian',
-    'Pescatarian',
-    'Vegetarian',
-    'Vegan',
-];
-
-const optionsNightmode = [
-    'Disabled',
-    'Automatically enable from sunset to sunrise',
-    'Custom time range',
-];*/
 
 const styles = {
     pageTitle: {
@@ -60,8 +42,6 @@ class ListMenu extends Component {
         };
     }
 
-    // button = undefined;
-
     handleClickListItem = event => {
         this.setState({ anchorEl: event.currentTarget });
     };
@@ -75,11 +55,10 @@ class ListMenu extends Component {
     };
 
     render() {
-        // const { classes } = this.props;
         const { anchorEl } = this.state;
 
         return (
-            <div> {/*className={ classes.root }*/}
+            <div>
                 <ListItem
                     button
                     aria-haspopup='true'

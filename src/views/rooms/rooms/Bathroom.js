@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 
 // Local import
@@ -17,10 +16,12 @@ class Bathroom extends Component {
 				</div>
 				
 				<div className='col-6'>
-					<RealtimeEnergyMeter forRoom={[{'roomname': 'Bathroom'}]} forSocket={[ 
-																		{'name': 'Shower', id: 'F21'},
-																		{'name': 'Sockets', id: 'F23'}
-																	  ]} />
+					<RealtimeEnergyMeter
+						forRoom={ [{ 'roomname': 'Bathroom' }] }
+						forSocket={ [
+									{ 'name': 'Shower', id: 'F21' },
+									{ 'name': 'Sockets', id: 'F23' }
+								  ] } />
 				</div>
 
 				<div className='col-12'>

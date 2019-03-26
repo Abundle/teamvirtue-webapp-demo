@@ -7,7 +7,6 @@ import {
     updateIndoorTemperature,
     updateEnergyUsageRealtime
 } from '../actions';
-// import { getApiToken, apiGetAtmoTemperature, apiGetSocketData } from '../actions/asyncActions';
 
 const mapStateToProps = (state) => {
     return {

@@ -103,18 +103,12 @@ const sustainabilityStatus = (state = {
         case 'SELECT_ADVICE_CARD':
             let advices = state.advices[state.selected];
 
-            // console.log(advices)
-
             advices.forEach((item, index) => {
                 if (item.id === action.payload){
                     advices.splice(index, 1);
                     advices.unshift(item);
-
-                    // console.log(item, action.payload)
                 }
             });
-
-            // console.log(advices)
 
             return {
                 ...state,
@@ -131,17 +125,9 @@ const sustainabilityStatus = (state = {
                     ...state.advices,
                     [action.payload.level]: state.advices[action.payload.level].map((item, index) => {
                         let id = parseInt(action.payload.id, 10);
-                        // console.log(item, index);
-                        // console.log(index, parseInt(action.payload.id))
 
                         // Replace the item at index 2
                         if (index === id) {
-                            // console.log(action.payload.active)
-                            // return item
-                            /*return {
-                                ...item,
-                                ...action.payload.active
-                            };*/
                             return {
                                 ...item,
                                 active: action.payload.active,
@@ -153,41 +139,6 @@ const sustainabilityStatus = (state = {
                     })
                 }
             };
-            /*return state.advices[action.payload.level].map((item, index) => {
-                console.log(item, index);
-
-                // Replace the item at index 2
-                if (index === action.payload.id) {
-                    return { ...item, ...action.payload };
-                }
-
-                // Leave every other item unchanged
-                return item;
-            });*/
-            /*return state.advices[action.payload.level].map((item, index) => {
-                console.log(item, index);
-
-                // Replace the item at index 2
-                if (index === 2) {
-                    return item;
-                }
-
-                // Leave every other item unchanged
-                return item;
-            });*/
-            /*return {
-                ...state,
-                advices: {
-                    ...state.advices,
-                    [action.payload.level]: {
-                        ...state.advices[action.payload.level],
-                        [action.payload.id]: {
-                            ...state.advices[action.payload.level][action.payload.id],
-                            active: action.payload.active,
-                        }
-                    }
-                }
-            };*/
 		default:
 			return state;
 	}
