@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Scene from '../threejs/Scene';
-import { updateSustainabilityStatus, selectAdviceCard } from '../actions';
+import { updateSustainabilityStatus, selectAdviceCard, loadingModel } from '../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -9,6 +9,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+    loadingModel: (loadingStatus) => {
+        dispatch(loadingModel(loadingStatus));
+    },
     updateSustainabilityStatus: (selected) => {
         dispatch(updateSustainabilityStatus(selected));
     },

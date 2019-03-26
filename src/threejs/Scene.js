@@ -19,6 +19,7 @@ import gltfUrl from '../assets/models/linq_low_poly_web_app.glb';
 // import gltfUrl from '../assets/models/Duck.glb';
 // import gltfUrl from '../assets/models/DamagedHelmet/DamagedHelmet.gltf';
 
+// let loadingProgress;
 let levels = ['MY', 'LINQ', 'DISTRICT'];
 let selectedObject = null;
 // let alpha = 0;
@@ -151,6 +152,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         gltfLoader.load(gltfUrl,
             // called when resource is loaded
             (gltf) => {
+                this.props.loadingModel('loaded');
                 // console.log(gltf.scene.children[13]);
 
                 gltf.scene.traverse((node) => {
@@ -215,11 +217,16 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
             },
             // called when loading is in progresses
             (xhr) => {
-                console.log('Model ' + (xhr.loaded / xhr.total * 100) + '% loaded'); // TODO: check Infinity
+                let percentage = (xhr.loaded / xhr.total * 100);
+                console.log('Model ' + percentage + '% loaded');
+
+                this.props.loadingModel(percentage);
             },
             // called when loading has errors
             (error) => {
                 console.log('Error ' + error);
+
+                this.props.loadingModel('Error');
             });
 
         // Texture Loading
@@ -507,7 +514,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
 
     start = () => {
         if (!this.frameId) {
-            this.resizeCanvas();
+            // this.resizeCanvas();
             this.frameId = requestAnimationFrame(this.animate);
         }
     };
@@ -592,11 +599,21 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         }
     }
 
-    resizeCanvas = () => { // TODO: make responsive again
-        this.canvas.style.width = window.innerWidth;
-        this.canvas.style.height = window.innerHeight;
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+    resizeCanvas = () => {
+        if (window.innerWidth >= 1100) {
+            this.renderer.setSize(window.innerWidth * 0.6, window.innerHeight);
+            this.canvas.width = window.innerWidth * 0.6;
+            this.canvas.height = window.innerHeight;
+
+        } else {
+            this.renderer.setSize(window.innerWidth, window.innerHeight);
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+        }
+
+        /*this.canvas.style.width = window.innerWidth;
+        this.canvas.style.height = window.innerHeight;*/
+
         /*this.canvas.style.width = '100%';
         this.canvas.style.height = '100%';*/
 
@@ -1138,8 +1155,8 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
     };
 
     render() {
-        /*const { sustainabilityStatus } = this.props;
-        let advice = sustainabilityStatus.advices[sustainabilityStatus.selected];*/
+        // const { sustainabilityStatus } = this.props;
+        // let advice = sustainabilityStatus.advices[sustainabilityStatus.selected];
 
         // console.log(sustainabilityStatus.advices[sustainabilityStatus.selected][0].id)
 

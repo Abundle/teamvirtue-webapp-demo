@@ -59,7 +59,9 @@ class SustainabilityStatusCircle extends Component {
     }*/
 
 	handleOpen = () => {
-        this.props.updateFullscreenStatus(true);
+        if (this.props.sustainabilityStatus.loadingStatus === 'loaded') {
+            this.props.updateFullscreenStatus(true);
+        }
         // this.setState({ fullScreen: true });
 	};
 
@@ -85,10 +87,13 @@ class SustainabilityStatusCircle extends Component {
 
         // console.log(this.props.sustainabilityStatus.fullscreen);
 
+        // console.log(sustainabilityStatus.loadingStatus)
+
         return (
             <div className={ classes.root }>
                 <div className={ 'sustainabilityStatusCircleContainer ' + circleColorClass } onClick={ this.handleOpen }>
                     <div className={ 'sustainabilityStatusCircle' }>
+                        {/*<p>{ sustainabilityStatus.loadingStatus }</p>*/}
                         <SceneContainer view={ this.props.view } />
                     </div>
                 </div>

@@ -65,6 +65,11 @@ export const updateSustainabilityStatus = (selected) => ({
 	payload: selected,
 });
 
+export const loadingModel = (loadingStatus) => ({
+    type: 'LOADING_MODEL',
+    payload: loadingStatus,
+});
+
 export const updateFullscreenStatus = (fullscreen) => ({
     type: 'UPDATE_FULLSCREEN_STATUS',
     payload: fullscreen,

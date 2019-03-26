@@ -27,7 +27,7 @@ const styles = {
 		backgroundSize: 'cover',
 		backgroundAttachment: 'fixed',
 	},
-	logo: {
+	/*logo: {
 		position: 'absolute',
 		left: 0,
 		margin: '23px 20px',
@@ -35,7 +35,7 @@ const styles = {
 		'&:hover': {
 			cursor: 'pointer',
 		}
-	},
+	},*/
     nav: {
         position: 'fixed',
         bottom: 0,
@@ -84,10 +84,11 @@ class MainNavigation extends Component {
 
         return (
             <div className={ classes.root + ' mainNavigation'}>
-                { !fullscreen &&
-                    <img className={ classes.logo }
+                {
+                    <img className={ 'logo' }
                          src={ logo }
-                         width='80'
+                         style={{ visibility: fullscreen ? 'hidden' : 'visible' }}
+                         // width='80'
                          alt='LINQ logo'
                          // onClick={ () => this.handleClick('home') }
                     />
