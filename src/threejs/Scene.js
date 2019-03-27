@@ -90,6 +90,8 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         let districtObjects = [];
         let otherObjects = [];
 
+        let level = this.props.sustainabilityStatus.selected;
+
         let gltfLoader = new GLTFLoader();
         let objLoader = new OBJLoader();
         // Optional: Provide a DRACOLoader instance to decode compressed mesh data
@@ -139,7 +141,17 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                 DISTRICT_GROUP.children = districtObjects;
                 OTHER_GROUP.children = otherObjects;
 
-                this.selectLevel(this.props.sustainabilityStatus.selected);
+                let advices = this.props.sustainabilityStatus.advices[level];
+                for (let i = 0; i < advices.length; i++) {
+                    if (advices[i].active) {
+                        // Object to be highlighted
+                        let object = OTHER_GROUP.getObjectByName(advices[i].id);
+                        this.setMarker(object);
+                        this.setColor(object, highlightColor);
+                    }
+                }
+
+                this.selectLevel(level);
 
                 scene.add(gltf.scene);
             },
@@ -161,9 +173,11 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         let aoMap = new THREE.TextureLoader().load(aoMapUrl);
         let material = new THREE.MeshStandardMaterial({
             color: highlightColor,
+            // alphaTest: 0.75,
             aoMap: aoMap,
             aoMapIntensity: 2,
             transparent: true,
+            // opacity: 0.75,
             name: 'Marker_material',
         });
 
@@ -194,7 +208,6 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         let lights = [];
         lights[0] = new THREE.AmbientLight(whiteColor, 0.6);
         scene.add(lights[0]);
-
 
         lights[1] = new THREE.HemisphereLight(whiteColor, 0xf15b27, 0.75); // 1.25
         lights[1].position.set(0, 100, -25);
@@ -377,6 +390,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         if (intersects.length > 0 && Object.keys(intersects[0].object.userData).length !== 0) {
             // check if the closest object intersected is not the currently stored intersection object
             if (intersects[0].object !== selectedObject) {
+                console.log(intersects[0].object)
                 // restore previous intersection object (if it exists) to its original color
                 if (selectedObject) {
                     this.setColor(selectedObject, selectedObject.currentHex);
@@ -417,20 +431,18 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
             console.log(markers[i])
         }*/
 
-        let advices = this.props.sustainabilityStatus.advices[level];
+        // let advices = this.props.sustainabilityStatus.advices[level];
 
         switch(level) {
             case 'mylinq':
-                this.setTransparency({ objects: [roof, indicator, marker], opacity: [0, 0, 1] });
-
-                for (let i = 0; i < advices.length; i++) {
+                /*for (let i = 0; i < advices.length; i++) {
                     if (advices[i].active) {
                         // Object to be highlighted
                         let object = this.OTHER_GROUP.getObjectByName(advices[i].id);
                         this.setMarker(object);
                         this.setColor(object, highlightColor);
                     }
-                }
+                }*/
 
                 if (this.props.sustainabilityStatus.fullscreen) {
                     this.animateCamera(this.camera, { x: 15, y: 50, z: 30 }, 1500, 2);
@@ -439,24 +451,26 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                 } else {
                     this.animateCamera(this.camera, { x: 25, y: 50, z: 25 }, 1000, 0.5, { x: 5.5, y: 0, z: 2.5 });
                 }
+
+                this.setTransparency({ objects: [roof, indicator, marker], opacity: [0, 0, 1] });
                 break;
             case 'linq':
-                this.setTransparency({ objects: [roof, indicator, marker], opacity: [1, 1, 0] });
-
                 if (this.props.sustainabilityStatus.fullscreen) {
                     this.animateCamera(this.camera, { x: 35, y: 20, z: 35 }, 1500, 0.5); // lookAt: { x: 0, y: 0, z: 2 }
                 } else {
                     this.animateCamera(this.camera, { x: 25, y: 25, z: 25 }, 1000, 0.25, { x: 10, y: -3, z: 7 });
                 }
+
+                this.setTransparency({ objects: [roof, indicator, marker], opacity: [1, 1, 0] });
                 break;
             case 'district':
-                this.setTransparency({ objects: [roof, indicator, marker], opacity: [1, 1, 0] });
-
                 if (this.props.sustainabilityStatus.fullscreen) {
                     this.animateCamera(this.camera, { x: 35, y: 45, z: 35 }, 1500, 0.20);
                 } else {
                     this.animateCamera(this.camera, { x: 35, y: 25, z: 35 }, 1000, 0.15, { x: 11, y: -17, z: 3});
                 }
+
+                this.setTransparency({ objects: [roof, indicator, marker], opacity: [1, 1, 0] });
                 break;
             default:
                 console.log('error');
@@ -514,6 +528,18 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         for (let i = 0; i < targetProperties.opacity.length; i++) {
             targetOpacity.push(targetProperties.opacity[i]);
         }
+
+        this.scene.traverse((child) => {
+            if (child.name === 'Marker') {
+                child.material.opacity = targetOpacity[2];
+            }
+        });
+
+        /*marker.traverse((node) => {
+            if (node instanceof THREE.Mesh) {
+                node.material = node.material.clone();
+            }
+        });*/
 
         opacityTween = new Tween(Object.assign({}, currentOpacity))
             .to(Object.assign({}, targetOpacity), 500)
