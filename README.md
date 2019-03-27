@@ -14,7 +14,7 @@
 # VIRTUe Web App Demo
 
 Demo version of team VIRTUe's original [repository](https://github.com/teamvirtue/webapp-react), see 
-[here](https://teamvirtue.nl/webapp) for live version (tablet size works best for now).
+[here](https://teamvirtue.nl/webapp) for live version.
 
 ## Built With
 
@@ -25,10 +25,8 @@ Demo version of team VIRTUe's original [repository](https://github.com/teamvirtu
 * [Blender](https://www.blender.org/) - For creating the 3D model of the apartment complex and neighbourhood
 
 # VIRTUe Student Team
-VIRTUe is a student team from the Eindhoven University of Technology. Follow us on our journey designing and building
-the most sustainable house at the Solar Decathlon Middle East 2018 in Dubai.
-
-Check out our website [teamvirtue.nl](https://teamvirtue.nl/)
+VIRTUe is a student team from the Eindhoven University of Technology. Check out our adventure on designing and building
+our sustainable house LINQ at the Solar Decathlon Middle East 2018 in Dubai at [teamvirtue.nl](https://teamvirtue.nl/),
 
 # Web App Functionalities
 Through the web app the residents are able to view their behaviour in terms of sustainability, the status of LINQ and
