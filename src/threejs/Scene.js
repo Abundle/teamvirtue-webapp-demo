@@ -39,9 +39,10 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
     componentDidMount() { // glTF implementation based on https://medium.com/@matthewmain/how-to-import-a-3d-blender-object-into-a-three-js-project-as-a-gltf-file-5a67290f65f2
         window.addEventListener('resize', this.resizeCanvas);
         this.canvas.addEventListener('touchstart', this.onClick);
+        // this.canvas.addEventListener('mousemove', this.onClick);
         this.canvas.addEventListener('click', this.onClick);
 
-        if (window.innerWidth >= 1100) {
+        /*if (window.innerWidth >= 1100) {
             width = window.innerWidth * 0.5;
 
         } else {
@@ -50,9 +51,11 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
 
         height = window.innerHeight;
 
-        cameraFactor = (width / height) * 350;
+        cameraFactor = (width / height) * 350;*/
 
         const renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha: true });
+        this.resizeCanvas();
+
         /*const DPR = window.devicePixelRatio ? window.devicePixelRatio : 1;
         renderer.setPixelRatio(DPR);*/
         renderer.setSize(width, height);
@@ -187,7 +190,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                 geometry.attributes.uv2 = geometry.attributes.uv;
                 object = new THREE.Mesh(geometry, material);
                 object.scale.multiplyScalar(0.5);
-                object.rotation.set(0, 0.5, 0);
+                object.rotation.set(-0.5, 0.5, 0.25);
 
                 object.name = 'Marker';
 
@@ -232,7 +235,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         /*let cameraHelper = new THREE.CameraHelper(camera);
         scene.add(cameraHelper);*/
 
-        /*let axesHelper = new THREE.AxesHelper(5);
+        /*let axesHelper = new THREE.AxesHelper(15);
         scene.add(axesHelper);*/
 
         /*let gridHelper = new THREE.GridHelper(100, 100);
@@ -346,34 +349,32 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
     }
 
     resizeCanvas = () => {
+        let variableWidth = 1;
+
         if (window.innerWidth >= 1100) {
-            this.renderer.setSize(window.innerWidth * 0.5, window.innerHeight);
+            variableWidth = 0.5;
 
-            width = window.innerWidth * 0.5;
-
+            width = window.innerWidth * variableWidth;
         } else {
-            this.renderer.setSize(window.innerWidth, window.innerHeight);
             width = window.innerWidth;
+        }
+
+        if (this.renderer) {
+            this.renderer.setSize(window.innerWidth * variableWidth, window.innerHeight);
         }
 
         height = window.innerHeight;
         cameraFactor = (width / height) * 350;
-
-        this.camera.left = width / -cameraFactor;
-        this.camera.right = width / cameraFactor;
-        this.camera.top = height / cameraFactor;
-        this.camera.bottom = height / -cameraFactor;
-
-        // console.log(this.camera.left, this.camera.top)
     };
 
     onClick = (event) => {
         event.preventDefault();
 
-        if (event.type === 'click') {
+        if (event.type === 'click') { // Only in desktop view
             // calculate mouse position in normalized device coordinates
             // (-1 to +1) for both components
-            this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+
+            this.mouse.x = ((event.clientX / window.innerWidth) * 2 - 1) * 2; // x2 to map to the reduced with of the canvas
             this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
         } else {
             this.mouse.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
@@ -390,7 +391,6 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         if (intersects.length > 0 && Object.keys(intersects[0].object.userData).length !== 0) {
             // check if the closest object intersected is not the currently stored intersection object
             if (intersects[0].object !== selectedObject) {
-                console.log(intersects[0].object)
                 // restore previous intersection object (if it exists) to its original color
                 if (selectedObject) {
                     this.setColor(selectedObject, selectedObject.currentHex);
@@ -425,25 +425,9 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
     selectLevel = (level) => { // TODO: check if level is already selected? + Make marker object global?
         let roof = this.MYLINQ_GROUP.getObjectByName('MYLINQ_roof_solar_panels');
         let indicator = this.OTHER_GROUP.getObjectByName('Indicator');
-        let marker = this.scene.getObjectByName('Marker');
-
-        /*for (let i = 0; i < markers.length; i ++) {
-            console.log(markers[i])
-        }*/
-
-        // let advices = this.props.sustainabilityStatus.advices[level];
 
         switch(level) {
             case 'mylinq':
-                /*for (let i = 0; i < advices.length; i++) {
-                    if (advices[i].active) {
-                        // Object to be highlighted
-                        let object = this.OTHER_GROUP.getObjectByName(advices[i].id);
-                        this.setMarker(object);
-                        this.setColor(object, highlightColor);
-                    }
-                }*/
-
                 if (this.props.sustainabilityStatus.fullscreen) {
                     this.animateCamera(this.camera, { x: 15, y: 50, z: 30 }, 1500, 2);
 
@@ -452,7 +436,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                     this.animateCamera(this.camera, { x: 25, y: 50, z: 25 }, 1000, 0.5, { x: 5.5, y: 0, z: 2.5 });
                 }
 
-                this.setTransparency({ objects: [roof, indicator, marker], opacity: [0, 0, 1] });
+                this.setTransparency({ objects: [roof, indicator].concat(markers), opacity: [0, 0, 1, 1, 1] });
                 break;
             case 'linq':
                 if (this.props.sustainabilityStatus.fullscreen) {
@@ -461,7 +445,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                     this.animateCamera(this.camera, { x: 25, y: 25, z: 25 }, 1000, 0.25, { x: 10, y: -3, z: 7 });
                 }
 
-                this.setTransparency({ objects: [roof, indicator, marker], opacity: [1, 1, 0] });
+                this.setTransparency({ objects: [roof, indicator].concat(markers), opacity: [1, 1, 0, 0, 0] });
                 break;
             case 'district':
                 if (this.props.sustainabilityStatus.fullscreen) {
@@ -470,7 +454,7 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
                     this.animateCamera(this.camera, { x: 35, y: 25, z: 35 }, 1000, 0.15, { x: 11, y: -17, z: 3});
                 }
 
-                this.setTransparency({ objects: [roof, indicator, marker], opacity: [1, 1, 0] });
+                this.setTransparency({ objects: [roof, indicator].concat(markers), opacity: [1, 1, 0, 0, 0] });
                 break;
             default:
                 console.log('error');
@@ -520,26 +504,14 @@ class Scene extends Component { // code based on https://stackoverflow.com/quest
         let targetOpacity = [];
 
         if (targetProperties.objects[0]) {
-            for (let i = 0; i < targetProperties.objects.length; i++) {
-                currentOpacity.push(targetProperties.objects[i].material.opacity);
-            }
+           for (let i = 0; i < targetProperties.objects.length; i++) {
+               currentOpacity.push(targetProperties.objects[i].material.opacity);
+           }
         }
 
-        for (let i = 0; i < targetProperties.opacity.length; i++) {
-            targetOpacity.push(targetProperties.opacity[i]);
+        for (let i = 0; i < targetProperties.objects.length; i++) {
+           targetOpacity.push(targetProperties.opacity[i]);
         }
-
-        this.scene.traverse((child) => {
-            if (child.name === 'Marker') {
-                child.material.opacity = targetOpacity[2];
-            }
-        });
-
-        /*marker.traverse((node) => {
-            if (node instanceof THREE.Mesh) {
-                node.material = node.material.clone();
-            }
-        });*/
 
         opacityTween = new Tween(Object.assign({}, currentOpacity))
             .to(Object.assign({}, targetOpacity), 500)
