@@ -75,7 +75,7 @@ const styles = theme => ({
         alignItems: 'center',
         flexDirection: 'column',
     },
-    iconBoxContentInfo: {
+    /*iconBoxContentInfo: {
         height: 105,
         width: 105,
         paddingTop: 30,
@@ -83,7 +83,7 @@ const styles = theme => ({
         border: '2px solid #ba491f',
         borderRadius: '50%',
         backgroundColor: '#e46231',
-    },
+    },*/
     iconBoxContentBadge: {
         top: 10,
         right: 0,
@@ -495,7 +495,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('bikes') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-										<span className={ classes.iconBoxContentInfo }>
+										<span className={ 'iconBoxContentInfo' }>
 											<Icon className={ classes.iconBoxContentBigger }>directions_bike</Icon>
 											<span className={ classes.iconBoxContentBigger }> 5</span>
 										</span>
@@ -511,7 +511,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('solarcar') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-										<span className={ classes.iconBoxContentInfo }>
+										<span className={ 'iconBoxContentInfo' }>
 											<FontAwesome className={ classes.iconBoxContentBigger } name='car' />
 											<span className={ classes.iconBoxContentBigger }> 1</span>
 										</span>
@@ -527,7 +527,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('washingmachine') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-										<span className={ classes.iconBoxContentInfo }>
+										<span className={ 'iconBoxContentInfo' }>
 											<Icon className={ classes.iconBoxContentBigger }>local_laundry_service</Icon>
 											<span className={ classes.iconBoxContentBigger }> 1</span>
 										</span>
@@ -546,7 +546,7 @@ class Home extends Component {
                                         { houseData.eatTogetherStatus === 'requested' ? (
                                             <div>
                                                 <Badge badgeContent='1' classes={{ badge: classes.iconBoxContentBadge }} color='secondary'>
-													<span className={ classes.iconBoxContentInfo }>
+													<span className={ 'iconBoxContentInfo' }>
 														<Icon className={ classes.iconBoxContentBigger }>restaurant</Icon>
 														<span className={ classes.iconBoxContentBigger }> 2</span>
 													</span>
@@ -555,7 +555,7 @@ class Home extends Component {
                                             </div>
                                         ) : (
                                             <div>
-												<span className={ classes.iconBoxContentInfo }>
+												<span className={ 'iconBoxContentInfo' }>
 													<Icon className={ classes.iconBoxContentBigger }>restaurant</Icon>
 													<span className={ classes.iconBoxContentBigger }> { (houseData.eatTogetherStatus === 'yes' ? 3 : 2 ) }</span>
 												</span>
@@ -576,7 +576,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('temperatureindoor') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-										<span className={ classes.iconBoxContentInfo }>
+										<span className={ 'iconBoxContentInfo' }>
 											<FontAwesome className={ classes.iconBoxContentBigger } name='thermometer-half' />
 											<span className={ classes.iconBoxContentBigger }> { Math.round(houseData.indoorTemperature) }<span className={ classes.iconBoxContentSmaller }>°C</span></span>
 										</span>
@@ -592,7 +592,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('humidity') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-										<span className={ classes.iconBoxContentInfo }>
+										<span className={ 'iconBoxContentInfo' }>
 											<FontAwesome className={ classes.iconBoxContentBigger } name='tint' />
 											<span className={ classes.iconBoxContentBigger }> { houseData.indoorHumidity }<span className={ classes.iconBoxContentSmaller }>%</span></span>
 										</span>
@@ -608,7 +608,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('CO2') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-                                        <span className={ classes.iconBoxContentInfo }>
+                                        <span className={ 'iconBoxContentInfo' }>
 											<Icon className={ classes.iconBoxContentBigger }>cloud</Icon>
 											<span className={ classes.iconBoxContentBigger } style={{ fontSize: 24, lineHeight: '1.9em' }}> { houseData.indoorCO2 }</span>
 										</span>
@@ -628,7 +628,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('energyusage') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-										<span className={ classes.iconBoxContentInfo }>
+										<span className={ 'iconBoxContentInfo' }>
 											<Icon className={ classes.iconBoxContentBigger }>power</Icon>
 											<span className={ classes.iconBoxContentBigger }>5</span>
 										</span>
@@ -647,7 +647,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('temperatureoutside') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-										<span className={ classes.iconBoxContentInfo }>
+										<span className={ 'iconBoxContentInfo' }>
 											<FontAwesome className={ classes.iconBoxContentBigger } name='thermometer-half' />
 											<span className={ classes.iconBoxContentBigger }> { temperature.outside.celsius }<span className={ classes.iconBoxContentSmaller }>°C</span></span>
 										</span>
@@ -663,7 +663,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('publictransport') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-										<span className={ classes.iconBoxContentInfo }>
+										<span className={ 'iconBoxContentInfo' }>
 											<Icon className={ classes.iconBoxContentBigger }>directions_bus</Icon>
 											<span className={ classes.iconBoxContentBigger }> 7<span className={ classes.iconBoxContentSmaller }>m</span></span>
 										</span>
@@ -679,7 +679,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('publictransport') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-										<span className={ classes.iconBoxContentInfo }>
+										<span className={ 'iconBoxContentInfo' }>
 											<Icon className={ classes.iconBoxContentBigger }>directions_subway</Icon>
 											<span className={ classes.iconBoxContentBigger }> 9<span className={ classes.iconBoxContentSmaller }>m</span></span>
 										</span>
@@ -695,7 +695,7 @@ class Home extends Component {
                                     onClick={ () => this.handleDialogOpen('publictransport') }
                                 >
                                     <div className={ classes.iconBoxContent }>
-										<span className={ classes.iconBoxContentInfo }>
+										<span className={ 'iconBoxContentInfo' }>
 											<Icon className={ classes.iconBoxContentBigger }>tram</Icon>
 											<span className={ classes.iconBoxContentBigger }> 9<span className={ classes.iconBoxContentSmaller }>m</span></span>
 										</span>

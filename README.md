@@ -22,6 +22,7 @@ Demo version of team VIRTUe's original [repository](https://github.com/teamvirtu
 * [Material-UI](https://github.com/mui-org/material-ui) - Material Design styling
 * [Three.js](https://github.com/mrdoob/three.js/) - For displaying the 3D model of house LINQ
 * [React Redux](https://github.com/reduxjs/react-redux) - Storing the state
+* [Blender](https://www.blender.org/) - For creating the 3D model of the apartment complex and neighbourhood
 
 # VIRTUe Student Team
 VIRTUe is a student team from the Eindhoven University of Technology. Follow us on our journey designing and building

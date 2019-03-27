@@ -151,6 +151,24 @@ body {
 	z-index: 15;
 }
 
+.iconBoxContentInfo {
+	height: 105px;
+	width: 105px;
+	padding-top: 30px;
+	margin-bottom: 10px;
+	border: 2px solid #ba491f;
+	border-radius: 50%;
+	background-color: #e46231;
+}
+
+@media only screen and (max-width: 450px) {
+	.iconBoxContentInfo {
+		height: 85px;
+		width: 85px;
+		padding-top: 20px;
+	}
+}
+
 .statusBar {
     display: flex;
     flex-direction: row;
@@ -608,9 +626,9 @@ body {
 }
 
 /* Home Screen */
-.home {
+/*.home {
 	overflow: hidden;
-}
+}*/
 
 .home .sustainabilityStatusCircleContainer {
 	margin-top: 15vh;
